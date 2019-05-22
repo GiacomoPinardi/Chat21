@@ -1,0 +1,24 @@
+package domain;
+
+import java.io.Serializable;
+
+public enum TipoInfo implements Serializable {
+
+	CONFERMA,
+	CONTENUTI_GRUPPO,
+	CONTENUTO,
+	CREA_GRUPPO,
+	ELIMINA_GRUPPO,
+	AGG_UTENTE_GRUPPO,
+	ELIMINA_UTENTE_GRUPPO,
+	AGG_UTENTE,
+	ELIMINA_UTENTE,
+	VISUALIZZA_LOG,
+	CAMBIA_PASSWORD,
+	LISTA_UTENTI,
+	LISTA_GRUPPI,
+	ACCESSO,
+	INFO_SESSIONE;
+	
+	
+}

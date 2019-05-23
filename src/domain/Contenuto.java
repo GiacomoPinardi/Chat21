@@ -9,6 +9,6 @@ public class Contenuto implements Info {
 	private TipoDestinatario tipoDestinatario;
 	private LocalDateTime dateTime;	
 	
-	
+	// commit di prova
 	
 }

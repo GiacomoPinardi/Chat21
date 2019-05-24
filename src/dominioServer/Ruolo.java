@@ -1,4 +1,4 @@
-package domain;
+package dominioServer;
 
 public enum Ruolo {
 

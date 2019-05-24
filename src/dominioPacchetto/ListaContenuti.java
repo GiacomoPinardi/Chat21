@@ -1,4 +1,4 @@
-package domain;
+package dominioPacchetto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +9,9 @@ public class ListaContenuti implements Info {
 
 	private List<Contenuto> listaContenuti;
 	
-	public ListaContenuti () {
-		listaContenuti = new ArrayList<>();
-	}
+//	public ListaContenuti () {
+//		listaContenuti = new ArrayList<>();
+//	}
 	
 	public ListaContenuti (List<Contenuto> listaContenuti) {
 		this.listaContenuti = listaContenuti;
@@ -21,8 +21,8 @@ public class ListaContenuti implements Info {
 		return listaContenuti;
 	}
 
-	public void setListaContenuti(List<Contenuto> listaContenuti) {
-		this.listaContenuti = listaContenuti;
-	}
+//	public void setListaContenuti(List<Contenuto> listaContenuti) {
+//		this.listaContenuti = listaContenuti;
+//	}
 	
 }

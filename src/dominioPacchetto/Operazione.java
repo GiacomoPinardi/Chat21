@@ -1,4 +1,4 @@
-package domain;
+package dominioPacchetto;
 
 public class Operazione implements Info {
 

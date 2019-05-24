@@ -1,10 +1,11 @@
-package domain;
+package dominioPacchetto;
 
 import java.io.Serializable;
 
 public enum TipoInfo implements Serializable {
 
 	CONFERMA,
+	RICHIESTA_CONTENUTI,
 	CONTENUTI_GRUPPO,
 	CONTENUTO,
 	CREA_GRUPPO,
@@ -17,8 +18,10 @@ public enum TipoInfo implements Serializable {
 	CAMBIA_PASSWORD,
 	LISTA_UTENTI,
 	LISTA_GRUPPI,
+	LISTA_UTENTI_GRUPPO,
+	LISTA_UTENTI_NON,
 	ACCESSO,
-	INFO_SESSIONE;
-	
+	INFO_SESSIONE,
+	DISCONNETTI;
 	
 }

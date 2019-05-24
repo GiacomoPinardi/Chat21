@@ -1,4 +1,4 @@
-package domain;
+package dominioPacchetto;
 
 import java.io.Serializable;
 

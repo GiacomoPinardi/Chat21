@@ -1,4 +1,4 @@
-package ControllerServer;
+package controllerServer;
 
 import dominioPacchetto.Conferma;
 import dominioPacchetto.InfoSessione;

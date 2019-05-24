@@ -1,4 +1,4 @@
-package ControllerServer;
+package controllerServer;
 
 public class SingleLog {
 

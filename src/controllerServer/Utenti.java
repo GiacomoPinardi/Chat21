@@ -1,4 +1,4 @@
-package ControllerServer;
+package controllerServer;
 
 import java.util.ArrayList;
 import java.util.List;

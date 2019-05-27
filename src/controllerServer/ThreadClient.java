@@ -21,15 +21,15 @@ public class ThreadClient implements Runnable {
 	ObjectInputStream inSock;
 	
 	public ThreadClient(ControllerAutenticazione ca, ControllerGestioneGruppi cgg, ControllerGestioneUtenti cgu,
-			ControllerScambiaContenutiGruppi cscg, ControllerScambiaContenutiBacheca cscb, ControllerLog cl, 
-			String executor, InputStream inSock) { // CONTROLLER LOG??? SINGLE TONE
+			ControllerScambiaContenutiGruppi cscg, ControllerScambiaContenutiBacheca cscb, 
+			String executor, InputStream inSock) {
 		this.ca = ca;
 		this.cgg = cgg;
 		this.cgu = cgu;
 		this.cscg = cscg;
 		this.cscb = cscb;
-		this.cl = cl;
 		this.executor = executor;
+		this.cl = SingleLog.getControllerLog();
 		try {
 			this.inSock = new ObjectInputStream(inSock);
 		} catch (IOException e) {
@@ -43,13 +43,15 @@ public class ThreadClient implements Runnable {
 			Pacchetto pacchetto;	
 			Operazione o;
 			Contenuto c;
+			boolean esito;
 			while (true) {
 				pacchetto = (Pacchetto) inSock.readObject();
 				switch (pacchetto.getTipo()) {
 				case ACCESSO:
 					o = (Operazione) pacchetto.getInformazione();
-					ca.confermaAccesso(o.getParametro1(), o.getParametro2());
-					break;
+					esito = ca.confermaAccesso(o.getParametro1(), o.getParametro2());
+					cl.addEntry("accesso", executor, esito);
+					break; 
 				case RICHIESTA_CONTENUTI:
 					o = (Operazione) pacchetto.getInformazione();
 					cscg.getContenutiGruppo(o.getParametro1(), executor); // nessun controllo sull'appartenenza
@@ -64,19 +66,23 @@ public class ThreadClient implements Runnable {
 					break;
 				case CREA_GRUPPO:
 					o = (Operazione) pacchetto.getInformazione();
-					cgg.creaGruppo(o.getParametro1(), executor);
+					if(cgg.creaGruppo(o.getParametro1(), executor))
+						cl.addEntry("creazione gruppo", executor, o.getParametro1());
 					break;
 				case ELIMINA_GRUPPO:
 					o = (Operazione) pacchetto.getInformazione();
-					cgg.eliminaGruppo(o.getParametro1(), executor);
+					if(cgg.eliminaGruppo(o.getParametro1(), executor))
+						cl.addEntry("eliminazione gruppo", executor, o.getParametro1());
 					break;
 				case AGG_UTENTE_GRUPPO:
 					o = (Operazione) pacchetto.getInformazione();
-					cgg.aggiungUtenteGruppo(o.getParametro1(), o.getParametro2(), executor);
+					if(cgg.aggiungUtenteGruppo(o.getParametro1(), o.getParametro2(), executor))
+						cl.addEntry("aggiunta utente a gruppo", executor, o.getParametro1(), o.getParametro2());
 					break;
 				case ELIMINA_UTENTE_GRUPPO:
 					o = (Operazione) pacchetto.getInformazione();
-					cgg.eliminaUtenteGruppo(o.getParametro1(), o.getParametro2(), executor);
+					if(cgg.eliminaUtenteGruppo(o.getParametro1(), o.getParametro2(), executor))
+						cl.addEntry("eliminazione utente da gruppo", executor, o.getParametro1(), o.getParametro2());
 					break;
 				case LISTA_GRUPPI:
 					cgg.invioListaGruppi(executor);
@@ -91,25 +97,31 @@ public class ThreadClient implements Runnable {
 					break;
 				case AGG_UTENTE:
 					o = (Operazione) pacchetto.getInformazione();
-					cgu.aggiungiUtente(o.getParametro1(), Ruolo.valueOf(o.getParametro2()), executor); 
+					if(cgu.aggiungiUtente(o.getParametro1(), Ruolo.valueOf(o.getParametro2()), executor))
+						cl.addEntry("aggiungiunta utente", executor, o.getParametro1());
 					break;
 				case ELIMINA_UTENTE:
 					o = (Operazione) pacchetto.getInformazione();
-					cgu.eliminaUtente(o.getParametro1(), executor);
+					if(cgu.eliminaUtente(o.getParametro1(), executor))
+						cl.addEntry("eliminazione utente", executor, o.getParametro1());
 					break;
 				case LISTA_UTENTI:
 					cgu.inviaListaUtenti(executor); 
 					break;
 				case CAMBIA_PASSWORD:
 					o = (Operazione) pacchetto.getInformazione();
-					ca.modicaPassword(executor, o.getParametro1(), o.getParametro2());
+					esito = ca.modicaPassword(executor, o.getParametro1(), o.getParametro2());
+						cl.addEntry("modifica password", executor, esito);
 					break;
 				case DISCONNETTI:
 					o = (Operazione) pacchetto.getInformazione();
 					ca.disconnetti(executor);
+						cl.addEntry("disconnessione", executor);
 					break;
 				case VISUALIZZA_LOG:
 					
+					break;
+				default:
 					break;
 				}
 

@@ -19,20 +19,24 @@ public class ControllerGestioneUtenti {
 		this.gruppi = gruppi;
 	}
 	
-	public void aggiungiUtente(String username, Ruolo ruolo, String executor) {
+	public boolean aggiungiUtente(String username, Ruolo ruolo, String executor) {
 		utenti.lockList();
 		boolean esito = utenti.aggiungi(new Utente(username, ruolo));
 		utenti.lockList();
 		invioConferma("aggiungi utente", esito, executor);
-		dbConnection.aggiungiUtente(username);
+		if (esito)
+			dbConnection.aggiungiUtente(username);
+		return esito;
 	}
 	
-	public void eliminaUtente(String username, String executor) {
+	public boolean eliminaUtente(String username, String executor) {
 		utenti.lockList();
 		boolean esito = utenti.rimuovi(username);
 		utenti.lockList();
 		invioConferma("elimina utente", esito, executor);
-		dbConnection.eliminaUtente(username);
+		if (esito)
+			dbConnection.eliminaUtente(username);
+		return esito;
 	}
 	
 	public void inviaListaUtenti(String executor) {

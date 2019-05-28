@@ -16,7 +16,7 @@ import java.util.List;
 public class ControllerLog {
 	
 	private PrintWriter writer;
-	
+	private Utenti utenti;
 	private FileInputStream fis;
 	private BufferedReader reader;
 	

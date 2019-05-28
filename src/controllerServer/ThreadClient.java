@@ -111,12 +111,12 @@ public class ThreadClient implements Runnable {
 				case CAMBIA_PASSWORD:
 					o = (Operazione) pacchetto.getInformazione();
 					esito = ca.modicaPassword(executor, o.getParametro1(), o.getParametro2());
-						cl.addEntry("modifica password", executor, esito);
+						cl.addEntry("modifica password" + executor, esito);
 					break;
 				case DISCONNETTI:
 					o = (Operazione) pacchetto.getInformazione();
 					ca.disconnetti(executor);
-						cl.addEntry("disconnessione", executor);
+						cl.addEntry("disconnessione" + executor);
 					break;
 				case VISUALIZZA_LOG:
 					

@@ -97,7 +97,7 @@ public class ThreadClient implements Runnable {
 					break;
 				case AGG_UTENTE:
 					o = (Operazione) pacchetto.getInformazione();
-					if(cgu.aggiungiUtente(o.getParametro1(), Ruolo.valueOf(o.getParametro2()), executor))
+					if(cgu.aggiungiUtente(o.getParametro1(), Ruolo.valueOf(o.getParametro2()), o.getParametro3(), executor))
 						cl.addEntry("aggiungiunta utente", executor, o.getParametro1());
 					break;
 				case ELIMINA_UTENTE:
@@ -119,7 +119,6 @@ public class ThreadClient implements Runnable {
 						cl.addEntry("disconnessione" + executor);
 					break;
 				case VISUALIZZA_LOG:
-					
 					break;
 				default:
 					break;

@@ -11,7 +11,6 @@ public class Main {
 	public static void main(String[] args) {
 		Utente matt = new Utente("matt_esse", Ruolo.AMMINISTRATORE);
 		Utente jack = new Utente("jack_pino", Ruolo.AMMINISTRATORE);
-		// lol nico e' un utente comune hehehe
 		Utente nico = new Utente("nico_dona", Ruolo.UTENTE);
 		
 		// SINGOL-TON!

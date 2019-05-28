@@ -6,10 +6,12 @@ import dominioServer.Ruolo;
 
 public class InfoSessione implements Info {
 	private boolean esitoCredenziali;
+	private String username;
 	private Ruolo ruolo;
 	private List<String> gruppi;
 	
-	public InfoSessione(boolean esitoCredenziali, Ruolo ruolo, List<String> gruppi) {
+	public InfoSessione(String username, boolean esitoCredenziali, Ruolo ruolo, List<String> gruppi) {
+		this.username = username;
 		this.esitoCredenziali = esitoCredenziali;
 		this.ruolo = ruolo;
 		this.gruppi = gruppi;
@@ -27,6 +29,8 @@ public class InfoSessione implements Info {
 		return gruppi;
 	}
 	
-	
+	public String getUsername() {
+		return username;
+	}
 	
 }

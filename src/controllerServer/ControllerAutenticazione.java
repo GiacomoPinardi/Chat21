@@ -23,13 +23,13 @@ public class ControllerAutenticazione {
 		if(dbConnection.verificaPassword(username, hashPassword)) {
 			Utente u = utenti.getByUsername(username);
 			gruppi.lockList();
-			u.invia(new Pacchetto(new InfoSessione(true, u.getRuolo(), gruppi.getGruppiCon(username)), TipoInfo.CONFERMA));
+			u.invia(new Pacchetto(new InfoSessione(username, true, u.getRuolo(), gruppi.getGruppiCon(username)), TipoInfo.CONFERMA));
 			gruppi.unlockList();
 			u.setConnesso(true);
 			utenti.unlockList();
 			return true;
 		} else {
-			utenti.getByUsername(username).invia(new Pacchetto(new InfoSessione(false, null, null), TipoInfo.CONFERMA));
+			utenti.getByUsername(username).invia(new Pacchetto(new InfoSessione(username, false, null, null), TipoInfo.CONFERMA));
 			utenti.unlockList();
 			return false;
 		}

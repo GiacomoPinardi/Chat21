@@ -5,7 +5,7 @@ import java.util.List;
 import dominioPacchetto.Contenuto;
 
 public class ControllerDB {
-	
+	// TUTTO SYNCHRONIZED
 	public boolean verificaPassword(String username, String hashPassword) {
 		return true;
 	}

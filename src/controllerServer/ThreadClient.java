@@ -97,7 +97,7 @@ public class ThreadClient implements Runnable {
 					break;
 				case AGG_UTENTE:
 					o = (Operazione) pacchetto.getInformazione();
-					if(cgu.aggiungiUtente(o.getParametro1(), Ruolo.valueOf(o.getParametro2()), executor))
+					if(cgu.aggiungiUtente(o.getParametro1(), Ruolo.valueOf(o.getParametro2()), o.getParametro3(), executor))
 						cl.addEntry("aggiungiunta utente", executor, o.getParametro1());
 					break;
 				case ELIMINA_UTENTE:
@@ -111,15 +111,14 @@ public class ThreadClient implements Runnable {
 				case CAMBIA_PASSWORD:
 					o = (Operazione) pacchetto.getInformazione();
 					esito = ca.modicaPassword(executor, o.getParametro1(), o.getParametro2());
-						cl.addEntry("modifica password", executor, esito);
+						cl.addEntry("modifica password" + executor, esito);
 					break;
 				case DISCONNETTI:
 					o = (Operazione) pacchetto.getInformazione();
 					ca.disconnetti(executor);
-						cl.addEntry("disconnessione", executor);
+						cl.addEntry("disconnessione" + executor);
 					break;
 				case VISUALIZZA_LOG:
-					
 					break;
 				default:
 					break;

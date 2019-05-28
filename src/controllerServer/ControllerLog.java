@@ -21,6 +21,7 @@ public class ControllerLog {
 	private BufferedReader reader;
 	
 	private SimpleDateFormat dateFormat;
+	private SimpleDateFormat dateTimeFormat;
 	
 	public ControllerLog () {
 		try {
@@ -33,10 +34,11 @@ public class ControllerLog {
 			e.printStackTrace();
 		}
 		this.dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		this.dateTimeFormat = new SimpleDateFormat("yyyy/MM/dd-MM:hh");
 	}
 	
 	public synchronized void addEntry (String entry) {
-		writer.println("[" + dateFormat.format(Calendar.getInstance().getTime()) + "]: " + entry);
+		writer.println("[" + dateTimeFormat.format(Calendar.getInstance().getTime()) + "]: " + entry);
 		writer.flush();
 	}
 	

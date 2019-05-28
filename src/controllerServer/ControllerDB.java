@@ -5,46 +5,46 @@ import java.util.List;
 import dominioPacchetto.Contenuto;
 
 public class ControllerDB {
-	// TUTTO SYNCHRONIZED
-	public boolean verificaPassword(String username, String hashPassword) {
+	
+	public synchronized boolean verificaPassword(String username, String hashPassword) {
 		return true;
 	}
 	
-	public List<Contenuto> getContenutiGruppo(String gruppo) {
+	public synchronized List<Contenuto> getContenutiGruppo(String gruppo) {
 		return null;
 	}
 
-	public void aggiungiGruppo(String nome) {
+	public synchronized void aggiungiGruppo(String nome) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void eliminaGruppo(String nome) {
+	public synchronized void eliminaGruppo(String nome) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void aggiungiUtenteGruppo(String nome, String username) {
+	public synchronized void aggiungiUtenteGruppo(String nomeGruppo, String username) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void eliminaUtenteGruppo(String nome, String username) {
+	public synchronized void eliminaUtenteGruppo(String nomeGruppo, String username) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void aggiungiUtente(String username) {
+	public synchronized void aggiungiUtente(String username, String password) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void eliminaUtente(String username) {
+	public synchronized void eliminaUtente(String username) {
 		// TODO Auto-generated method stub
 		
 	}
 	
-	public void modificaPassoword(String executor, String newOne) {
+	public synchronized void modificaPassoword(String executor, String newOne) {
 		
 	}
 }

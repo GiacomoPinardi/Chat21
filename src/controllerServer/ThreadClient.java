@@ -21,7 +21,7 @@ public class ThreadClient implements Runnable {
 	ObjectInputStream inSock;
 	
 	public ThreadClient(ControllerAutenticazione ca, ControllerGestioneGruppi cgg, ControllerGestioneUtenti cgu,
-			ControllerScambiaContenutiGruppi cscg, ControllerScambiaContenutiBacheca cscb, 
+			ControllerScambiaContenutiGruppi cscg, ControllerScambiaContenutiBacheca cscb, ControllerLog cl,
 			String executor, InputStream inSock) {
 		this.ca = ca;
 		this.cgg = cgg;
@@ -29,7 +29,7 @@ public class ThreadClient implements Runnable {
 		this.cscg = cscg;
 		this.cscb = cscb;
 		this.executor = executor;
-		this.cl = SingleLog.getControllerLog();
+		this.cl = cl;
 		try {
 			this.inSock = new ObjectInputStream(inSock);
 		} catch (IOException e) {
@@ -50,7 +50,7 @@ public class ThreadClient implements Runnable {
 				case ACCESSO:
 					o = (Operazione) pacchetto.getInformazione();
 					esito = ca.confermaAccesso(o.getParametro1(), o.getParametro2());
-					cl.addEntry("accesso", executor, esito);
+					cl.addEntry("accesso " + executor, esito);
 					break; 
 				case RICHIESTA_CONTENUTI:
 					o = (Operazione) pacchetto.getInformazione();
@@ -60,29 +60,30 @@ public class ThreadClient implements Runnable {
 					c = (Contenuto) inSock.readObject();
 					if (c.getTipoDestinatario().equals(TipoDestinatario.BACHECA)) {
 						cscb.smista(c);
-					} else if (c.getTipoDestinatario().equals(TipoDestinatario.GRUPPO)) {
+					}
+					else if (c.getTipoDestinatario().equals(TipoDestinatario.GRUPPO)) {
 						cscg.smista(c);
 					}
 					break;
 				case CREA_GRUPPO:
 					o = (Operazione) pacchetto.getInformazione();
 					if(cgg.creaGruppo(o.getParametro1(), executor))
-						cl.addEntry("creazione gruppo", executor, o.getParametro1());
+						cl.addEntry("creazione gruppo " + executor + " " + o.getParametro1());
 					break;
 				case ELIMINA_GRUPPO:
 					o = (Operazione) pacchetto.getInformazione();
 					if(cgg.eliminaGruppo(o.getParametro1(), executor))
-						cl.addEntry("eliminazione gruppo", executor, o.getParametro1());
+						cl.addEntry("eliminazione gruppo " + executor + " " + o.getParametro1());
 					break;
 				case AGG_UTENTE_GRUPPO:
 					o = (Operazione) pacchetto.getInformazione();
 					if(cgg.aggiungUtenteGruppo(o.getParametro1(), o.getParametro2(), executor))
-						cl.addEntry("aggiunta utente a gruppo", executor, o.getParametro1(), o.getParametro2());
+						cl.addEntry("aggiunta utente a gruppo " + executor + " " + o.getParametro1() + " " + o.getParametro2());
 					break;
 				case ELIMINA_UTENTE_GRUPPO:
 					o = (Operazione) pacchetto.getInformazione();
 					if(cgg.eliminaUtenteGruppo(o.getParametro1(), o.getParametro2(), executor))
-						cl.addEntry("eliminazione utente da gruppo", executor, o.getParametro1(), o.getParametro2());
+						cl.addEntry("eliminazione utente da gruppo " + executor + " " + o.getParametro1() + " " + o.getParametro2());
 					break;
 				case LISTA_GRUPPI:
 					cgg.invioListaGruppi(executor);
@@ -98,12 +99,12 @@ public class ThreadClient implements Runnable {
 				case AGG_UTENTE:
 					o = (Operazione) pacchetto.getInformazione();
 					if(cgu.aggiungiUtente(o.getParametro1(), Ruolo.valueOf(o.getParametro2()), o.getParametro3(), executor))
-						cl.addEntry("aggiungiunta utente", executor, o.getParametro1());
+						cl.addEntry("aggiungiunta utente " + executor + " " + o.getParametro1());
 					break;
 				case ELIMINA_UTENTE:
 					o = (Operazione) pacchetto.getInformazione();
 					if(cgu.eliminaUtente(o.getParametro1(), executor))
-						cl.addEntry("eliminazione utente", executor, o.getParametro1());
+						cl.addEntry("eliminazione utente " + executor + " " + o.getParametro1());
 					break;
 				case LISTA_UTENTI:
 					cgu.inviaListaUtenti(executor); 
@@ -119,6 +120,8 @@ public class ThreadClient implements Runnable {
 						cl.addEntry("disconnessione" + executor);
 					break;
 				case VISUALIZZA_LOG:
+					o = (Operazione) pacchetto.getInformazione();
+					cl.getLog(executor, o.getParametro1());					
 					break;
 				default:
 					break;

@@ -6,9 +6,9 @@ public class SingleLog {
 			
 	public SingleLog () {}
 	
-	public static ControllerLog getControllerLog () {
+	public static ControllerLog getControllerLog (Utenti utenti) {
 		if (controllerLog == null) {
-			controllerLog = new ControllerLog();
+			controllerLog = new ControllerLog(utenti);
 		}
 		
 		return controllerLog;

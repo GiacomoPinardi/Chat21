@@ -19,23 +19,25 @@ public class ControllerGestioneUtenti {
 		this.gruppi = gruppi;
 	}
 	
-	public boolean aggiungiUtente(String username, Ruolo ruolo, String executor) {
+	public boolean aggiungiUtente(String username, Ruolo ruolo, String executor, String passwordUtenteAggiunto) {
 		utenti.lockList();
 		boolean esito = utenti.aggiungi(new Utente(username, ruolo));
-		utenti.lockList();
+		utenti.unlockList();
 		invioConferma("aggiungi utente", esito, executor);
-		if (esito)
-			dbConnection.aggiungiUtente(username);
+		if (esito) {
+			dbConnection.aggiungiUtente(username, passwordUtenteAggiunto);
+		}
 		return esito;
 	}
 	
 	public boolean eliminaUtente(String username, String executor) {
 		utenti.lockList();
 		boolean esito = utenti.rimuovi(username);
-		utenti.lockList();
+		utenti.unlockList();
 		invioConferma("elimina utente", esito, executor);
-		if (esito)
+		if (esito) {
 			dbConnection.eliminaUtente(username);
+		}
 		return esito;
 	}
 	
@@ -43,15 +45,17 @@ public class ControllerGestioneUtenti {
 		utenti.lockList();
 		Pacchetto p = new Pacchetto(new ListaString(utenti.getUsernames()), TipoInfo.LISTA_UTENTI);
 		utenti.getByUsername(executor).invia(p);
-		utenti.lockList();
+		utenti.unlockList();
 	}
 	
 	private void invioConferma(String operazione, boolean esito, String executor) {
 		String res;
-		if (esito)
-			res = "l'operazione " + operazione + " è andata buonfine";
-		else
-			res = "l'operazione " + operazione + "  non è andata buonfine";
+		if (esito) {
+			res = "l'operazione " + operazione + " è andata buon fine";
+		}
+		else {
+			res = "l'operazione " + operazione + "  non è andata buon fine";
+		}
 		utenti.lockList();
 		utenti.getByUsername(executor).invia(new Pacchetto(new Conferma(res) , TipoInfo.CONFERMA));
 		utenti.unlockList();

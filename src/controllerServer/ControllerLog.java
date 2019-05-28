@@ -7,23 +7,31 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import dominioPacchetto.Conferma;
+import dominioPacchetto.ListaString;
+import dominioPacchetto.Pacchetto;
+import dominioPacchetto.TipoInfo;
+
 public class ControllerLog {
 	
 	private PrintWriter writer;
-	private Utenti utenti;
+	
 	private FileInputStream fis;
 	private BufferedReader reader;
 	
 	private SimpleDateFormat dateFormat;
 	private SimpleDateFormat dateTimeFormat;
 	
-	public ControllerLog () {
+	private Utenti utenti;
+	
+	public ControllerLog (Utenti utenti) {
 		try {
 			this.writer = new PrintWriter(new FileWriter("log.txt"));
 			
@@ -35,6 +43,8 @@ public class ControllerLog {
 		}
 		this.dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		this.dateTimeFormat = new SimpleDateFormat("yyyy/MM/dd-MM:hh");
+		
+		this.utenti = utenti;
 	}
 	
 	public synchronized void addEntry (String entry) {
@@ -42,106 +52,43 @@ public class ControllerLog {
 		writer.flush();
 	}
 	
-	public synchronized List<String> getLog (Date date) {
-		List<String> logs = null;
-		
+	public synchronized void addEntry (String entry, boolean e) {		
+		writer.println("[" + dateTimeFormat.format(Calendar.getInstance().getTime()) + "]: " + entry + " " + (e ? "successo" : "fallito"));
+		writer.flush();
+	}
+	
+	public synchronized void getLog (String executor, String date) {		
 		try {
 			// torno a leggere dall'inizio
 			fis.getChannel().position(0);
 			reader = new BufferedReader(new InputStreamReader(fis));
 			
-			logs = new ArrayList<>();
-			String line;
-			while ((line = reader.readLine()) != null) {
-				String dateString = dateFormat.format(date);
-				if (line.contains(dateString)) {
-					logs.add(line);
+			List<String> logs = new ArrayList<>();
+			
+			if (date == null || date == "") {
+				// ottengo tutti i log
+				String line;
+				while ((line = reader.readLine()) != null) {
+					logs.add(line);					
+				}				
+			}
+			else {
+				// ottengo i log relativi alla data specificata
+				
+				String line;
+				while ((line = reader.readLine()) != null) {					
+					if (line.contains(date)) {
+						logs.add(line);
+					}
 				}
 			}
-						
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}		
-		return logs;
-	}
-	
-	public synchronized void close() {
-		try {
-			reader.close();
+			
+			utenti.lockList();
+			utenti.getByUsername(executor).invia(new Pacchetto(new ListaString(logs) , TipoInfo.VISUALIZZA_LOG));
+			utenti.unlockList();			
 		}
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-		writer.close();
 	}
-	
-	/*
-	
-	public String getLog(String executor) {
-		String res = "";
-		int x;
-		char c;
-		try {
-			while ((x = reader.read()) > 0) {
-				c = (char) x;
-				res += c;
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return res;
-	}
-
-	public void addEntry(String string, String executor, boolean esito) {
-		String res = "";
-		try {
-			res += "[" + LocalDateTime.now().toString() + "] ";
-			res += executor + "\t " + string;
-			if (esito)
-				res += " successo ";
-			else 
-				res += " fallito";
-			writer.write('c');
-			//writer.write(res + "\n");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void addEntry(String string, String executor, String parametro1) {
-		String res = "";
-		try {
-			res += "[" + LocalDateTime.now().toString() + "] ";
-			res += executor + "\t " + string;
-			res += " " + parametro1;
-			writer.write(res + "\n");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void addEntry(String string, String executor, String parametro1, String parametro2) {
-		String res = "";
-		try {
-			res += "[" + LocalDateTime.now().toString() + "] ";
-			res += executor + "\t " + string;
-			res += " " + parametro1 + " " + parametro2;
-			writer.write(res + "\n");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void addEntry(String string, String executor) {
-		String res = "";
-		try {
-			res += "[" + LocalDateTime.now().toString() + "] ";
-			res += executor + "\t " + string;
-			writer.write(res + "\n");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	*/
 }

@@ -35,10 +35,10 @@ public class Operazione implements Info {
 	}
 	
 	public String getParametro3() {
-		return parametro2;
+		return parametro3;
 	}
 	
-	public void setParametro3(String parametro2) {
-		this.parametro2 = parametro2;
+	public void setParametro3(String parametro3) {
+		this.parametro3 = parametro3;
 	}
 }

@@ -17,6 +17,13 @@ public class Main {
 		    	System.out.println("\t" + g);
 		    }
 		    
+		    System.out.println("Eliminazione: ");
+		    db.eliminaGruppo("prova");
+		    gruppi = db.getGruppi();
+		    for (String g : gruppi) {
+		    	System.out.println("\t" + g);
+		    }
+		    
 		    db.pulisciTutto();
 		
 	}

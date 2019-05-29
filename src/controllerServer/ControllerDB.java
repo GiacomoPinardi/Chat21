@@ -49,7 +49,7 @@ public class ControllerDB {
 			
 			statement.executeUpdate("CREATE TABLE utenti (" +
 					"username VARCHAR(50) NOT NULL PRIMARY KEY," +
-					"hashPassword VARCHAR(32) NOT NULL," +
+					"password VARCHAR(20) NOT NULL," +
 					"ruolo VARCHAR(20) NOT NULL" +
 					")");
 			
@@ -57,7 +57,7 @@ public class ControllerDB {
 					"nome VARCHAR(50) NOT NULL PRIMARY KEY" +
 					")");
 		
-			statement.executeUpdate("CREATE TABLE messaggiotestuale (" +
+			statement.executeUpdate("CREATE TABLE messaggitestuali (" +
 					"id INT NOT NULL PRIMARY KEY," +
 					"dataora DATETIME NOT NULL," +
 					"username VARCHAR(50) NOT NULL," +
@@ -101,7 +101,7 @@ public class ControllerDB {
 			
 			statement.executeUpdate("DELETE FROM utenti");
 			statement.executeUpdate("DELETE FROM gruppi");
-			statement.executeUpdate("DELETE FROM messaggiotestuale");
+			statement.executeUpdate("DELETE FROM messaggitestuali");
 			statement.executeUpdate("DELETE FROM appartenenza");			
 		}
 	    catch(SQLException e) {
@@ -141,16 +141,17 @@ public class ControllerDB {
 	      e.printStackTrace();
 	    }
 	    finally {
-	      try {
-	        if(connection != null)
-	          connection.close();
-	      }
-	      catch(SQLException e) {
-	    	  e.printStackTrace();
-	      }
+	    	try {
+	    		if(connection != null)
+	    			connection.close();
+	    	}
+	    	catch(SQLException e) {
+	    		e.printStackTrace();
+	    	}
 	    }		
 	}
 	
+	/*
 	public synchronized List<String> getGruppi() {
 		Connection connection = null;
 		List<String> gruppi = new ArrayList<>();
@@ -181,33 +182,223 @@ public class ControllerDB {
 	    }
 		return gruppi;
 	}
+	*/
 
 	public synchronized void eliminaGruppo(String nome) {
-		// TODO Auto-generated method stub
+		Connection connection = null;
 		
+		try {
+			connection = getConnection();
+		
+			PreparedStatement statement = connection.prepareStatement("DELETE FROM appartenenza WHERE nomeGruppo = ?");
+			statement.clearParameters();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+			
+			statement.setString(1, nome);
+			
+			statement.execute();
+			
+			statement = connection.prepareStatement("DELETE FROM messaggitestuali WHERE gruppo = ?");
+			statement.clearParameters();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+			
+			statement.setString(1, nome);
+			
+			statement.execute();
+			
+			statement = connection.prepareStatement("DELETE FROM gruppi WHERE nome = ?");
+			statement.clearParameters();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+			
+			statement.setString(1, nome);
+			
+			statement.execute();
+			
+		}
+	    catch(SQLException e) {
+	      e.printStackTrace();
+	    }
+	    finally {
+	    	try {
+	    		if(connection != null)
+	    			connection.close();
+	    	}
+	    	catch(SQLException e) {
+	    		e.printStackTrace();
+	    	}
+	    }
 	}
 
 	public synchronized void aggiungiUtenteGruppo(String nomeGruppo, String username) {
-		// TODO Auto-generated method stub
+		Connection connection = null;
 		
+		try {
+			connection = getConnection();
+		
+			PreparedStatement statement = connection.prepareStatement("INSERT INTO appartenenza (username, nomeGruppo) VALUES (?, ?)");
+			statement.clearParameters();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+			
+			statement.setString(1, username);
+			statement.setString(2, nomeGruppo);
+			
+			statement.execute();
+			
+		}
+	    catch(SQLException e) {
+	      e.printStackTrace();
+	    }
+	    finally {
+	    	try {
+	    		if(connection != null)
+	    			connection.close();
+	    	}
+	    	catch(SQLException e) {
+	    		e.printStackTrace();
+	    	}
+	    }		
 	}
 
 	public synchronized void eliminaUtenteGruppo(String nomeGruppo, String username) {
-		// TODO Auto-generated method stub
+		Connection connection = null;
 		
+		try {
+			connection = getConnection();
+		
+			PreparedStatement statement = connection.prepareStatement("DELETE FROM appartenenza WHERE nomeGruppo = ? AND username = ?");
+			statement.clearParameters();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+			
+			statement.setString(1, nomeGruppo);
+			statement.setString(2, username);
+			
+			statement.execute();
+			
+			statement = connection.prepareStatement("DELETE FROM messaggitestuali WHERE gruppo = ? AND username = ?");
+			statement.clearParameters();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+			
+			statement.setString(1, nomeGruppo);
+			statement.setString(2, username);
+			
+			statement.execute();			
+		}
+	    catch(SQLException e) {
+	      e.printStackTrace();
+	    }
+	    finally {
+	    	try {
+	    		if(connection != null)
+	    			connection.close();
+	    	}
+	    	catch(SQLException e) {
+	    		e.printStackTrace();
+	    	}
+	    }		
 	}
 
-	public synchronized void aggiungiUtente(String username, String password) {
-		// TODO Auto-generated method stub
+	public synchronized void aggiungiUtente(String username, String password, String ruolo) {
+		Connection connection = null;
 		
+		try {
+			connection = getConnection();
+		
+			PreparedStatement statement = connection.prepareStatement("INSERT INTO utenti (username, password, ruolo) VALUES (?, ?, ?)");
+			statement.clearParameters();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+			
+			statement.setString(1, username);
+			statement.setString(2, password);
+			statement.setString(3, ruolo);
+			
+			statement.execute();
+			
+		}
+	    catch(SQLException e) {
+	      e.printStackTrace();
+	    }
+	    finally {
+	    	try {
+	    		if(connection != null)
+	    			connection.close();
+	    	}
+	    	catch(SQLException e) {
+	    		e.printStackTrace();
+	    	}
+	    }		
 	}
 
 	public synchronized void eliminaUtente(String username) {
-		// TODO Auto-generated method stub
+		Connection connection = null;
 		
+		try {
+			connection = getConnection();
+		
+			PreparedStatement statement = connection.prepareStatement("DELETE FROM appartenenza WHERE username = ?");
+			statement.clearParameters();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+			
+			statement.setString(1, username);
+			
+			statement.execute();
+			
+			statement = connection.prepareStatement("DELETE FROM messaggitestuali WHERE username = ?");
+			statement.clearParameters();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+			
+			statement.setString(1, username);
+			
+			statement.execute();
+			
+			statement = connection.prepareStatement("DELETE FROM utenti WHERE username = ?");
+			statement.clearParameters();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+			
+			statement.setString(1, username);
+			
+			statement.execute();
+			
+		}
+	    catch(SQLException e) {
+	      e.printStackTrace();
+	    }
+	    finally {
+	    	try {
+	    		if(connection != null)
+	    			connection.close();
+	    	}
+	    	catch(SQLException e) {
+	    		e.printStackTrace();
+	    	}
+	    }		
 	}
 	
-	public synchronized void modificaPassoword(String executor, String newOne) {
+	public synchronized void modificaPassoword(String username, String nuovaPassword) {
+		Connection connection = null;
 		
+		try {
+			connection = getConnection();
+		
+			PreparedStatement statement = connection.prepareStatement("UPDATE utenti SET password = ? WHERE username = ?");
+			statement.clearParameters();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+			
+			statement.setString(1, nuovaPassword);
+			statement.setString(2, username);
+			
+			statement.execute();			
+		}
+	    catch(SQLException e) {
+	      e.printStackTrace();
+	    }
+	    finally {
+	    	try {
+	    		if(connection != null)
+	    			connection.close();
+	    	}
+	    	catch(SQLException e) {
+	    		e.printStackTrace();
+	    	}
+	    }
 	}
 }

@@ -13,6 +13,12 @@ public class ControllerScambiaContenutiGruppi implements IControllerScambiaConte
 	private Utenti utenti;
 	private Gruppi gruppi;
 	
+	public ControllerScambiaContenutiGruppi (Utenti utenti, Gruppi gruppi, ControllerDB dbConnection) {
+		this.utenti = utenti;
+		this.gruppi = gruppi;
+		this.dbConnection = dbConnection;
+	}
+	
 	@Override
 	public void smista(Contenuto contenuto) {
 		Pacchetto pacchetto = new Pacchetto(contenuto, TipoInfo.CONTENUTO);

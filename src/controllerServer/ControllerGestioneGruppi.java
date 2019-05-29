@@ -13,10 +13,10 @@ public class ControllerGestioneGruppi {
 	private Utenti utenti;
 	private Gruppi gruppi;
 	
-	public ControllerGestioneGruppi(ControllerDB dbConnection, Utenti utenti, Gruppi gruppi) {
-		this.dbConnection = dbConnection;
+	public ControllerGestioneGruppi(Utenti utenti, Gruppi gruppi, ControllerDB dbConnection) {
 		this.utenti = utenti;
 		this.gruppi = gruppi;
+		this.dbConnection = dbConnection;
 	}
 
 	public boolean creaGruppo(String nome, String executor) {

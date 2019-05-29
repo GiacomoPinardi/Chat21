@@ -11,7 +11,7 @@ public class InformazioniSessione {
 	
 	public InformazioniSessione(String username, List<String> gruppi, Ruolo ruolo) {
 		Username = username;
-		gruppi = gruppi;
+		this.gruppi = gruppi;
 		this.ruolo = ruolo;
 	}
 

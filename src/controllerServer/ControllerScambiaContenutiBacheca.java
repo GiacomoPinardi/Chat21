@@ -8,8 +8,13 @@ import dominioPacchetto.TipoInfo;
 import dominioServer.Utente;
 
 public class ControllerScambiaContenutiBacheca implements IControllerScambiaContenuti {
-	private int dbConnection;
+	private ControllerDB dbConnection;
 	private Utenti utenti;
+	
+	public ControllerScambiaContenutiBacheca (Utenti utenti, ControllerDB dbConnection) {
+		this.utenti = utenti;
+		this.dbConnection = dbConnection;
+	}
 	
 	@Override
 	public void smista(Contenuto contenuto) {

@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class Main extends Application{
+public class Main extends Application {
 	
 	private TabPane tabs;
 	private TextField textUser;
@@ -63,7 +63,7 @@ public class Main extends Application{
 	}
 	
 	private void accediHandle(ActionEvent event){ 
-		//parla con il server che andrà a verificare i dati dell'accesso, infine cambia la grafica e mette la bacheca se corretti i dati
+		//parla con il server che andrï¿½ a verificare i dati dell'accesso, infine cambia la grafica e mette la bacheca se corretti i dati
 		if(observer.accesso(textUser.getText(), textPassword.getText()) == null) {
 			//accesso con successo cambia la scena in homeBacheca
 			tabs=new TabPane();

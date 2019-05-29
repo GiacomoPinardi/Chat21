@@ -12,20 +12,26 @@ public class ControllerGestioneUtenti {
 	private Utenti utenti;
 	private Gruppi gruppi;
 	
-	public ControllerGestioneUtenti(ControllerDB dbConnection, Utenti utenti, Gruppi gruppi) {
-		super();
-		this.dbConnection = dbConnection;
+	public ControllerGestioneUtenti(Utenti utenti, Gruppi gruppi, ControllerDB dbConnection) {
 		this.utenti = utenti;
 		this.gruppi = gruppi;
+		this.dbConnection = dbConnection;
 	}
 	
 	public boolean aggiungiUtente(String username, Ruolo ruolo, String executor, String passwordUtenteAggiunto) {
 		utenti.lockList();
 		boolean esito = utenti.aggiungi(new Utente(username, ruolo));
 		utenti.unlockList();
+		String r = "";
+		if (ruolo.equals(Ruolo.UTENTE)) {
+			r = "utente";
+		}
+		else if (ruolo.equals(Ruolo.AMMINISTRATORE)) {
+			r = "amministratore";
+		}
 		invioConferma("aggiungi utente", esito, executor);
 		if (esito) {
-			dbConnection.aggiungiUtente(username, passwordUtenteAggiunto);
+			dbConnection.aggiungiUtente(username, passwordUtenteAggiunto, r);
 		}
 		return esito;
 	}

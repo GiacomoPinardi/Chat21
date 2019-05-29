@@ -21,14 +21,12 @@ public class ThreadClient implements Runnable {
 	ObjectInputStream inSock;
 	
 	public ThreadClient(ControllerAutenticazione ca, ControllerGestioneGruppi cgg, ControllerGestioneUtenti cgu,
-			ControllerScambiaContenutiGruppi cscg, ControllerScambiaContenutiBacheca cscb, ControllerLog cl,
-			String executor, InputStream inSock) {
+			ControllerScambiaContenutiGruppi cscg, ControllerScambiaContenutiBacheca cscb, ControllerLog cl, InputStream inSock) {
 		this.ca = ca;
 		this.cgg = cgg;
 		this.cgu = cgu;
 		this.cscg = cscg;
 		this.cscb = cscb;
-		this.executor = executor;
 		this.cl = cl;
 		try {
 			this.inSock = new ObjectInputStream(inSock);
@@ -50,6 +48,9 @@ public class ThreadClient implements Runnable {
 				case ACCESSO:
 					o = (Operazione) pacchetto.getInformazione();
 					esito = ca.confermaAccesso(o.getParametro1(), o.getParametro2());
+					if (esito) {
+						executor = o.getParametro1();
+					}
 					cl.addEntry("accesso " + executor, esito);
 					break; 
 				case RICHIESTA_CONTENUTI:
@@ -112,12 +113,17 @@ public class ThreadClient implements Runnable {
 				case CAMBIA_PASSWORD:
 					o = (Operazione) pacchetto.getInformazione();
 					esito = ca.modicaPassword(executor, o.getParametro1(), o.getParametro2());
-						cl.addEntry("modifica password" + executor, esito);
+					cl.addEntry("modifica password" + executor, esito);
 					break;
 				case DISCONNETTI:
 					o = (Operazione) pacchetto.getInformazione();
 					ca.disconnetti(executor);
-						cl.addEntry("disconnessione" + executor);
+					cl.addEntry("disconnessione" + executor);
+					
+					// TODO
+					// SE MI DISCONNETTO DOVRO' FERMARE IL THREAD? IN REALTA NO -> NUOVA CONNESSIONE
+					// MA QUINDI QUANDO TERMINA QUESTO THREAD?
+						
 					break;
 				case VISUALIZZA_LOG:
 					o = (Operazione) pacchetto.getInformazione();

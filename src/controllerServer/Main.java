@@ -1,31 +1,24 @@
 package controllerServer;
 
-import java.util.Calendar;
 import java.util.List;
-
-import dominioServer.Ruolo;
-import dominioServer.Utente;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Utente matt = new Utente("matt_esse", Ruolo.AMMINISTRATORE);
-		Utente jack = new Utente("jack_pino", Ruolo.AMMINISTRATORE);
-		Utente nico = new Utente("nico_dona", Ruolo.UTENTE);
 		
-		// SINGOL-TON!
-		ControllerLog cl = SingleLog.getControllerLog();
+		    ControllerDB db = new ControllerDB();
+		    db.creaTabelle();
+		    
+		    db.aggiungiGruppo("prova");
+		    db.aggiungiGruppo("gr2");
+		    
+		    List<String> gruppi = db.getGruppi();
+		    for (String g : gruppi) {
+		    	System.out.println("\t" + g);
+		    }
+		    
+		    db.pulisciTutto();
 		
-		cl.addEntry("accesso " + matt.getUsername() + " riuscito");
-		cl.addEntry("accesso " + matt.getUsername() + " non riuscito");
-		
-		List<String> logs = cl.getLog(Calendar.getInstance().getTime());
-		
-		for (String log : logs) {
-			System.out.println(log);
-		}
-		
-		cl.close();
 	}
 
 }

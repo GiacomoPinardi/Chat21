@@ -18,6 +18,10 @@ public class Observer{
 		this.infoSessione=infoSessione;
 		this.interfacciaUtente=interfacciaUtente;
 	}
+	public Observer() {
+		// TODO Auto-generated method stub
+		//solo per test grafica
+	}
 
 	private Boolean trasmettiPacchetto(Pacchetto pacchetto){
 		return null;

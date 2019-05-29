@@ -27,6 +27,11 @@ public class InterfacciaUtente{
 		this.observer = observer;
 	}
 	
+	public InterfacciaUtente() {
+		// TODO Auto-generated constructor stub
+		//solo per test grafica
+	}
+
 	public void allertWindow(String allert) {
 		
 	}

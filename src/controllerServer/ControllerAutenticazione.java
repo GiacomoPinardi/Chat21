@@ -18,17 +18,21 @@ public class ControllerAutenticazione {
 		this.dbConnection = dbConnection;
 	}
 
-	public void confermaAccesso(String username, String hashPassword) {
+	public boolean confermaAccesso(String username, String hashPassword) {
 		utenti.lockList();
 		if(dbConnection.verificaPassword(username, hashPassword)) {
 			Utente u = utenti.getByUsername(username);
 			gruppi.lockList();
-			u.invia(new Pacchetto(new InfoSessione(true, u.getRuolo(), gruppi.getGruppiCon(username)), TipoInfo.CONFERMA));
+			u.invia(new Pacchetto(new InfoSessione(username, true, u.getRuolo(), gruppi.getGruppiCon(username)), TipoInfo.CONFERMA));
 			gruppi.unlockList();
 			u.setConnesso(true);
-		} else 
-			utenti.getByUsername(username).invia(new Pacchetto(new InfoSessione(false, null, null), TipoInfo.CONFERMA));
-		utenti.unlockList();
+			utenti.unlockList();
+			return true;
+		} else {
+			utenti.getByUsername(username).invia(new Pacchetto(new InfoSessione(username, false, null, null), TipoInfo.CONFERMA));
+			utenti.unlockList();
+			return false;
+		}
 	}
 	
 	public void disconnetti(String executor) {
@@ -37,12 +41,14 @@ public class ControllerAutenticazione {
 		utenti.unlockList();
 	}
 	
-	public void modicaPassword(String executor, String oldOne, String newOne) {
+	public boolean modicaPassword(String executor, String oldOne, String newOne) {
 		if (dbConnection.verificaPassword(executor, oldOne)) {
 			dbConnection.modificaPassoword(executor, newOne);
 			invioConferma("modifica password", true, executor);
+			return true;
 		} else {
 			invioConferma("modifica password", false, executor);
+			return false;
 		}
 	}
 	

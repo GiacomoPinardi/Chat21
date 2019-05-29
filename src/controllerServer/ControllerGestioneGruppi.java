@@ -19,36 +19,44 @@ public class ControllerGestioneGruppi {
 		this.gruppi = gruppi;
 	}
 
-	public void creaGruppo(String nome, String executor) {
+	public boolean creaGruppo(String nome, String executor) {
 		gruppi.lockList();
 		boolean esito = gruppi.aggiungi(new Gruppo(nome));
 		invioConferma("crea gruppo", esito, executor);
 		gruppi.unlockList();
-		dbConnection.aggiungiGruppo(nome);
+		if (esito)
+			dbConnection.aggiungiGruppo(nome);
+		return esito;
 	}
 	
-	public void eliminaGruppo(String nome, String executor) {
+	public boolean eliminaGruppo(String nome, String executor) {
 		gruppi.lockList();
 		boolean esito = gruppi.rimuovi(nome);
 		invioConferma("elimina gruppo", esito, executor);
 		gruppi.unlockList();
-		dbConnection.eliminaGruppo(nome);
+		if (esito)
+			dbConnection.eliminaGruppo(nome);
+		return esito;
 	}
 	
-	public void aggiungUtenteGruppo(String nome, String username, String executor) {
+	public boolean aggiungUtenteGruppo(String nome, String username, String executor) {
 		gruppi.lockList();
 		boolean esito = gruppi.getByNome(nome).aggiungiUtente(username);
 		invioConferma("aggiungi utente a gruppo", esito, executor);
 		gruppi.unlockList();
-		dbConnection.aggiungiUtenteGruppo(nome, username);
+		if (esito)
+			dbConnection.aggiungiUtenteGruppo(nome, username);
+		return esito;
 	}
 	
-	public void eliminaUtenteGruppo(String nome, String username, String executor) {
+	public boolean eliminaUtenteGruppo(String nome, String username, String executor) {
 		gruppi.lockList();
 		boolean esito = gruppi.getByNome(nome).eliminaUtente(username);
 		invioConferma("elimina utente da gruppo", esito, executor);
 		gruppi.unlockList();
-		dbConnection.eliminaUtenteGruppo(nome, username);
+		if (esito)
+			dbConnection.eliminaUtenteGruppo(nome, username);
+		return esito;
 	}
 	
 	public void invioListaGruppi(String executor) {

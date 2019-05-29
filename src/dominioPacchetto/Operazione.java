@@ -6,14 +6,16 @@ public class Operazione implements Info {
 
 	private String parametro1;
 	private String parametro2;
+	private String parametro3;
 	
 	public Operazione () {
 		
 	}
 	
-	public Operazione (String parametro1, String parametro2) {
+	public Operazione (String parametro1, String parametro2, String parametro3) {
 		this.parametro1 = parametro1;
 		this.parametro2 = parametro2;
+		this.parametro3 = parametro3;
 	}
 	
 	public String getParametro1() {
@@ -32,4 +34,11 @@ public class Operazione implements Info {
 		this.parametro2 = parametro2;
 	}
 	
+	public String getParametro3() {
+		return parametro3;
+	}
+	
+	public void setParametro3(String parametro3) {
+		this.parametro3 = parametro3;
+	}
 }

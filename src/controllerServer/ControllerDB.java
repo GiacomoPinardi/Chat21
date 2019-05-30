@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dominioPacchetto.Contenuto;
+import dominioServer.Gruppo;
+import dominioServer.Ruolo;
+import dominioServer.Utente;
 
 public class ControllerDB {
 	
@@ -27,10 +30,6 @@ public class ControllerDB {
 		}
 	    
 	    return DriverManager.getConnection(DBPATH);
-	}
-	
-	public synchronized boolean verificaPassword(String username, String hashPassword) {
-		return false;		
 	}
 	
 	public synchronized void creaTabelle() {
@@ -118,6 +117,41 @@ public class ControllerDB {
 	    }
 	}
 	
+	public synchronized boolean verificaPassword(String username, String password) {
+		Connection connection = null;
+		boolean result = false;
+		
+		try {
+			connection = getConnection();
+		
+			PreparedStatement statement = connection.prepareStatement("SELECT * FROM utenti WHERE username = ?");
+			statement.clearParameters();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+						
+			statement.setString(1, username);
+			
+			ResultSet rs = statement.executeQuery();
+			if (rs.next()) {
+				if (rs.getString("ruolo").equals(password)) {
+					result = true;
+				}
+			}			
+		}
+	    catch(SQLException e) {
+	      e.printStackTrace();
+	    }
+	    finally {
+	      try {
+	        if(connection != null)
+	          connection.close();
+	      }
+	      catch(SQLException e) {
+	    	  e.printStackTrace();
+	      }
+	    }
+		return result;	
+	}
+	
 	public synchronized List<Contenuto> getContenutiGruppo(String gruppo) {
 		return null;
 	}
@@ -151,10 +185,50 @@ public class ControllerDB {
 	    }		
 	}
 	
-	/*
-	public synchronized List<String> getGruppi() {
+	public synchronized List<Utente> getUtenti () {
 		Connection connection = null;
-		List<String> gruppi = new ArrayList<>();
+		List<Utente> utenti = new ArrayList<>();
+		
+		Utente u;
+		
+		try {
+			connection = getConnection();
+		
+			PreparedStatement statement = connection.prepareStatement("SELECT * FROM utenti");
+			statement.clearParameters();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+						
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				String username = rs.getString("username");
+				String r = rs.getString("ruolo");				
+				Ruolo ruolo = Ruolo.valueOf(r.toUpperCase());
+				
+				u = new Utente(username, ruolo);
+				
+				utenti.add(u);
+			}			
+		}
+	    catch(SQLException e) {
+	      e.printStackTrace();
+	    }
+	    finally {
+	      try {
+	        if(connection != null)
+	          connection.close();
+	      }
+	      catch(SQLException e) {
+	    	  e.printStackTrace();
+	      }
+	    }
+		return utenti;
+	}
+	
+	public synchronized List<Gruppo> getGruppi () {
+		Connection connection = null;
+		List<Gruppo> gruppi = new ArrayList<>();
+		
+		Gruppo g;
 		
 		try {
 			connection = getConnection();
@@ -165,7 +239,16 @@ public class ControllerDB {
 						
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
-				gruppi.add(rs.getString("nome"));
+				String nomeGruppo = rs.getString("nome");
+				
+				g = new Gruppo(nomeGruppo);
+				
+				List<String> usernameUtentiInGruppo = getUsernameUtentiInGruppo(nomeGruppo);
+				for (String username : usernameUtentiInGruppo) {
+					g.aggiungiUtente(username);
+				}
+				
+				gruppi.add(g);
 			}			
 		}
 	    catch(SQLException e) {
@@ -182,7 +265,47 @@ public class ControllerDB {
 	    }
 		return gruppi;
 	}
-	*/
+	
+	private List<String> getUsernameUtentiInGruppo (String nomeGruppo) {
+		Connection connection = null;
+		List<String> usernames = new ArrayList<>();
+				
+		try {
+			connection = getConnection();
+		
+			/*
+			PreparedStatement statement = connection.prepareStatement("SELECT utenti.username FROM gruppi " +
+															"INNER JOIN appartenenza ON gruppi.nome = appartenenza.nomeGruppo " +
+															"INNER JOIN utenti ON utenti.username = appartenenza.username " +
+															"WHERE gruppi.nome = ?");
+			*/
+			PreparedStatement statement = connection.prepareStatement("SELECT * FROM appartenenza WHERE nomeGruppo = ?");
+			
+			statement.clearParameters();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+						
+			statement.setString(1, nomeGruppo);
+			
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				String username = rs.getString("username");				
+				usernames.add(username);
+			}			
+		}
+	    catch(SQLException e) {
+	      e.printStackTrace();
+	    }
+	    finally {
+	      try {
+	        if(connection != null)
+	          connection.close();
+	      }
+	      catch(SQLException e) {
+	    	  e.printStackTrace();
+	      }
+	    }
+		return usernames;
+	}
 
 	public synchronized void eliminaGruppo(String nome) {
 		Connection connection = null;
@@ -309,7 +432,7 @@ public class ControllerDB {
 			
 			statement.setString(1, username);
 			statement.setString(2, password);
-			statement.setString(3, ruolo);
+			statement.setString(3, ruolo.toUpperCase());
 			
 			statement.execute();
 			

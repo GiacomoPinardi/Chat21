@@ -3,6 +3,10 @@ package controllerServer;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.util.List;
+
+import dominioServer.Gruppo;
+import dominioServer.Utente;
 
 public class MainServer {
 
@@ -99,13 +103,31 @@ public class MainServer {
 	}
 
 	private static Utenti inizializzaUtenti(ControllerDB cdb) {
-		// TODO
-		return null;		
+		Utenti utenti = new Utenti();
+		
+		List<Utente> lu = cdb.getUtenti();
+		
+		utenti.lockList();
+		for (Utente u : lu) {
+			utenti.aggiungi(u);
+		}
+		utenti.unlockList();
+		
+		return utenti;		
 	}
 	
 	private static Gruppi inizializzaGruppi(ControllerDB cdb) {
-		// TODO
-		return null;
+		Gruppi gruppi = new Gruppi();
+		
+		List<Gruppo> lg = cdb.getGruppi();
+		
+		gruppi.lockList();
+		for (Gruppo g : lg) {
+			gruppi.aggiungi(g);
+		}
+		gruppi.unlockList();
+		
+		return gruppi;
 	}
 	
 	

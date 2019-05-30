@@ -1,5 +1,8 @@
 package controllerServer;
 
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+
 import dominioPacchetto.Conferma;
 import dominioPacchetto.InfoSessione;
 import dominioPacchetto.Pacchetto;
@@ -17,22 +20,36 @@ public class ControllerAutenticazione {
 		this.gruppi = gruppi;
 		this.dbConnection = dbConnection;
 	}
-
-	public boolean confermaAccesso(String username, String hashPassword) {
+	
+	public boolean verificaPassword (String username, String password) {
+		return dbConnection.verificaPassword(username, password);
+	}
+	
+	public void connetti (String username, ObjectOutputStream oos) {
 		utenti.lockList();
-		if(dbConnection.verificaPassword(username, hashPassword)) {
-			Utente u = utenti.getByUsername(username);
-			gruppi.lockList();
-			u.invia(new Pacchetto(new InfoSessione(username, true, u.getRuolo(), gruppi.getGruppiCon(username)), TipoInfo.CONFERMA));
-			gruppi.unlockList();
-			u.setConnesso(true);
-			utenti.unlockList();
-			return true;
-		} else {
-			utenti.getByUsername(username).invia(new Pacchetto(new InfoSessione(username, false, null, null), TipoInfo.CONFERMA));
-			utenti.unlockList();
-			return false;
-		}
+		Utente ut = utenti.getByUsername(username);
+		ut.setConnesso(true);
+		ut.setObjectOutputStream(oos);
+		utenti.unlockList();
+	}
+
+	public void confermaAccesso(String username) {		
+		utenti.lockList();
+		Utente u = utenti.getByUsername(username);
+		gruppi.lockList();
+		u.invia(new Pacchetto(new InfoSessione(username, true, u.getRuolo(), gruppi.getGruppiCon(username)), TipoInfo.CONFERMA));
+		gruppi.unlockList();
+		u.setConnesso(true);
+		utenti.unlockList();		
+	}
+	
+	public void negaAccesso (String username, ObjectOutputStream oos) {
+		// creato un utente solo per inviargli il negato accesso. Ruolo non e' importante!
+		Utente tmp = new Utente(username, Ruolo.UTENTE);
+		tmp.setObjectOutputStream(oos);
+		tmp.setConnesso(true);
+		tmp.invia(new Pacchetto(new InfoSessione(username, false, null, null), TipoInfo.CONFERMA));
+		System.out.println("Inviato negato accesso!");
 	}
 	
 	public void disconnetti(String executor) {

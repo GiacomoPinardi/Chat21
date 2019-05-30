@@ -9,7 +9,7 @@ import dominioPacchetto.Pacchetto;
 public class Utente {
 
 	private String username;
-	private ObjectOutputStream socket;
+	private ObjectOutputStream oos;
 	private Ruolo ruolo;
 	private boolean connesso;
 
@@ -17,7 +17,7 @@ public class Utente {
 		this.username = username;
 		this.ruolo = ruolo;
 		this.connesso = false;
-		this.socket = null;
+		this.oos = null;
 	}
 
 	public boolean isConnesso() {
@@ -27,19 +27,15 @@ public class Utente {
 	public void setConnesso(boolean connesso) {
 		this.connesso = connesso;
 		if (!connesso)
-			this.socket = null;
+			this.oos = null;
 	}
 
 	public String getUsername() {
 		return username;
 	}
 
-	public void setSocket(OutputStream socket) {
-		try {
-			this.socket = new ObjectOutputStream(socket);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void setObjectOutputStream(ObjectOutputStream oos) {
+		this.oos = oos;		
 	}
 
 	public Ruolo getRuolo() {
@@ -49,13 +45,18 @@ public class Utente {
 	public synchronized boolean invia(Pacchetto pacchetto) {
 		if (connesso) {
 			try {
-				socket.writeObject(pacchetto);
-			} catch (IOException e) {
-				e.printStackTrace();
+				oos.writeObject(pacchetto);
+				oos.flush();
+				return true;
 			}
-			return true;
+			catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
 		}
-		return false;
+		else {
+			return false;
+		}
 	}
 
 }

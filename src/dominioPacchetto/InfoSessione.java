@@ -6,6 +6,9 @@ import java.util.List;
 import dominioServer.Ruolo;
 
 public class InfoSessione implements Info {
+
+	private static final long serialVersionUID = 1L;
+	
 	private boolean esitoCredenziali;
 	private String username;
 	private Ruolo ruolo;

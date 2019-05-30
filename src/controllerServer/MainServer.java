@@ -1,5 +1,6 @@
 package controllerServer;
 
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
@@ -68,6 +69,8 @@ public class MainServer {
 						
 					clientSocket = serverSocket.accept(); // bloccante
 					clientSocket.setSoTimeout(30000); //timeout altrimenti server sequenziale si sospende
+					
+					System.out.println("Nuovo client connesso: " + clientSocket.getInetAddress());
 						
 				}
 				catch (SocketTimeoutException te) {
@@ -82,7 +85,7 @@ public class MainServer {
 				
 				try {
 					
-					Thread tc = new Thread(new ThreadClient(ca, cgg, cgu, cscg, cscb, cl, clientSocket.getInputStream()));
+					Thread tc = new Thread(new ThreadClient(ca, cgg, cgu, cscg, cscb, cl, clientSocket));
 					tc.start();
 					
 				}
@@ -100,6 +103,16 @@ public class MainServer {
 	    	System.out.println("Chat21Server: termino...");
 	    	System.exit(2);
 	    }
+		finally {
+			if (serverSocket != null) {
+				try {
+					serverSocket.close();
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	private static Utenti inizializzaUtenti(ControllerDB cdb) {

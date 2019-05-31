@@ -1,8 +1,13 @@
 package controllerServer;
 
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.util.List;
+
+import dominioServer.Gruppo;
+import dominioServer.Utente;
 
 public class MainServer {
 
@@ -64,6 +69,8 @@ public class MainServer {
 						
 					clientSocket = serverSocket.accept(); // bloccante
 					clientSocket.setSoTimeout(30000); //timeout altrimenti server sequenziale si sospende
+					
+					System.out.println("Nuovo client connesso: " + clientSocket.getInetAddress());
 						
 				}
 				catch (SocketTimeoutException te) {
@@ -78,7 +85,7 @@ public class MainServer {
 				
 				try {
 					
-					Thread tc = new Thread(new ThreadClient(ca, cgg, cgu, cscg, cscb, cl, clientSocket.getInputStream()));
+					Thread tc = new Thread(new ThreadClient(ca, cgg, cgu, cscg, cscb, cl, clientSocket));
 					tc.start();
 					
 				}
@@ -96,16 +103,44 @@ public class MainServer {
 	    	System.out.println("Chat21Server: termino...");
 	    	System.exit(2);
 	    }
+		finally {
+			if (serverSocket != null) {
+				try {
+					serverSocket.close();
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	private static Utenti inizializzaUtenti(ControllerDB cdb) {
-		// TODO
-		return null;		
+		Utenti utenti = new Utenti();
+		
+		List<Utente> lu = cdb.getUtenti();
+		
+		utenti.lockList();
+		for (Utente u : lu) {
+			utenti.aggiungi(u);
+		}
+		utenti.unlockList();
+		
+		return utenti;		
 	}
 	
 	private static Gruppi inizializzaGruppi(ControllerDB cdb) {
-		// TODO
-		return null;
+		Gruppi gruppi = new Gruppi();
+		
+		List<Gruppo> lg = cdb.getGruppi();
+		
+		gruppi.lockList();
+		for (Gruppo g : lg) {
+			gruppi.aggiungi(g);
+		}
+		gruppi.unlockList();
+		
+		return gruppi;
 	}
 	
 	

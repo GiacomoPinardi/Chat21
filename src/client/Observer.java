@@ -1,21 +1,25 @@
 package client;
 
+import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
+import clientLogic.InformazioniSessione;
 import dominioPacchetto.Pacchetto;
+import dominioPacchetto.TipoInfo;
 import dominioServer.Ruolo;
 import dominioPacchetto.Contenuto;
+import dominioPacchetto.Operazione;
 
 public class Observer{
-	private ObjectOutputStream outStream;
-	private InformazioniSessione infoSessione;
+	private ObjectOutputStream sockOut;
+	private InformazioniSessione informazioniSessione;
 	private InterfacciaUtente interfacciaUtente;
 
 	public Observer(ObjectOutputStream outStream, InformazioniSessione infoSessione, InterfacciaUtente interfacciaUtente){
-		this.outStream=outStream;
-		this.infoSessione=infoSessione;
+		this.sockOut=outStream;
+		this.informazioniSessione=infoSessione;
 		this.interfacciaUtente=interfacciaUtente;
 	}
 	public Observer() {
@@ -23,32 +27,51 @@ public class Observer{
 		//solo per test grafica
 	}
 
-	private Boolean trasmettiPacchetto(Pacchetto pacchetto){
-		return null;
-
+	private void trasmettiPacchetto(Pacchetto pacchetto){
+		try {
+			sockOut.writeObject(pacchetto);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public Boolean modificaPassword(String username, String nuovaPassword){
-		return null;
-
+	public void modificaPassword(String vecchiaPassword, String nuovaPassword){
+		try {
+			sockOut.writeObject(new Pacchetto(new Operazione(vecchiaPassword, nuovaPassword, null), TipoInfo.CAMBIA_PASSWORD));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public Boolean accesso(String username, String password){
-		return null;
+	public void accesso(String username, String password){
+		try {
+			sockOut.writeObject(new Pacchetto(new Operazione(username, password, null), TipoInfo.ACCESSO));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 
 	public void setInfoSessione(Ruolo ruolo,String username, List<String> gruppi){
-
-	}
+		informazioniSessione = new InformazioniSessione(username, gruppi, ruolo);
+	} // sono fatti prima o dopo la creazione del thread?
 
 	public void disconnessione(){
-
+		informazioniSessione = null;
+		try {
+			sockOut.writeObject(new Pacchetto(null, TipoInfo.DISCONNETTI));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		// GRAFICA
 	}
 
-	public Boolean  inviaContenuto(Contenuto contenuto){
-		return null;
-
+	public void  inviaContenuto(Contenuto contenuto){
+		try {
+			sockOut.writeObject(new Pacchetto(contenuto, TipoInfo.CONTENUTO));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public synchronized void allertWindow(String allert){
@@ -60,61 +83,87 @@ public class Observer{
 	}
 	
 	public void rimuoviGruppo(String nomeGruppo) {
-		
+		informazioniSessione.deleteGroup(nomeGruppo);
 	}
 
-	public void aggiungiGruppi(List<String> nomeGruppi) {
-		
+	public void aggiungiGruppo(String nomeGruppo) {
+		informazioniSessione.addGroup(nomeGruppo);
 	}
 
-	public List<String> getUtenti(){
-		return null;
-		
+	public void getUtenti(){
+		try {
+			sockOut.writeObject(new Pacchetto(null, TipoInfo.LISTA_UTENTI));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public List<String> getGruppi(){
-		return null;
-		
+	public void getGruppi(){
+		try {
+			sockOut.writeObject(new Pacchetto(null, TipoInfo.LISTA_GRUPPI));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public List<String> getUtentiGruppo(String nomeGruppo){
-		return null;
-		
+	public void getUtentiGruppo(String nomeGruppo){
+		try {
+			sockOut.writeObject(new Pacchetto(null, TipoInfo.LISTA_UTENTI_GRUPPO));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public List<String> getUtentiNonInGruppo(String nomeGruppo){
-		return null;
-		
+	public void getUtentiNonInGruppo(String nomeGruppo){
+		try {
+			sockOut.writeObject(new Pacchetto(null, TipoInfo.LISTA_UTENTI_NON));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public Boolean aggiungiUtente(String username) {
-		return null;
-		
+	public void aggiungiUtente(String username, String password, String ruolo) {
+		try {
+			sockOut.writeObject(new Pacchetto(new Operazione(username, ruolo, password), TipoInfo.AGG_UTENTE));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public Boolean eliminaUtente(String username) {
-		return null;
-		
+	public void eliminaUtente(String username) {
+
 	}
 	
-	public Boolean creaGruppo(String nomeGruppo) {
-		return null;
-		
+	public void creaGruppo(String nomeGruppo) {
+		try {
+			sockOut.writeObject(new Pacchetto(new Operazione(nomeGruppo, null, null), TipoInfo.CREA_GRUPPO));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public Boolean eliminaGruppo(String nomeGruppo) {
-		return null;
-		
+	public void eliminaGruppo(String nomeGruppo) {
+		try {
+			sockOut.writeObject(new Pacchetto(new Operazione(nomeGruppo, null, null), TipoInfo.ELIMINA_GRUPPO));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public Boolean aggiungiUtenteGruppo(String username, String nomeGruppo) {
-		return null;
-		
+	public void aggiungiUtenteGruppo(String username, String nomeGruppo) {
+		try {
+			sockOut.writeObject(new Pacchetto(new Operazione(username, nomeGruppo, null), TipoInfo.AGG_UTENTE_GRUPPO));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public Boolean eliminaUtenteGruppo(String username, String nomeGruppo) {
-		return null;
-		
+	public void eliminaUtenteGruppo(String username, String nomeGruppo) {
+		try {
+			sockOut.writeObject(new Pacchetto(new Operazione(username, nomeGruppo, null), TipoInfo.ELIMINA_UTENTE_GRUPPO));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setUIGestioneGruppi(List<String> gruppi) {
@@ -137,17 +186,19 @@ public class Observer{
 		
 	}
 	
-	public String getLog(LocalDate day) {
-		return null;
-		
+	public void getLog(Date date) {
+		try {
+			sockOut.writeObject(new Pacchetto(new Operazione(date.toString(), null, null), TipoInfo.VISUALIZZA_LOG));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setAnomalie(String anomalie) {
 		
 	}
 	
-	public String getAnomalie(LocalDate day) {
-		return null;
-		
+	public void getAnomalie(Date date) {
+
 	}
 }

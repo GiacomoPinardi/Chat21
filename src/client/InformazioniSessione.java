@@ -40,4 +40,11 @@ public class InformazioniSessione{
 		this.ruolo = ruolo;
 	}
 	
+	public boolean addGroup(String nomeGruppo) {
+		return gruppi.add(nomeGruppo);
+	}
+	
+	public boolean deleteGroup(String nomeGruppo) {
+		return gruppi.remove(nomeGruppo);
+	}
 }

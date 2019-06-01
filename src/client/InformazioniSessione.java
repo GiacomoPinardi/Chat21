@@ -1,5 +1,6 @@
 package client;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dominioServer.Ruolo;
@@ -14,6 +15,13 @@ public class InformazioniSessione{
 		this.username = username;
 		this.gruppi = gruppi;
 		this.ruolo = ruolo;
+	}
+	public InformazioniSessione() {
+		this.ruolo=Ruolo.AMMINISTRATORE;
+		this.gruppi=new ArrayList<>();
+		this.gruppi.add("Gruppo1");
+		this.gruppi.add("Gruppo2");
+		this.gruppi.add("Gruppo21");
 	}
 
 	public String getUsername() {

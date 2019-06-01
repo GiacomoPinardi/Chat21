@@ -4,8 +4,14 @@ import dominioPacchetto.Contenuto;
 
 public class HomeGruppo{
 	
-	public Boolean aggiungiConteunuto(Contenuto contenuto){
-		return null;
-		
+	private Observer observer;
+	
+	public HomeGruppo(Observer observer) {
+		super();
+		this.observer = observer;
+	}
+
+	public void aggiungiConteunuto(Contenuto contenuto){
+		observer.aggiungiContenuto(contenuto);
 	}
 }

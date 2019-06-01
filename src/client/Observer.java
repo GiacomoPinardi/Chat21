@@ -1,11 +1,13 @@
 package client;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Date;
 import java.util.List;
 
-import clientLogic.InformazioniSessione;
 import dominioPacchetto.Pacchetto;
 import dominioPacchetto.TipoInfo;
 import dominioServer.Ruolo;
@@ -14,10 +16,10 @@ import dominioPacchetto.Operazione;
 
 public class Observer{
 	private ObjectOutputStream sockOut;
-	private InformazioniSessione informazioniSessione;
+	private client.InformazioniSessione informazioniSessione;
 	private InterfacciaUtente interfacciaUtente;
 
-	public Observer(ObjectOutputStream outStream, InformazioniSessione infoSessione, InterfacciaUtente interfacciaUtente){
+	public Observer(ObjectOutputStream outStream, client.InformazioniSessione infoSessione, InterfacciaUtente interfacciaUtente){
 		this.sockOut=outStream;
 		this.informazioniSessione=infoSessione;
 		this.interfacciaUtente=interfacciaUtente;
@@ -25,6 +27,17 @@ public class Observer{
 	public Observer() {
 		// TODO Auto-generated method stub
 		//solo per test grafica
+		try {
+			sockOut=new ObjectOutputStream(new FileOutputStream(new File("prova.txt")));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		informazioniSessione=new client.InformazioniSessione();
+		interfacciaUtente=new InterfacciaUtente(this);
 	}
 
 	private void trasmettiPacchetto(Pacchetto pacchetto){
@@ -53,7 +66,7 @@ public class Observer{
 	}
 
 	public void setInfoSessione(Ruolo ruolo,String username, List<String> gruppi){
-		informazioniSessione = new InformazioniSessione(username, gruppi, ruolo);
+		informazioniSessione = new client.InformazioniSessione(username, gruppi, ruolo);
 	} // sono fatti prima o dopo la creazione del thread?
 
 	public void disconnessione(){

@@ -40,7 +40,7 @@ public class Observer{
 		interfacciaUtente=new InterfacciaUtente(this);
 	}
 
-	private void trasmettiPacchetto(Pacchetto pacchetto){
+	public void trasmettiPacchetto(Pacchetto pacchetto){
 		try {
 			sockOut.writeObject(pacchetto);
 		} catch (IOException e) {

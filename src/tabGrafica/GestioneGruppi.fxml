@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+         <children>
+            <Label text="Nome nuovo gruppo:">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="nomeNuovoGruppo" />
+            <Button fx:id="aggiungiNuovoGruppo" mnemonicParsing="false" onAction="#handlerAggiungiNuovoGruppo" text="Aggiungi nuovo gruppo">
+               <HBox.margin>
+                  <Insets left="60.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox prefHeight="373.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="337.0" prefWidth="350.0">
+               <children>
+                  <Label text="Elenco Gruppi" />
+                  <HBox prefHeight="280.0" prefWidth="381.0" spacing="10.0">
+                     <children>
+                        <ListView fx:id="elencoGruppi" prefHeight="280.0" prefWidth="180.0" />
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+                           <children>
+                              <Button fx:id="rimuoviUtente" mnemonicParsing="false" onAction="#handlerRimuoviUtente" prefHeight="100.0" prefWidth="100.0" text="Rimuovi utente dal gruppo selezionato" />
+                              <Button fx:id="aggiungiUtente" mnemonicParsing="false" onAction="#handlerAggiungiUtente" prefHeight="100.0" prefWidth="100.0" text="Aggiungi utente nel gruppo selezionato" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Button fx:id="rimuoviGruppoSelezionato" mnemonicParsing="false" onAction="#handlerRimuoviGruppoSelezionato" text="Rimuovi gruppo selezionato" />
+               </children></VBox>
+            <VBox prefHeight="337.0" prefWidth="250.0">
+               <children>
+                  <Label text="Elenco degli utenti non presenti nel gruppo" />
+                  <ListView fx:id="elencoUtenti" prefHeight="302.0" prefWidth="249.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

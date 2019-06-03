@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextArea fx:id="corpoGruppo" prefHeight="284.0" prefWidth="596.0" />
+      <Button fx:id="richiediContenuti" mnemonicParsing="false" onAction="#handlerRichiediContenuti" text="Richiedi contenuti">
+         <VBox.margin>
+            <Insets bottom="-8.0" left="480.0" top="-8.0" />
+         </VBox.margin>
+      </Button>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <TextArea fx:id="textInvia" prefHeight="98.0" prefWidth="450.0" promptText="scrivi qui">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets bottom="2.0" />
+               </HBox.margin></TextArea>
+            <VBox alignment="CENTER" prefHeight="98.0" prefWidth="150.0" spacing="15.0">
+               <children>
+                  <Button fx:id="invia" mnemonicParsing="false" onAction="#handlerInvia" text="Invia" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets left="2.0" right="2.0" top="2.0" />
+   </padding>
+</VBox>

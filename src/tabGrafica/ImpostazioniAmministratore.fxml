@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="effettuaDisconnesione" mnemonicParsing="false" onAction="#handlerEffettuaDisconnesione" text="Effettua Disconnesione">
+         <VBox.margin>
+            <Insets left="7.0" top="10.0" />
+         </VBox.margin>
+      </Button>
+      <Line endX="500.0" startX="-100.0">
+         <VBox.margin>
+            <Insets top="-5.0" />
+         </VBox.margin>
+      </Line>
+      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="600.0" spacing="20.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="130.0" prefWidth="150.0">
+               <children>
+                  <Label text="Vecchia password:" />
+                  <PasswordField fx:id="vecchiaPassword" prefHeight="25.0" prefWidth="135.0" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="130.0">
+               <children>
+                  <Label text="Nuova password:" />
+                  <PasswordField fx:id="nuovaPassword" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="130.0">
+               <children>
+                  <Label text="Ripeti nuova password:" />
+                  <PasswordField fx:id="ripetiNuovaPassword" />
+               </children>
+            </VBox>
+            <Button fx:id="modificaPassword" mnemonicParsing="false" onAction="#handlerModificaPassword" text="Modifica Password">
+               <HBox.margin>
+                  <Insets top="16.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <Line endX="500.0" startX="-100.0">
+         <VBox.margin>
+            <Insets top="-5.0" />
+         </VBox.margin>
+      </Line>
+      <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="600.0" spacing="20.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="130.0" prefWidth="150.0">
+               <children>
+                  <Label text="Username nuovo utente:" />
+                  <TextField fx:id="usernameNuovoUtente">
+                     <VBox.margin>
+                        <Insets left="7.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="130.0" prefWidth="150.0">
+               <children>
+                  <Label text="Password nuovo utente:" />
+                  <PasswordField fx:id="passwordNuovoUtente" prefHeight="25.0" prefWidth="135.0" />
+               </children>
+            </VBox>
+            <CheckBox fx:id="checkAmministratore" mnemonicParsing="false" text="Amministratore" />
+            <Button fx:id="aggiungiNuovoUtente" mnemonicParsing="false" onAction="#handlerAggiungiNuovoUtente" text="Aggiungi nuovo utente" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="109.0" prefWidth="600.0">
+         <children>
+            <ListView fx:id="listaUtenti" prefHeight="99.0" prefWidth="278.0">
+               <HBox.margin>
+                  <Insets left="7.0" />
+               </HBox.margin>
+            </ListView>
+            <Button fx:id="rimuoviUtenteSelezionato" mnemonicParsing="false" onAction="#handlerRimuoviUtenteSelezionato" text="Rimuovi utente selezionato">
+               <HBox.margin>
+                  <Insets left="90.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <Line endX="500.0" startX="-100.0">
+         <VBox.margin>
+            <Insets top="-5.0" />
+         </VBox.margin>
+      </Line>
+      <HBox prefHeight="129.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="129.0" prefWidth="188.0" spacing="10.0">
+               <children>
+                  <Label text="Data:">
+                     <VBox.margin>
+                        <Insets left="7.0" />
+                     </VBox.margin>
+                  </Label>
+                  <DatePicker fx:id="dataLog">
+                     <VBox.margin>
+                        <Insets left="7.0" top="-5.0" />
+                     </VBox.margin>
+                  </DatePicker>
+                  <Button fx:id="richiediLog" mnemonicParsing="false" onAction="#handlerRichiediLog" text="Richiedi log">
+                     <VBox.margin>
+                        <Insets left="7.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="richiediAnalisiLog" mnemonicParsing="false" onAction="#handlerRichiediAnalisiLog" text="Richiedi analisi log">
+                     <VBox.margin>
+                        <Insets left="7.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox prefHeight="125.0" prefWidth="413.0">
+               <children>
+                  <Label text="Log:" />
+                  <TextArea fx:id="textLog" prefHeight="101.0" prefWidth="413.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

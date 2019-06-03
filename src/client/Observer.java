@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -199,9 +200,9 @@ public class Observer{
 		
 	}
 	
-	public void getLog(Date date) {
+	public void getLog(LocalDate localDate) {
 		try {
-			sockOut.writeObject(new Pacchetto(new Operazione(date.toString(), null, null), TipoInfo.VISUALIZZA_LOG));
+			sockOut.writeObject(new Pacchetto(new Operazione(localDate.toString(), null, null), TipoInfo.VISUALIZZA_LOG));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -211,7 +212,7 @@ public class Observer{
 		
 	}
 	
-	public void getAnomalie(Date date) {
+	public void getAnomalie(LocalDate localDate) {
 
 	}
 }

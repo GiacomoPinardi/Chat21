@@ -6,6 +6,7 @@ import dominioServer.Ruolo;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -74,8 +75,9 @@ public class Main extends Application {
 			if(infoSessione.getRuolo()==Ruolo.AMMINISTRATORE) {
 				Tab tGestioneGruppi=new Tab("GestioneGruppi");
 				try {
-					tImpostazioni.setContent(FXMLLoader.load(getClass().getResource("ImpostazioniAmministratore.fxml")));
-					tGestioneGruppi.setContent(FXMLLoader.load(getClass().getResource("BestioneGruppi.fxml")));
+					Node parent= FXMLLoader.load(getClass().getResource("ImpostazioniAmministratore.fxml"));
+					tImpostazioni.setContent(parent);
+					tGestioneGruppi.setContent(FXMLLoader.load(getClass().getResource("GestioneGruppi.fxml")));
 					tBacheca.setContent(FXMLLoader.load(getClass().getResource("BachecaAmministratori.fxml")));
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -96,7 +98,7 @@ public class Main extends Application {
 				for(String nomeGruppo : infoSessione.getGruppi()) {
 					tabs.getTabs().add(new Tab(nomeGruppo));//dopo preparo le tab dei gruppi
 					try {
-						tabs.getTabs().get(tabs.getTabs().size() - 1).setContent(FXMLLoader.load(getClass().getResource("Gruppo.fxml")));
+						tabs.getTabs().get(tabs.getTabs().size() - 1).setContent(FXMLLoader.load(getClass().getResource("tabGrafica/Gruppo.fxml")));
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

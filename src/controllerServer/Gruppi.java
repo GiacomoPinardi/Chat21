@@ -32,9 +32,14 @@ public class Gruppi {
 	}
 	
 	public boolean rimuovi(String nome) {
+		Gruppo daEliminare = null;
 		for (Gruppo g : lista)
 			if (g.getNome().equals(nome)) 
-				lista.remove(g);
+				daEliminare = g;
+		
+		if (daEliminare != null) {			
+			return lista.remove(daEliminare);
+		}
 		return false;
 	}
 	

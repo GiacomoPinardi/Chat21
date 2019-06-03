@@ -6,10 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
 import dominioPacchetto.Contenuto;
+import dominioPacchetto.MessaggioTestuale;
+import dominioPacchetto.TipoDestinatario;
 import dominioServer.Gruppo;
 import dominioServer.Ruolo;
 import dominioServer.Utente;
@@ -43,7 +47,7 @@ public class ControllerDB {
 			
 			statement.executeUpdate("DROP TABLE IF EXISTS utenti");
 			statement.executeUpdate("DROP TABLE IF EXISTS gruppi");
-			statement.executeUpdate("DROP TABLE IF EXISTS messaggiotestuale");
+			statement.executeUpdate("DROP TABLE IF EXISTS messaggitestuali");
 			statement.executeUpdate("DROP TABLE IF EXISTS appartenenza");
 			
 			statement.executeUpdate("CREATE TABLE utenti (" +
@@ -57,11 +61,12 @@ public class ControllerDB {
 					")");
 		
 			statement.executeUpdate("CREATE TABLE messaggitestuali (" +
-					"id INT NOT NULL PRIMARY KEY," +
-					"dataora DATETIME NOT NULL," +
+					"id INTEGER PRIMARY KEY AUTOINCREMENT," +
+					"dataora INTEGER NOT NULL," +
 					"username VARCHAR(50) NOT NULL," +
 					"gruppo VARCHAR(50) NULL," +
 					"inBacheca BOOLEAN NOT NULL," +
+					"testo VARCHAR(200) NOT NULL," +
 					"FOREIGN KEY (username) REFERENCES utenti (username)," +
 					"FOREIGN KEY (gruppo) REFERENCES gruppi (nome)" +
 					")");
@@ -132,7 +137,7 @@ public class ControllerDB {
 			
 			ResultSet rs = statement.executeQuery();
 			if (rs.next()) {
-				if (rs.getString("ruolo").equals(password)) {
+				if (rs.getString("password").equals(password)) {
 					result = true;
 				}
 			}			
@@ -152,8 +157,153 @@ public class ControllerDB {
 		return result;	
 	}
 	
+	public synchronized void addContenutoGruppo (MessaggioTestuale contenuto) {
+		Connection connection = null;
+		
+		try {
+			connection = getConnection();
+		
+			PreparedStatement statement = connection.prepareStatement("INSERT INTO messaggitestuali " +
+											"(dataora, username, gruppo, inBacheca, testo) VALUES (?, ?, ?, ?, ?)");
+			statement.clearParameters();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+			
+			statement.setLong(1, contenuto.getDateTime().toEpochSecond(ZoneOffset.UTC));
+			statement.setString(2, contenuto.getMittente());
+			statement.setString(3, contenuto.getDestinario());
+			statement.setBoolean(4, false);
+			statement.setString(5, contenuto.getMessaggio());
+			
+			statement.execute();
+			
+		}
+	    catch(SQLException e) {
+	      e.printStackTrace();
+	    }
+	    finally {
+	    	try {
+	    		if(connection != null)
+	    			connection.close();
+	    	}
+	    	catch(SQLException e) {
+	    		e.printStackTrace();
+	    	}
+	    }	
+	}
+	
 	public synchronized List<Contenuto> getContenutiGruppo(String gruppo) {
-		return null;
+		Connection connection = null;
+		List<Contenuto> contenuti = new ArrayList<>();
+		
+		Contenuto c;
+		
+		try {
+			connection = getConnection();
+		
+			PreparedStatement statement = connection.prepareStatement("SELECT * FROM messaggitestuali WHERE gruppo = ? AND inBacheca = FALSE");
+			statement.clearParameters();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+						
+			statement.setString(1, gruppo);
+			
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				LocalDateTime dateTime = LocalDateTime.ofEpochSecond(rs.getLong("dataora"), 0, ZoneOffset.UTC);						
+				String mittente = rs.getString("username");
+				String destinatario = gruppo;
+				String messaggio = rs.getString("testo");
+				
+				c = new MessaggioTestuale(TipoDestinatario.GRUPPO, dateTime, mittente, destinatario, messaggio);
+				
+				contenuti.add(c);
+			}			
+		}
+	    catch(SQLException e) {
+	      e.printStackTrace();
+	    }
+	    finally {
+	      try {
+	        if(connection != null)
+	          connection.close();
+	      }
+	      catch(SQLException e) {
+	    	  e.printStackTrace();
+	      }
+	    }
+		return contenuti;
+	}
+	
+	public synchronized void addContenutoBacheca (MessaggioTestuale contenuto) {
+		Connection connection = null;
+		
+		try {
+			connection = getConnection();
+		
+			PreparedStatement statement = connection.prepareStatement("INSERT INTO messaggitestuali " +
+											"(dataora, username, gruppo, inBacheca, testo) VALUES (?, ?, NULL, ?, ?)");
+			statement.clearParameters();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+			
+			statement.setLong(1, contenuto.getDateTime().toEpochSecond(ZoneOffset.UTC));
+			statement.setString(2, contenuto.getMittente());
+			statement.setBoolean(3, true);
+			statement.setString(4, contenuto.getMessaggio());
+			
+			statement.execute();
+			
+		}
+	    catch(SQLException e) {
+	      e.printStackTrace();
+	    }
+	    finally {
+	    	try {
+	    		if(connection != null)
+	    			connection.close();
+	    	}
+	    	catch(SQLException e) {
+	    		e.printStackTrace();
+	    	}
+	    }	
+	}
+	
+	public synchronized List<Contenuto> getContenutiBacheca() {
+		Connection connection = null;
+		List<Contenuto> contenuti = new ArrayList<>();
+		
+		Contenuto c;
+		
+		try {
+			connection = getConnection();
+		
+			PreparedStatement statement = connection.prepareStatement("SELECT * FROM messaggitestuali WHERE gruppo = NULL AND inBacheca = TRUE");
+			statement.clearParameters();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+						
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				LocalDateTime dateTime = LocalDateTime.ofEpochSecond(rs.getLong("dataora"), 0, ZoneOffset.UTC);						
+				String mittente = rs.getString("username");
+				String destinatario = "Bacheca";
+				String messaggio = rs.getString("testo");
+				
+				c = new MessaggioTestuale(TipoDestinatario.BACHECA, dateTime, mittente, destinatario, messaggio);
+				
+				contenuti.add(c);
+			}			
+		}
+	    catch(SQLException e) {
+	      e.printStackTrace();
+	    }
+	    finally {
+	      try {
+	        if(connection != null)
+	          connection.close();
+	      }
+	      catch(SQLException e) {
+	    	  e.printStackTrace();
+	      }
+	    }
+		return contenuti;
 	}
 
 	public synchronized void aggiungiGruppo(String nome) {

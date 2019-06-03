@@ -1,7 +1,7 @@
 package controllerServer;
 
+import java.io.EOFException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -72,7 +72,7 @@ public class ThreadClient implements Runnable {
 						
 						esito = ca.verificaPassword(o.getParametro1(), o.getParametro2());
 						
-						System.out.println(o.getParametro1() + " esito accesso: " + esito);
+						System.out.println(o.getParametro1() + "[" + o.getParametro2() + "] esito accesso: " + esito);
 						
 						if (esito) {
 							executor = o.getParametro1();
@@ -89,7 +89,7 @@ public class ThreadClient implements Runnable {
 						cscg.getContenutiGruppo(o.getParametro1(), executor); // nessun controllo sull'appartenenza
 						break;
 					case CONTENUTO:
-						c = (Contenuto) inSock.readObject();
+						c = (Contenuto) pacchetto.getInformazione();
 						if (c.getTipoDestinatario().equals(TipoDestinatario.BACHECA)) {
 							cscb.smista(c);
 						}
@@ -144,13 +144,13 @@ public class ThreadClient implements Runnable {
 					case CAMBIA_PASSWORD:
 						o = (Operazione) pacchetto.getInformazione();
 						esito = ca.modicaPassword(executor, o.getParametro1(), o.getParametro2());
-						cl.addEntry("modifica password" + executor, esito);
+						cl.addEntry("modifica password " + executor, esito);
 						break;
 					case DISCONNETTI:
 						o = (Operazione) pacchetto.getInformazione();
 						ca.disconnetti(executor);
-						cl.addEntry("disconnessione" + executor);
-						executor = "UNKNOWN";							
+						cl.addEntry("disconnessione " + executor);
+						executor = "UNKNOWN";
 						break;
 					case VISUALIZZA_LOG:
 						o = (Operazione) pacchetto.getInformazione();
@@ -162,9 +162,17 @@ public class ThreadClient implements Runnable {
 
 			}
 		}
-		catch (Exception e) {
+		catch (EOFException e) {
 			System.out.println("Client " + executor + " disconnesso in modo inaspettato!");
-			//e.printStackTrace();
+			ca.disconnetti(executor);
+			cl.addEntry("disconnessione " + executor);
+			executor = "UNKNOWN";
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
 		}
 
 	}

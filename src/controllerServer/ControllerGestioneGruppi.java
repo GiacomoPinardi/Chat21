@@ -24,8 +24,9 @@ public class ControllerGestioneGruppi {
 		boolean esito = gruppi.aggiungi(new Gruppo(nome));
 		invioConferma("crea gruppo", esito, executor);
 		gruppi.unlockList();
-		if (esito)
+		if (esito) {
 			dbConnection.aggiungiGruppo(nome);
+		}
 		return esito;
 	}
 	
@@ -34,8 +35,9 @@ public class ControllerGestioneGruppi {
 		boolean esito = gruppi.rimuovi(nome);
 		invioConferma("elimina gruppo", esito, executor);
 		gruppi.unlockList();
-		if (esito)
+		if (esito) {
 			dbConnection.eliminaGruppo(nome);
+		}
 		return esito;
 	}
 	
@@ -92,7 +94,7 @@ public class ControllerGestioneGruppi {
 		if (esito)
 			res = "l'operazione " + operazione + " è andata buonfine";
 		else
-			res = "l'operazione " + operazione + "  non è andata buonfine";
+			res = "l'operazione " + operazione + " non è andata buonfine";
 		utenti.lockList();
 		utenti.getByUsername(executor).invia(new Pacchetto(new Conferma(res) , TipoInfo.CONFERMA));
 		utenti.unlockList();

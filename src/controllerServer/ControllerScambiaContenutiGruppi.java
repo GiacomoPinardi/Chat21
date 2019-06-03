@@ -4,6 +4,7 @@ import java.util.List;
 
 import dominioPacchetto.Contenuto;
 import dominioPacchetto.ListaContenuti;
+import dominioPacchetto.MessaggioTestuale;
 import dominioPacchetto.Pacchetto;
 import dominioPacchetto.TipoInfo;
 import dominioServer.Utente;
@@ -21,20 +22,26 @@ public class ControllerScambiaContenutiGruppi implements IControllerScambiaConte
 	
 	@Override
 	public void smista(Contenuto contenuto) {
+		dbConnection.addContenutoGruppo((MessaggioTestuale) contenuto);
+		
 		Pacchetto pacchetto = new Pacchetto(contenuto, TipoInfo.CONTENUTO);
 		gruppi.lockList();
 		List<String> utentiGruppo = gruppi.getByNome(contenuto.getDestinario()).getUtenti();
 		utenti.lockList();
-		for(String username: utentiGruppo)
-			utenti.getByUsername(username).invia(pacchetto);
+		for (String username: utentiGruppo) {
+			if (!username.equals(contenuto.getMittente())) {
+				utenti.getByUsername(username).invia(pacchetto);
+			}
+			
+		}
 		utenti.unlockList();
 		gruppi.unlockList();
 	}
 
-	public void getContenutiGruppo(String nomeGruppo, String esecutor) {
+	public void getContenutiGruppo(String nomeGruppo, String executor) {
 		ListaContenuti lista = new ListaContenuti(dbConnection.getContenutiGruppo(nomeGruppo));
 		utenti.lockList();
-		utenti.getByUsername(esecutor).invia(new Pacchetto(lista, TipoInfo.CONTENUTI_GRUPPO));
+		utenti.getByUsername(executor).invia(new Pacchetto(lista, TipoInfo.CONTENUTI_GRUPPO));
 		utenti.unlockList();		
 	}
 }

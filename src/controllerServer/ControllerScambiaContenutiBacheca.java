@@ -3,6 +3,8 @@ package controllerServer;
 import java.util.List;
 
 import dominioPacchetto.Contenuto;
+import dominioPacchetto.ListaContenuti;
+import dominioPacchetto.MessaggioTestuale;
 import dominioPacchetto.Pacchetto;
 import dominioPacchetto.TipoInfo;
 import dominioServer.Utente;
@@ -18,14 +20,23 @@ public class ControllerScambiaContenutiBacheca implements IControllerScambiaCont
 	
 	@Override
 	public void smista(Contenuto contenuto) {
+		dbConnection.addContenutoBacheca((MessaggioTestuale) contenuto);
+		
 		List<Utente> utentiOnline;
 		Pacchetto pacchetto = new Pacchetto(contenuto, TipoInfo.CONTENUTO);
 		utenti.lockList();
 		utentiOnline = utenti.getUtentiOnline();
 		for (Utente utente : utentiOnline) {
-			utente.invia(pacchetto);
+			if (!utente.getUsername().equals(contenuto.getMittente())) {
+				utente.invia(pacchetto);
+			}
 		}
 		utenti.unlockList();
 	}
-
+	
+	/*
+	public void getContenutiBacheca (String executor) {
+			
+	}
+	*/
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import dominioServer.Gruppo;
 import dominioServer.Utente;
 
 public class Utenti {
@@ -32,9 +33,14 @@ public class Utenti {
 	}
 	
 	public boolean rimuovi(String username) {
+		Utente daEliminare = null;
 		for (Utente u : lista)
 			if (u.getUsername().equals(username)) 
-				lista.remove(u);
+				daEliminare = u;
+		
+		if (daEliminare != null) {			
+			return lista.remove(daEliminare);
+		}
 		return false;
 	}
 	

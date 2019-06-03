@@ -1,8 +1,11 @@
 package client;
 
+import java.io.IOException;
+
 import dominioServer.Ruolo;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -64,20 +67,40 @@ public class Main extends Application {
 		//forse ci vuole una piccola sleep per fare si che il pacchetto di risposta all'accesso torni indietro
 		if(infoSessione.getRuolo()!=null) {
 			//accesso con successo cambia la scena in homeBacheca
+			//ma prima prepara tutte le tab
 			tabs=new TabPane();
 			Tab tImpostazioni=new Tab("Impostazioni");
-			tabs.getTabs().add(tImpostazioni);
+			Tab tBacheca=new Tab("Bacheca");
 			if(infoSessione.getRuolo()==Ruolo.AMMINISTRATORE) {
 				Tab tGestioneGruppi=new Tab("GestioneGruppi");
+				try {
+					tImpostazioni.setContent(FXMLLoader.load(getClass().getResource("ImpostazioniAmministratore.fxml")));
+					tGestioneGruppi.setContent(FXMLLoader.load(getClass().getResource("BestioneGruppi.fxml")));
+					tBacheca.setContent(FXMLLoader.load(getClass().getResource("BachecaAmministratori.fxml")));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				tabs.getTabs().add(tGestioneGruppi);
+			}else {
+				try {
+					tImpostazioni.setContent(FXMLLoader.load(getClass().getResource("ImpostazioniUtente.fxml")));
+					tBacheca.setContent(FXMLLoader.load(getClass().getResource("BachecaUtenti.fxml")));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-			Tab tBacheca=new Tab("Bacheca");
-			Tab tChatUtenti=new Tab("ChatUtenti");
-			tabs.getTabs().addAll(tBacheca,tChatUtenti);
+			tabs.getTabs().addAll(tBacheca,tImpostazioni);
 			if(infoSessione.getGruppi()!=null)
 				for(String nomeGruppo : infoSessione.getGruppi()) {
 					tabs.getTabs().add(new Tab(nomeGruppo));//dopo preparo le tab dei gruppi
-					tabs.getTabs().get(tabs.getTabs().size() - 1).setContent(new TextArea());;
+					try {
+						tabs.getTabs().get(tabs.getTabs().size() - 1).setContent(FXMLLoader.load(getClass().getResource("Gruppo.fxml")));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			stage.setScene((new Scene(tabs, Color.WHITE)));
 		}else{

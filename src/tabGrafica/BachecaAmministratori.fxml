@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextArea fx:id="corpoBacheca" prefHeight="252.0" prefWidth="600.0" />
+      <HBox prefHeight="134.0" prefWidth="600.0">
+         <children>
+            <TextArea fx:id="inserisciBacheca" prefHeight="8.0" prefWidth="436.0" promptText="scrivi qui" />
+            <VBox alignment="CENTER" prefHeight="116.0" prefWidth="164.0" spacing="20.0">
+               <children>
+                  <Button fx:id="invia" mnemonicParsing="false" onAction="#handlerPubblicaInBacheca" text="Invia" />
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+   </padding>
+</VBox>

@@ -7,8 +7,8 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import dominioPacchetto.Conferma;
 import dominioPacchetto.InfoSessione;
+import dominioPacchetto.ListaString;
 import dominioPacchetto.Operazione;
 import dominioPacchetto.Pacchetto;
 import dominioPacchetto.TipoInfo;
@@ -55,25 +55,19 @@ public class CarloClientMock {
 				System.out.println(infoSess.isEsitoCredenziali());
 			}
 			
-			System.out.println("Creo gruppo...");
+			System.out.println("Visualizza log...");
 			
-			outSocket.writeObject(new Pacchetto(new Operazione("Gruppo1"), TipoInfo.ELIMINA_GRUPPO));
+			outSocket.writeObject(new Pacchetto(new Operazione(), TipoInfo.VISUALIZZA_LOG));
 			outSocket.flush();
 			
 			p = (Pacchetto) inSocket.readObject();
-			if (p.getTipo().equals(TipoInfo.CONFERMA)) {
-				Conferma c = (Conferma) p.getInformazione();
-				System.out.println(c.getMessaggioConferma());
+			if (p.getTipo().equals(TipoInfo.VISUALIZZA_LOG)) {
+				ListaString c = (ListaString) p.getInformazione();
+				for (String s : c.getListaContenuti()) {
+					System.out.println("\t" + s);
+				}
 			}
 			
-			outSocket.writeObject(new Pacchetto(new Operazione("GruppoXY"), TipoInfo.ELIMINA_GRUPPO));
-			outSocket.flush();
-			
-			p = (Pacchetto) inSocket.readObject();
-			if (p.getTipo().equals(TipoInfo.CONFERMA)) {
-				Conferma c = (Conferma) p.getInformazione();
-				System.out.println(c.getMessaggioConferma());
-			}
 		}
 		catch (IOException e1) {
 			e1.printStackTrace();

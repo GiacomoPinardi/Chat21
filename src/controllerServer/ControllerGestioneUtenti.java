@@ -18,7 +18,7 @@ public class ControllerGestioneUtenti {
 		this.dbConnection = dbConnection;
 	}
 	
-	public boolean aggiungiUtente(String username, Ruolo ruolo, String executor, String passwordUtenteAggiunto) {
+	public boolean aggiungiUtente(String username, String passwordUtenteAggiunto, Ruolo ruolo, String executor) {
 		utenti.lockList();
 		boolean esito = utenti.aggiungi(new Utente(username, ruolo));
 		utenti.unlockList();
@@ -57,10 +57,10 @@ public class ControllerGestioneUtenti {
 	private void invioConferma(String operazione, boolean esito, String executor) {
 		String res;
 		if (esito) {
-			res = "l'operazione " + operazione + " è andata buon fine";
+			res = "l'operazione " + operazione + " è andata a buon fine";
 		}
 		else {
-			res = "l'operazione " + operazione + "  non è andata buon fine";
+			res = "l'operazione " + operazione + " non è andata a buon fine";
 		}
 		utenti.lockList();
 		utenti.getByUsername(executor).invia(new Pacchetto(new Conferma(res) , TipoInfo.CONFERMA));

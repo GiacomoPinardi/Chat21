@@ -1,5 +1,6 @@
 package controllerServer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dominioPacchetto.Conferma;
@@ -41,23 +42,23 @@ public class ControllerGestioneGruppi {
 		return esito;
 	}
 	
-	public boolean aggiungUtenteGruppo(String nome, String username, String executor) {
+	public boolean aggiungiUtenteGruppo(String nomeGruppo, String username, String executor) {
 		gruppi.lockList();
-		boolean esito = gruppi.getByNome(nome).aggiungiUtente(username);
+		boolean esito = gruppi.getByNome(nomeGruppo).aggiungiUtente(username);
 		invioConferma("aggiungi utente a gruppo", esito, executor);
 		gruppi.unlockList();
 		if (esito)
-			dbConnection.aggiungiUtenteGruppo(nome, username);
+			dbConnection.aggiungiUtenteGruppo(nomeGruppo, username);
 		return esito;
 	}
 	
-	public boolean eliminaUtenteGruppo(String nome, String username, String executor) {
+	public boolean eliminaUtenteGruppo(String nomeGruppo, String username, String executor) {
 		gruppi.lockList();
-		boolean esito = gruppi.getByNome(nome).eliminaUtente(username);
+		boolean esito = gruppi.getByNome(nomeGruppo).eliminaUtente(username);
 		invioConferma("elimina utente da gruppo", esito, executor);
 		gruppi.unlockList();
 		if (esito)
-			dbConnection.eliminaUtenteGruppo(nome, username);
+			dbConnection.eliminaUtenteGruppo(nomeGruppo, username);
 		return esito;
 	}
 	
@@ -67,12 +68,21 @@ public class ControllerGestioneGruppi {
 		gruppi.unlockList();
 		utenti.lockList();
 		utenti.getByUsername(executor).invia(p);
-		utenti.lockList();
+		utenti.unlockList();
 	}
 	
 	public void invioListaUtentInGruppo(String nome, String executor) {
+		Pacchetto p;
+		
 		gruppi.lockList();
-		Pacchetto p = new Pacchetto(new ListaString(gruppi.getByNome(nome).getUtenti()), TipoInfo.ELIMINA_UTENTE_GRUPPO);
+		Gruppo g = gruppi.getByNome(nome);
+		
+		if (g != null) {
+			p = new Pacchetto(new ListaString(gruppi.getByNome(nome).getUtenti()), TipoInfo.LISTA_UTENTI_GRUPPO);
+		}
+		else {
+			p = new Pacchetto(new ListaString(new ArrayList<>()), TipoInfo.LISTA_UTENTI_GRUPPO);
+		}
 		gruppi.unlockList();
 		utenti.lockList();
 		utenti.getByUsername(executor).invia(p);
@@ -80,10 +90,19 @@ public class ControllerGestioneGruppi {
 	}
 	
 	public void invioListaUtentiNonInGruppo(String nome, String executor) {
+		Pacchetto p;
+		
 		gruppi.lockList();
 		utenti.lockList();
-		List<String> utentiIn = gruppi.getByNome(nome).getUtenti();
-		Pacchetto p = new Pacchetto(new ListaString(utenti.getAltriUtenti(utentiIn)), TipoInfo.AGG_UTENTE_GRUPPO);
+		Gruppo g = gruppi.getByNome(nome);
+		if (g != null) {
+			List<String> utentiIn = g.getUtenti();
+			p = new Pacchetto(new ListaString(utenti.getAltriUtenti(utentiIn)), TipoInfo.LISTA_UTENTI_NON);
+		}
+		else {
+			p = new Pacchetto(new ListaString(new ArrayList<>()), TipoInfo.LISTA_UTENTI_NON);
+		}
+		
 		utenti.getByUsername(executor).invia(p);
 		utenti.unlockList();
 		gruppi.unlockList();

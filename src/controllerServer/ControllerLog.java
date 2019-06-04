@@ -38,7 +38,7 @@ public class ControllerLog {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd-MM:hh");
+		this.dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd-HH:mm");
 		
 		this.utenti = utenti;
 	}

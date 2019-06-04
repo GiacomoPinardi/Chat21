@@ -80,9 +80,9 @@ public class ThreadClient implements Runnable {
 							ca.confermaAccesso(executor);
 						}
 						else {
-							ca.negaAccesso(executor, outSock);
+							ca.negaAccesso(o.getParametro1(), outSock);
 						}
-						cl.addEntry("accesso " + executor, esito);
+						cl.addEntry(executor + " prova ad accedere:", esito);
 						break; 
 					case RICHIESTA_CONTENUTI:
 						o = (Operazione) pacchetto.getInformazione();
@@ -100,24 +100,27 @@ public class ThreadClient implements Runnable {
 					case CREA_GRUPPO:
 						o = (Operazione) pacchetto.getInformazione();
 						if(cgg.creaGruppo(o.getParametro1(), executor))
-							cl.addEntry("creazione gruppo " + executor + " " + o.getParametro1());
+							cl.addEntry(executor + " ha creato il gruppo " + o.getParametro1());
 						break;
 					case ELIMINA_GRUPPO:
 						o = (Operazione) pacchetto.getInformazione();
 						if(cgg.eliminaGruppo(o.getParametro1(), executor))
-							cl.addEntry("eliminazione gruppo " + executor + " " + o.getParametro1());
+							cl.addEntry(executor + " ha eliminato il gruppo " + o.getParametro1());
 						break;
 					case AGG_UTENTE_GRUPPO:
 						o = (Operazione) pacchetto.getInformazione();
-						if(cgg.aggiungUtenteGruppo(o.getParametro1(), o.getParametro2(), executor))
-							cl.addEntry("aggiunta utente a gruppo " + executor + " " + o.getParametro1() + " " + o.getParametro2());
+						// nomeGruppo, username
+						if(cgg.aggiungiUtenteGruppo(o.getParametro1(), o.getParametro2(), executor))
+							cl.addEntry(executor + " ha aggiunto al gruppo " + o.getParametro1() + " l'utente " + o.getParametro2());
 						break;
 					case ELIMINA_UTENTE_GRUPPO:
 						o = (Operazione) pacchetto.getInformazione();
+						// nomeGruppo, username
 						if(cgg.eliminaUtenteGruppo(o.getParametro1(), o.getParametro2(), executor))
-							cl.addEntry("eliminazione utente da gruppo " + executor + " " + o.getParametro1() + " " + o.getParametro2());
+							cl.addEntry(executor + " ha eliminato dal gruppo " + o.getParametro1() + " l'utente " + o.getParametro2());
 						break;
 					case LISTA_GRUPPI:
+						// tutti i gruppi presenti nel sistema
 						cgg.invioListaGruppi(executor);
 						break;
 					case LISTA_UTENTI_GRUPPO:
@@ -130,13 +133,14 @@ public class ThreadClient implements Runnable {
 						break;
 					case AGG_UTENTE:
 						o = (Operazione) pacchetto.getInformazione();
-						if(cgu.aggiungiUtente(o.getParametro1(), Ruolo.valueOf(o.getParametro2()), o.getParametro3(), executor))
-							cl.addEntry("aggiungiunta utente " + executor + " " + o.getParametro1());
+						// username, password, ruolo, executor
+						if(cgu.aggiungiUtente(o.getParametro1(), o.getParametro2(), Ruolo.valueOf(o.getParametro3()), executor))
+							cl.addEntry(executor + " ha aggiunto l'utente " + o.getParametro1());
 						break;
 					case ELIMINA_UTENTE:
 						o = (Operazione) pacchetto.getInformazione();
 						if(cgu.eliminaUtente(o.getParametro1(), executor))
-							cl.addEntry("eliminazione utente " + executor + " " + o.getParametro1());
+							cl.addEntry(executor + " ha eliminato l'utente " + o.getParametro1());
 						break;
 					case LISTA_UTENTI:
 						cgu.inviaListaUtenti(executor); 
@@ -144,12 +148,11 @@ public class ThreadClient implements Runnable {
 					case CAMBIA_PASSWORD:
 						o = (Operazione) pacchetto.getInformazione();
 						esito = ca.modicaPassword(executor, o.getParametro1(), o.getParametro2());
-						cl.addEntry("modifica password " + executor, esito);
+						cl.addEntry(executor + " ha modificato la password:", esito);
 						break;
 					case DISCONNETTI:
-						o = (Operazione) pacchetto.getInformazione();
 						ca.disconnetti(executor);
-						cl.addEntry("disconnessione " + executor);
+						cl.addEntry(executor + " si è disconnesso");
 						executor = "UNKNOWN";
 						break;
 					case VISUALIZZA_LOG:
@@ -163,10 +166,12 @@ public class ThreadClient implements Runnable {
 			}
 		}
 		catch (EOFException e) {
-			System.out.println("Client " + executor + " disconnesso in modo inaspettato!");
-			ca.disconnetti(executor);
-			cl.addEntry("disconnessione " + executor);
-			executor = "UNKNOWN";
+			if (!executor.equals("UNKNOWN")) {
+				System.out.println("Client " + executor + " disconnesso in modo inaspettato!");
+				ca.disconnetti(executor);
+				cl.addEntry(executor + " si è disconnesso in modo inaspettato");
+				executor = "UNKNOWN";
+			}
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();

@@ -1,7 +1,10 @@
-package client;
+
 
 import java.io.IOException;
 
+import client.InformazioniSessione;
+import client.InterfacciaUtente;
+import client.Observer;
 import dominioServer.Ruolo;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -13,7 +16,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -98,7 +100,7 @@ public class Main extends Application {
 				for(String nomeGruppo : infoSessione.getGruppi()) {
 					tabs.getTabs().add(new Tab(nomeGruppo));//dopo preparo le tab dei gruppi
 					try {
-						tabs.getTabs().get(tabs.getTabs().size() - 1).setContent(FXMLLoader.load(getClass().getResource("tabGrafica/Gruppo.fxml")));
+						tabs.getTabs().get(tabs.getTabs().size() - 1).setContent(FXMLLoader.load(getClass().getResource("Gruppo.fxml")));
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

@@ -1,10 +1,12 @@
-package controllerGrafica;
+
 
 import javafx.fxml.FXML;
-
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
+import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.ResourceBundle;
 
 import client.InformazioniSessione;
 import client.Observer;
@@ -17,7 +19,7 @@ import javafx.event.ActionEvent;
 
 import javafx.scene.control.TextArea;
 
-public class GruppoController {
+public class GruppoController implements Initializable{
 	@FXML
 	private TextArea corpoGruppo;
 	@FXML
@@ -32,13 +34,6 @@ public class GruppoController {
 	private Observer observer;
 	private String nomeGruppo;
 
-	public GruppoController(InformazioniSessione informazioniSessione, Observer observer, String nomeGruppo) {
-		super();
-		this.informazioniSessione = informazioniSessione;
-		this.observer = observer;
-		this.nomeGruppo = nomeGruppo;
-	}
-	
 	// Event Listener on Button[#richiediContenuti].onAction
 	@FXML
 	public void handlerRichiediContenuti(ActionEvent event) {
@@ -54,5 +49,11 @@ public class GruppoController {
 	
 	public void aggiungiContenuto(String messaggio) {
 		corpoGruppo.appendText(messaggio);
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 }

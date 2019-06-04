@@ -1,10 +1,14 @@
-package controllerGrafica;
+
 
 import javafx.fxml.FXML;
-
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import client.InformazioniSessione;
 import client.Observer;
 import dominioServer.Ruolo;
@@ -20,7 +24,7 @@ import javafx.scene.control.CheckBox;
 
 import javafx.scene.control.DatePicker;
 
-public class ImpostazioniAmministratoreController {
+public class ImpostazioniAmministratoreController implements Initializable{
 	@FXML
 	private Button effettuaDisconnesione;
 	@FXML
@@ -53,13 +57,6 @@ public class ImpostazioniAmministratoreController {
 	private TextArea textLog;
 	
 	private Observer observer;
-	
-	public ImpostazioniAmministratoreController(Observer observer, InformazioniSessione informazioniSessione) {
-		// TODO Auto-generated constructor stub
-		super();
-		this.observer=observer;
-		
-	}
 
 	// Event Listener on Button[#effettuaDisconnesione].onAction
 	@FXML
@@ -71,7 +68,7 @@ public class ImpostazioniAmministratoreController {
 	public void handlerModificaPassword(ActionEvent event) {
 		if(nuovaPassword.getText().equals(ripetiNuovaPassword.getText()))
 			observer.modificaPassword(vecchiaPassword.getText(), nuovaPassword.getText());
-		else observer.allertWindow("i campi in cui è stata inserita la nuova password non coincidono");
+		else observer.allertWindow("I campi in cui è stata inserita la nuova password non coincidono");
 	}
 	// Event Listener on Button[#aggiungiNuovoUtente].onAction
 	@FXML
@@ -95,5 +92,11 @@ public class ImpostazioniAmministratoreController {
 	@FXML
 	public void handlerRichiediAnalisiLog(ActionEvent event) {
 		observer.getAnomalie(dataLog.getValue());
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 }

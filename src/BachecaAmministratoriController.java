@@ -1,11 +1,13 @@
-package controllerGrafica;
+
 
 import javafx.fxml.FXML;
-
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import client.InformazioniSessione;
 import client.Observer;
@@ -15,7 +17,7 @@ import javafx.event.ActionEvent;
 
 import javafx.scene.control.TextArea;
 
-public class BachecaAmministratoriController {
+public class BachecaAmministratoriController implements Initializable{
 	@FXML
 	private TextArea corpoBacheca;
 	@FXML
@@ -24,13 +26,7 @@ public class BachecaAmministratoriController {
 	private Button invia;
 	private Observer observer;
 	private InformazioniSessione informazioniSessione;
-	
-	public BachecaAmministratoriController(Observer observer,InformazioniSessione informazioniSessione) {
-		super();
-		this.informazioniSessione=informazioniSessione;
-		this.observer = observer;
-	}
-	
+
 	// Event Listener on Button[#invia].onAction
 	@FXML
 	public void handlerPubblicaInBacheca(ActionEvent event) {
@@ -48,5 +44,11 @@ public class BachecaAmministratoriController {
 		for(String messaggio : messaggi) {
 			corpoBacheca.appendText(messaggio);
 		}
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 }

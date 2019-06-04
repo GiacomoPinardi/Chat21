@@ -1,7 +1,6 @@
 package controllerServer;
 
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 
 import dominioPacchetto.Conferma;
 import dominioPacchetto.InfoSessione;
@@ -43,18 +42,21 @@ public class ControllerAutenticazione {
 		utenti.unlockList();		
 	}
 	
-	public void negaAccesso (String username, ObjectOutputStream oos) {
+	public void negaAccesso (String usernameTentativo, ObjectOutputStream oos) {
 		// creato un utente solo per inviargli il negato accesso. Ruolo non e' importante!
-		Utente tmp = new Utente(username, Ruolo.UTENTE);
+		Utente tmp = new Utente("tmp", Ruolo.UTENTE);
 		tmp.setObjectOutputStream(oos);
 		tmp.setConnesso(true);
-		tmp.invia(new Pacchetto(new InfoSessione(username, false, null, null), TipoInfo.CONFERMA));
+		tmp.invia(new Pacchetto(new InfoSessione(usernameTentativo, false, null, null), TipoInfo.CONFERMA));
 		System.out.println("Inviato negato accesso!");
 	}
 	
 	public void disconnetti(String executor) {
 		utenti.lockList();
-		utenti.getByUsername(executor).setConnesso(false);
+		Utente u = utenti.getByUsername(executor);
+		if (u != null) {
+			u.setConnesso(false);
+		}
 		utenti.unlockList();
 	}
 	
@@ -63,7 +65,8 @@ public class ControllerAutenticazione {
 			dbConnection.modificaPassoword(executor, newOne);
 			invioConferma("modifica password", true, executor);
 			return true;
-		} else {
+		}
+		else {
 			invioConferma("modifica password", false, executor);
 			return false;
 		}
@@ -72,9 +75,9 @@ public class ControllerAutenticazione {
 	private void invioConferma(String operazione, boolean esito, String executor) {
 		String res;
 		if (esito)
-			res = "l'operazione " + operazione + " è andata buonfine";
+			res = "l'operazione " + operazione + " è andata a buon fine";
 		else
-			res = "l'operazione " + operazione + "  non è andata buonfine";
+			res = "l'operazione " + operazione + " non è andata a buon fine";
 		utenti.lockList();
 		utenti.getByUsername(executor).invia(new Pacchetto(new Conferma(res) , TipoInfo.CONFERMA));
 		utenti.unlockList();

@@ -1,5 +1,3 @@
-
-
 import java.io.IOException;
 
 import client.InformazioniSessione;
@@ -68,6 +66,7 @@ public class Main extends Application {
 		//parla con il server che andr� a verificare i dati dell'accesso, infine cambia la grafica e mette la bacheca se corretti i dati
 		observer.accesso(textUser.getText(), textPassword.getText());
 		//forse ci vuole una piccola sleep per fare si che il pacchetto di risposta all'accesso torni indietro
+		MyResourceBundle bundleInit=new MyResourceBundle(this.observer, this.infoSessione);
 		if(infoSessione.getRuolo()!=null) {
 			//accesso con successo cambia la scena in homeBacheca
 			//ma prima prepara tutte le tab
@@ -77,10 +76,10 @@ public class Main extends Application {
 			if(infoSessione.getRuolo()==Ruolo.AMMINISTRATORE) {
 				Tab tGestioneGruppi=new Tab("GestioneGruppi");
 				try {
-					Node parent= FXMLLoader.load(getClass().getResource("ImpostazioniAmministratore.fxml"));
+					Node parent= FXMLLoader.load(getClass().getResource("ImpostazioniAmministratore.fxml"),bundleInit);
 					tImpostazioni.setContent(parent);
-					tGestioneGruppi.setContent(FXMLLoader.load(getClass().getResource("GestioneGruppi.fxml")));
-					tBacheca.setContent(FXMLLoader.load(getClass().getResource("BachecaAmministratori.fxml")));
+					tGestioneGruppi.setContent(FXMLLoader.load(getClass().getResource("GestioneGruppi.fxml"),bundleInit));
+					tBacheca.setContent(FXMLLoader.load(getClass().getResource("BachecaAmministratori.fxml"),bundleInit));
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -88,8 +87,8 @@ public class Main extends Application {
 				tabs.getTabs().add(tGestioneGruppi);
 			}else {
 				try {
-					tImpostazioni.setContent(FXMLLoader.load(getClass().getResource("ImpostazioniUtente.fxml")));
-					tBacheca.setContent(FXMLLoader.load(getClass().getResource("BachecaUtenti.fxml")));
+					tImpostazioni.setContent(FXMLLoader.load(getClass().getResource("ImpostazioniUtente.fxml"),bundleInit));
+					tBacheca.setContent(FXMLLoader.load(getClass().getResource("BachecaUtenti.fxml"),bundleInit));
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -100,7 +99,7 @@ public class Main extends Application {
 				for(String nomeGruppo : infoSessione.getGruppi()) {
 					tabs.getTabs().add(new Tab(nomeGruppo));//dopo preparo le tab dei gruppi
 					try {
-						tabs.getTabs().get(tabs.getTabs().size() - 1).setContent(FXMLLoader.load(getClass().getResource("Gruppo.fxml")));
+						tabs.getTabs().get(tabs.getTabs().size() - 1).setContent(FXMLLoader.load(getClass().getResource("Gruppo.fxml"),bundleInit));
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

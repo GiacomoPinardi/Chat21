@@ -18,13 +18,14 @@ import dominioPacchetto.Operazione;
 public class Observer{
 	private ObjectOutputStream sockOut;
 	private client.InformazioniSessione informazioniSessione;
-	private InterfacciaUtente interfacciaUtente;
+	private InterfacciaUtente ui;
 
-	public Observer(ObjectOutputStream outStream, client.InformazioniSessione infoSessione, InterfacciaUtente interfacciaUtente){
-		this.sockOut=outStream;
-		this.informazioniSessione=infoSessione;
-		this.interfacciaUtente=interfacciaUtente;
-	}
+//	public Observer(ObjectOutputStream outStream, client.InformazioniSessione informazioniSess, InterfacciaUtente ui){
+//		this.sockOut=outStream;
+//		this.informazioniSessione = informazioniSess;
+//		this.ui=ui;
+//	}
+	
 	public Observer() {
 		// TODO Auto-generated method stub
 		//solo per test grafica
@@ -37,8 +38,13 @@ public class Observer{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		informazioniSessione=new client.InformazioniSessione();
-		interfacciaUtente=new InterfacciaUtente(this);
+		informazioniSessione = new client.InformazioniSessione();
+		//ui = new InterfacciaUtente(this);
+		ui = null;
+	}
+	
+	public void setUI(InterfacciaUtente ui) {
+		this.ui = ui; 
 	}
 
 	public void trasmettiPacchetto(Pacchetto pacchetto){

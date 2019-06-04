@@ -36,7 +36,7 @@ public class ControllerAutenticazione {
 		utenti.lockList();
 		Utente u = utenti.getByUsername(username);
 		gruppi.lockList();
-		u.invia(new Pacchetto(new InfoSessione(username, true, u.getRuolo(), gruppi.getGruppiCon(username)), TipoInfo.CONFERMA));
+		u.invia(new Pacchetto(new InfoSessione(username, true, u.getRuolo(), gruppi.getGruppiCon(username), dbConnection.getContenutiBacheca()), TipoInfo.CONFERMA));
 		gruppi.unlockList();
 		u.setConnesso(true);
 		utenti.unlockList();		
@@ -47,7 +47,7 @@ public class ControllerAutenticazione {
 		Utente tmp = new Utente("tmp", Ruolo.UTENTE);
 		tmp.setObjectOutputStream(oos);
 		tmp.setConnesso(true);
-		tmp.invia(new Pacchetto(new InfoSessione(usernameTentativo, false, null, null), TipoInfo.CONFERMA));
+		tmp.invia(new Pacchetto(new InfoSessione(usernameTentativo, false, null, null, null), TipoInfo.CONFERMA));
 		System.out.println("Inviato negato accesso!");
 	}
 	

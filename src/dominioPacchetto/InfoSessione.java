@@ -13,12 +13,14 @@ public class InfoSessione implements Info {
 	private String username;
 	private Ruolo ruolo;
 	private List<String> gruppi;
+	private List<Contenuto> contenutiBacheca;
 	
-	public InfoSessione(String username, boolean esitoCredenziali, Ruolo ruolo, List<String> gruppi) {
+	public InfoSessione(String username, boolean esitoCredenziali, Ruolo ruolo, List<String> gruppi, List<Contenuto> contenutiBacheca) {
 		this.username = username;
 		this.esitoCredenziali = esitoCredenziali;
 		this.ruolo = ruolo;
 		this.gruppi = gruppi;
+		this.contenutiBacheca = contenutiBacheca;
 	}
 
 	public InfoSessione() {

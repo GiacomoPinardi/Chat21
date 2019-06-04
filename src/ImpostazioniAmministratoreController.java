@@ -9,8 +9,6 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import client.InformazioniSessione;
-import client.Observer;
 import dominioServer.Ruolo;
 import javafx.event.ActionEvent;
 

@@ -9,8 +9,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import client.InformazioniSessione;
-import client.Observer;
 import dominioPacchetto.MessaggioTestuale;
 import dominioPacchetto.TipoDestinatario;
 import javafx.event.ActionEvent;
@@ -48,7 +46,8 @@ public class BachecaAmministratoriController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+		this.observer=(Observer)((MyResourceBundle) arg1).getObject("observer");
+		this.informazioniSessione=(InformazioniSessione)((MyResourceBundle) arg1).getObject("informazioniSessione");
+		this.observer.setBacheca(corpoBacheca);
 	}
 }

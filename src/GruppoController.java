@@ -8,8 +8,6 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
-import client.InformazioniSessione;
-import client.Observer;
 import dominioPacchetto.MessaggioTestuale;
 import dominioPacchetto.Operazione;
 import dominioPacchetto.Pacchetto;

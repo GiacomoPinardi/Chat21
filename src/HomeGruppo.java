@@ -1,16 +1,16 @@
-package client;
+
 
 import dominioPacchetto.Contenuto;
 
-public class HomeComunicazioneUtenteUtente{
+public class HomeGruppo{
 	
 	private Observer observer;
-
-	public HomeComunicazioneUtenteUtente(Observer observer) {
+	
+	public HomeGruppo(Observer observer) {
 		super();
 		this.observer = observer;
 	}
-	
+
 	public void aggiungiConteunuto(Contenuto contenuto){
 		observer.aggiungiContenuto(contenuto);
 	}

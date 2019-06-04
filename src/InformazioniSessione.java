@@ -1,4 +1,4 @@
-package client;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,12 +9,14 @@ public class InformazioniSessione{
 	private String username;
 	private List<String> gruppi;
 	private Ruolo ruolo;
+	private Boolean esitoAccesso;
 	
-	public InformazioniSessione(String username, List<String> gruppi, Ruolo ruolo) {
+	public InformazioniSessione(String username, List<String> gruppi, Ruolo ruolo,Boolean esito) {
 		super();
 		this.username = username;
 		this.gruppi = gruppi;
 		this.ruolo = ruolo;
+		this.esitoAccesso=esito;
 	}
 	public InformazioniSessione() {
 		this.ruolo=Ruolo.AMMINISTRATORE;
@@ -22,6 +24,10 @@ public class InformazioniSessione{
 		this.gruppi.add("Gruppo1");
 		this.gruppi.add("Gruppo2");
 		this.gruppi.add("Gruppo21");
+	}
+	
+	public Boolean isEsitoAccesso() {
+		return esitoAccesso;
 	}
 
 	public String getUsername() {

@@ -14,8 +14,6 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.ResourceBundle;
 
-import client.InformazioniSessione;
-import client.Observer;
 import dominioPacchetto.Operazione;
 import dominioPacchetto.Pacchetto;
 import dominioPacchetto.TipoInfo;

@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import client.Observer;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.PasswordField;
@@ -42,7 +41,6 @@ public class ImpostazioniUtenteController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		
 	}
 }

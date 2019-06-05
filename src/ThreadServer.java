@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 
 import dominioPacchetto.Contenuto;
 import dominioPacchetto.inizializzazione;
+import javafx.application.Platform;
 import dominioPacchetto.ListaString;
 import dominioPacchetto.Pacchetto;
 import dominioPacchetto.TipoDestinatario;
@@ -40,16 +41,23 @@ public class ThreadServer implements Runnable{
 		 switch (pacchetto.getTipo()) {
 		 case INFO_SESSIONE:
 			inizializzazione initPack = (inizializzazione) pacchetto.getInformazione();
-			observer.setInfoSessione(initPack.getRuolo(), initPack.getUsername(), 
-					initPack.getGruppi(), initPack.isEsitoCredenziali(),initPack.getContenutiBacheca());
+			Platform.runLater( () -> {
+				observer.setInfoSessione(initPack.getRuolo(), initPack.getUsername(), 
+						initPack.getGruppi(), initPack.isEsitoCredenziali(),initPack.getContenutiBacheca());
+			});
+			
 			break;
 		 case LISTA_GRUPPI:
 			ListaString gruppi=(ListaString) pacchetto.getInformazione();
-			observer.setUIGestioneGruppi(gruppi.getListaContenuti());
+			Platform.runLater( () -> {
+				observer.setUIGestioneGruppi(gruppi.getListaContenuti());
+			});
 			break;
 		 case CONTENUTO:
 			Contenuto contenuto=(Contenuto) pacchetto.getInformazione();
-			observer.aggiungiContenuto(contenuto);
+			Platform.runLater( () -> {
+				observer.aggiungiContenuto(contenuto);
+			});
 			break;
 		default:
 			System.out.println("pacchetto incognito");

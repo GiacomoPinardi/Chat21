@@ -23,3 +23,8 @@
 [2019/06/05-12:48]: Carlo prova ad accedere: successo
 [2019/06/05-12:51]: Carlo prova ad accedere: successo
 [2019/06/05-12:52]: Carlo prova ad accedere: successo
+[2019/06/05-14:38]: Carlo si è disconnesso in modo inaspettato
+[2019/06/05-18:43]: Carlo prova ad accedere: successo
+[2019/06/05-18:50]: Mario prova ad accedere: successo
+[2019/06/05-18:53]: Mario si è disconnesso in modo inaspettato
+[2019/06/05-18:56]: Mario prova ad accedere: successo

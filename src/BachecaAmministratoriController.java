@@ -51,6 +51,7 @@ public class BachecaAmministratoriController implements Initializable{
 		this.observer=(Observer)((MyResourceBundle) arg1).getObject("observer");
 		this.informazioniSessione=(InformazioniSessione)((MyResourceBundle) arg1).getObject("informazioniSessione");
 		this.observer.setBacheca(corpoBacheca);
+		this.corpoBacheca.setEditable(false);
 		for(Contenuto c : this.informazioniSessione.getContenutiBacheca()) {
 			MessaggioTestuale m= (MessaggioTestuale) c;
 			this.corpoBacheca.appendText(m.getMittente()+" : "+m.getMessaggio()+"\n");

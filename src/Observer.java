@@ -6,11 +6,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import dominioPacchetto.Pacchetto;
+import dominioPacchetto.TipoDestinatario;
 import dominioPacchetto.TipoInfo;
 import dominioServer.Ruolo;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import dominioPacchetto.Contenuto;
+import dominioPacchetto.MessaggioTestuale;
 import dominioPacchetto.Operazione;
 
 public class Observer{
@@ -89,16 +92,20 @@ public class Observer{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//solo per test simulo che threadServer riceva il pacchetto info sessione e chiama setInfoSessione
+		//solo per test simulo che threadServer riceva il pacchetto info sessione e chiami setInfoSessione
 		ArrayList<String> gruppi=new ArrayList<String>();
 		gruppi.add("2");
 		gruppi.add("1");
 		gruppi.add("21");
-		this.setInfoSessione(Ruolo.AMMINISTRATORE, "pincopallo", gruppi, true);
+		List<Contenuto> contenutiBacheca=new ArrayList<Contenuto>();
+		contenutiBacheca.add(new MessaggioTestuale(TipoDestinatario.BACHECA, LocalDateTime.now(), "Amminisratore1", "bacheca", "io spero che vada"));
+		contenutiBacheca.add(new MessaggioTestuale(TipoDestinatario.BACHECA, LocalDateTime.now(), "Amminisratore2", "bacheca", "casomai non al primo colpo"));
+		contenutiBacheca.add(new MessaggioTestuale(TipoDestinatario.BACHECA, LocalDateTime.now(), "Amminisratore1", "bacheca", "ma cazzo deve annà"));
+		this.setInfoSessione(Ruolo.AMMINISTRATORE, "pincopallo", gruppi, true,contenutiBacheca);
 	}
 
-	public void setInfoSessione(Ruolo ruolo,String username, List<String> gruppi, Boolean esitoAccesso){
-		informazioniSessione = new InformazioniSessione(username, gruppi, ruolo,esitoAccesso);
+	public void setInfoSessione(Ruolo ruolo,String username, List<String> gruppi, Boolean esitoAccesso,List<Contenuto> contenutiBacheca){
+		informazioniSessione = new InformazioniSessione(username, gruppi, ruolo,esitoAccesso,contenutiBacheca);
 		MyResourceBundle bundleInit = new MyResourceBundle(this, informazioniSessione);
 		if (informazioniSessione.isEsitoAccesso()) {
 			// accesso con successo cambia la scena in homeBacheca

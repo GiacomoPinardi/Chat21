@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import dominioPacchetto.Contenuto;
 import dominioPacchetto.MessaggioTestuale;
 import dominioPacchetto.TipoDestinatario;
 import javafx.event.ActionEvent;
@@ -28,13 +29,14 @@ public class BachecaAmministratoriController implements Initializable{
 	// Event Listener on Button[#invia].onAction
 	@FXML
 	public void handlerPubblicaInBacheca(ActionEvent event) {
-		corpoBacheca.appendText(informazioniSessione.getUsername()+" : "+inserisciBacheca.getText());
+		corpoBacheca.appendText(informazioniSessione.getUsername()+" : "+inserisciBacheca.getText()+"\n");
 		//bisogna inviare al server
 		observer.inviaContenuto(new MessaggioTestuale(TipoDestinatario.BACHECA,LocalDateTime.now(),informazioniSessione.getUsername(),"Bacheca",inserisciBacheca.getText()));
 		inserisciBacheca.setText("");
+		//non aggiungo alla lista locale di contenuti bacheca perchè il server invierà a tutti gli utenti il messaggio publicato in bacheca
 	}
 	
-	public void aggiungiMessaggio(String messaggio) {
+	private void aggiungiMessaggio(String messaggio) {
 		corpoBacheca.appendText(messaggio);
 	}
 	
@@ -49,5 +51,9 @@ public class BachecaAmministratoriController implements Initializable{
 		this.observer=(Observer)((MyResourceBundle) arg1).getObject("observer");
 		this.informazioniSessione=(InformazioniSessione)((MyResourceBundle) arg1).getObject("informazioniSessione");
 		this.observer.setBacheca(corpoBacheca);
+		for(Contenuto c : this.informazioniSessione.getContenutiBacheca()) {
+			MessaggioTestuale m= (MessaggioTestuale) c;
+			this.corpoBacheca.appendText(m.getMittente()+" : "+m.getMessaggio()+"\n");
+		}
 	}
 }

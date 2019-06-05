@@ -38,7 +38,8 @@ public class ThreadServer implements Runnable{
 		 switch (pacchetto.getTipo()) {
 		case INFO_SESSIONE:
 			InfoSessione infoSessione=(InfoSessione) pacchetto.getInformazione();
-			this.observer.setInfoSessione(infoSessione.getRuolo(), infoSessione.getUsername(), infoSessione.getGruppi(),infoSessione.isEsitoCredenziali());
+			this.observer.setInfoSessione(infoSessione.getRuolo(), infoSessione.getUsername(), 
+					infoSessione.getGruppi(),infoSessione.isEsitoCredenziali(),infoSessione.getContenutiBacheca());
 			break;
 		case LISTA_GRUPPI:
 			ListaString gruppi=(ListaString) pacchetto.getInformazione();

@@ -3,6 +3,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import dominioPacchetto.Contenuto;
 import dominioServer.Ruolo;
 
 public class InformazioniSessione{
@@ -10,13 +11,15 @@ public class InformazioniSessione{
 	private List<String> gruppi;
 	private Ruolo ruolo;
 	private Boolean esitoAccesso;
+	List<Contenuto> contenutiBacheca;
 	
-	public InformazioniSessione(String username, List<String> gruppi, Ruolo ruolo,Boolean esito) {
+	public InformazioniSessione(String username, List<String> gruppi, Ruolo ruolo,Boolean esito,List<Contenuto> contenutiBacheca) {
 		super();
 		this.username = username;
 		this.gruppi = gruppi;
 		this.ruolo = ruolo;
 		this.esitoAccesso=esito;
+		this.contenutiBacheca=contenutiBacheca;
 	}
 	public InformazioniSessione() {
 		this.ruolo=Ruolo.AMMINISTRATORE;
@@ -24,6 +27,10 @@ public class InformazioniSessione{
 		this.gruppi.add("Gruppo1");
 		this.gruppi.add("Gruppo2");
 		this.gruppi.add("Gruppo21");
+	}
+	
+	public List<Contenuto> getContenutiBacheca(){
+		return this.contenutiBacheca;
 	}
 	
 	public Boolean isEsitoAccesso() {

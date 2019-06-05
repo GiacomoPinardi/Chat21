@@ -39,7 +39,7 @@ public class InterfacciaUtente{
 	}
 
 	public void allertWindow(String allert) {
-		observer.allertWindow(allert);
+		observer.alertWindow(allert);
 	}
 	
 	public void aggiungiConteunuto(Contenuto contenuto){

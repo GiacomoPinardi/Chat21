@@ -39,7 +39,7 @@ public class ImpostazioniUtenteController implements Initializable{
 			nuovaPassword.clear();
 			ripetiNuovaPassword.clear();
 		}else {
-			observer.allertWindow("I campi in cui è stata inserita la nuova password non coincidono");
+			observer.alertWindow("I campi in cui Ã¨ stata inserita la nuova password non coincidono");
 			vecchiaPassword.clear();
 			nuovaPassword.clear();
 			ripetiNuovaPassword.clear();

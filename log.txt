@@ -28,3 +28,31 @@
 [2019/06/05-18:50]: Mario prova ad accedere: successo
 [2019/06/05-18:53]: Mario si è disconnesso in modo inaspettato
 [2019/06/05-18:56]: Mario prova ad accedere: successo
+[2019/06/05-19:15]: Mario prova ad accedere: successo
+[2019/06/05-19:18]: Mario prova ad accedere: successo
+[2019/06/05-19:19]: Mario si è disconnesso in modo inaspettato
+[2019/06/05-19:20]: Mario prova ad accedere: successo
+[2019/06/05-19:20]: Mario prova ad accedere: successo
+[2019/06/05-19:21]: Mario prova ad accedere: successo
+[2019/06/05-19:22]: Mario prova ad accedere: successo
+[2019/06/05-19:23]: Mario si è disconnesso in modo inaspettato
+[2019/06/05-19:23]: Mario prova ad accedere: successo
+[2019/06/05-19:27]: Mario prova ad accedere: successo
+[2019/06/05-19:27]: Mario si è disconnesso in modo inaspettato
+[2019/06/05-19:27]: Mario prova ad accedere: successo
+[2019/06/05-19:31]: Mario si è disconnesso in modo inaspettato
+[2019/06/05-19:33]: Carlo prova ad accedere: successo
+[2019/06/05-19:33]: Carlo ha modificato la password: successo
+[2019/06/05-19:34]: Carlo si è disconnesso in modo inaspettato
+[2019/06/05-19:34]: UNKNOWN prova ad accedere: fallito
+[2019/06/05-19:34]: Carlo prova ad accedere: successo
+[2019/06/05-19:34]: Carlo ha modificato la password: successo
+[2019/06/05-19:34]: Carlo ha modificato la password: fallito
+[2019/06/05-19:35]: Carlo si è disconnesso in modo inaspettato
+[2019/06/05-19:36]: Mario prova ad accedere: successo
+[2019/06/05-19:36]: Mario ha modificato la password: successo
+[2019/06/05-19:37]: Mario ha modificato la password: successo
+[2019/06/05-19:42]: Mario prova ad accedere: successo
+[2019/06/05-19:43]: UNKNOWN prova ad accedere: fallito
+[2019/06/05-19:43]: Mario prova ad accedere: successo
+[2019/06/05-19:43]: Mario si è disconnesso in modo inaspettato

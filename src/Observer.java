@@ -18,6 +18,9 @@ import dominioServer.Ruolo;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -181,8 +184,14 @@ public class Observer{
 		}
 	}
 
-	public synchronized void allertWindow(String allert){
-
+	public synchronized void alertWindow(String alertMess){
+		Alert alert = new Alert(AlertType.WARNING, alertMess, ButtonType.OK);
+		//Alert alert = new Alert(AlertType.CONFIRMATION, alert, ButtonType.OK, ButtonType.NO, ButtonType.CANCEL);
+		alert.showAndWait();
+	}
+	
+	public void doNothing() {
+		System.out.println("nothing");
 	}
 
 	public synchronized void aggiungiContenuto(Contenuto contenuto){

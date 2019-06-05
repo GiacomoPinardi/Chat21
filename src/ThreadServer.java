@@ -44,10 +44,11 @@ public class ThreadServer implements Runnable{
 		case LISTA_GRUPPI:
 			ListaString gruppi=(ListaString) pacchetto.getInformazione();
 			observer.setUIGestioneGruppi(gruppi.getListaContenuti());
+			break;
 		case CONTENUTO:
 			Contenuto contenuto=(Contenuto) pacchetto.getInformazione();
 			observer.aggiungiContenuto(contenuto);
-			
+			break;
 		default:
 			break;
 		}

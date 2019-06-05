@@ -33,14 +33,21 @@ public class ImpostazioniUtenteController implements Initializable{
 	// Event Listener on Button[#modificaPassword].onAction
 	@FXML
 	public void handlerModificaPassword(ActionEvent event) {
-		if(nuovaPassword.getText().equals(ripetiNuovaPassword.getText()))
+		if(nuovaPassword.getText().equals(ripetiNuovaPassword.getText())) {
 			observer.modificaPassword(vecchiaPassword.getText(), nuovaPassword.getText());
-		else
+			vecchiaPassword.clear();
+			nuovaPassword.clear();
+			ripetiNuovaPassword.clear();
+		}else {
 			observer.allertWindow("I campi in cui è stata inserita la nuova password non coincidono");
+			vecchiaPassword.clear();
+			nuovaPassword.clear();
+			ripetiNuovaPassword.clear();
+		}
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+		this.observer=(Observer)((MyResourceBundle) arg1).getObject("observer");
 	}
 }

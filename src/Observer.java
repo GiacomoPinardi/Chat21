@@ -101,7 +101,7 @@ public class Observer{
 		contenutiBacheca.add(new MessaggioTestuale(TipoDestinatario.BACHECA, LocalDateTime.now(), "Amminisratore1", "bacheca", "io spero che vada"));
 		contenutiBacheca.add(new MessaggioTestuale(TipoDestinatario.BACHECA, LocalDateTime.now(), "Amminisratore2", "bacheca", "casomai non al primo colpo"));
 		contenutiBacheca.add(new MessaggioTestuale(TipoDestinatario.BACHECA, LocalDateTime.now(), "Amminisratore1", "bacheca", "ma cazzo deve annà"));
-		this.setInfoSessione(Ruolo.AMMINISTRATORE, "pincopallo", gruppi, true,contenutiBacheca);
+		this.setInfoSessione(Ruolo.UTENTE, "pincopallo", gruppi, true,contenutiBacheca);
 	}
 
 	public void setInfoSessione(Ruolo ruolo,String username, List<String> gruppi, Boolean esitoAccesso,List<Contenuto> contenutiBacheca){
@@ -183,7 +183,23 @@ public class Observer{
 	}
 
 	public synchronized void aggiungiContenuto(Contenuto contenuto){
+		switch (contenuto.getTipoDestinatario()) {
+		case GRUPPO:
+			
+			break;
+		case BACHECA:
+			MessaggioTestuale m = (MessaggioTestuale) contenuto;
+			if(!m.getMittente().equals(informazioniSessione.getUsername()))
+				corpoBacheca.appendText(m.getMittente()+" : "+m.getMessaggio()+"\n");
+			break;
+		
+		case UTENTE:
+			
+			break;
 
+		default:
+			break;
+		}
 	}
 	
 	public void rimuoviGruppo(String nomeGruppo) {

@@ -7,7 +7,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import dominioPacchetto.InfoSessione;
+import dominioPacchetto.inizializzazione;
 import dominioPacchetto.ListaString;
 import dominioPacchetto.Operazione;
 import dominioPacchetto.Pacchetto;
@@ -16,7 +16,7 @@ import dominioPacchetto.TipoInfo;
 public class CarloClientMock {
 
 	public static void main(String[] args) {
-		
+		System.out.println("Carlo Running...");
 		InetAddress address = null;
 		try {
 			address = InetAddress.getByName("localhost");
@@ -50,8 +50,8 @@ public class CarloClientMock {
 			outSocket.flush();
 			
 			Pacchetto p = (Pacchetto) inSocket.readObject();
-			if (p.getTipo().equals(TipoInfo.CONFERMA)) {
-				InfoSessione infoSess = (InfoSessione) p.getInformazione();
+			if (p.getTipo().equals(TipoInfo.INFO_SESSIONE)) {
+				inizializzazione infoSess = (inizializzazione) p.getInformazione();
 				System.out.println(infoSess.isEsitoCredenziali());
 			}
 			
@@ -66,6 +66,12 @@ public class CarloClientMock {
 				for (String s : c.getListaContenuti()) {
 					System.out.println("\t" + s);
 				}
+			}
+			try {
+				Thread.sleep(100000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
 		}

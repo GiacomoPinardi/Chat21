@@ -1,0 +1,25 @@
+[2019/06/05-12:22]: Carlo prova ad accedere: successo
+[2019/06/05-12:22]: Carlo si è disconnesso in modo inaspettato
+[2019/06/05-12:23]: Mario prova ad accedere: successo
+[2019/06/05-12:23]: Mario si è disconnesso in modo inaspettato
+[2019/06/05-12:26]: Carlo prova ad accedere: successo
+[2019/06/05-12:26]: Carlo si è disconnesso in modo inaspettato
+[2019/06/05-12:27]: Carlo prova ad accedere: successo
+[2019/06/05-12:27]: Carlo si è disconnesso in modo inaspettato
+[2019/06/05-12:28]: Carlo prova ad accedere: successo
+[2019/06/05-12:28]: Carlo si è disconnesso in modo inaspettato
+[2019/06/05-12:28]: Carlo prova ad accedere: successo
+[2019/06/05-12:29]: Carlo si è disconnesso in modo inaspettato
+[2019/06/05-12:34]: Carlo prova ad accedere: successo
+[2019/06/05-12:36]: Carlo prova ad accedere: successo
+[2019/06/05-12:37]: Carlo prova ad accedere: successo
+[2019/06/05-12:37]: Carlo si è disconnesso in modo inaspettato
+[2019/06/05-12:41]: Carlo prova ad accedere: successo
+[2019/06/05-12:41]: Carlo si è disconnesso in modo inaspettato
+[2019/06/05-12:41]: Carlo prova ad accedere: successo
+[2019/06/05-12:44]: Carlo prova ad accedere: successo
+[2019/06/05-12:46]: Carlo prova ad accedere: successo
+[2019/06/05-12:47]: Carlo si è disconnesso in modo inaspettato
+[2019/06/05-12:48]: Carlo prova ad accedere: successo
+[2019/06/05-12:51]: Carlo prova ad accedere: successo
+[2019/06/05-12:52]: Carlo prova ad accedere: successo

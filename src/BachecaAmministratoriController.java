@@ -33,7 +33,7 @@ public class BachecaAmministratoriController implements Initializable{
 		//bisogna inviare al server
 		observer.inviaContenuto(new MessaggioTestuale(TipoDestinatario.BACHECA,LocalDateTime.now(),informazioniSessione.getUsername(),"Bacheca",inserisciBacheca.getText()));
 		inserisciBacheca.setText("");
-		//non aggiungo alla lista locale di contenuti bacheca perchè il server invierà a tutti gli utenti il messaggio publicato in bacheca
+		//non aggiungo alla lista locale di contenuti bacheca perchï¿½ il server invierï¿½ a tutti gli utenti il messaggio publicato in bacheca
 	}
 	
 	private void aggiungiMessaggio(String messaggio) {
@@ -48,7 +48,7 @@ public class BachecaAmministratoriController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		this.observer=(Observer)((MyResourceBundle) arg1).getObject("observer");
+		this.observer= (Observer) ((MyResourceBundle) arg1).getObject("observer");
 		this.informazioniSessione=(InformazioniSessione)((MyResourceBundle) arg1).getObject("informazioniSessione");
 		this.observer.setBacheca(corpoBacheca);
 		this.corpoBacheca.setEditable(false);

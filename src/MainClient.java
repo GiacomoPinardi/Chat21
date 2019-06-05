@@ -1,3 +1,11 @@
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import controllerServer.ThreadClient;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
@@ -10,7 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class MainClient extends Application {
 
 	private TextField textUser;
 	private PasswordField textPassword;
@@ -22,11 +30,40 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 		// uso costruttori vuoti solo per test
 		textPassword = new PasswordField();
-		textUser = new TextField();
-		observer = new Observer(textUser,textPassword);
+		textUser = new TextField();		
+		
+		InetAddress address = null;
+		try {
+			address = InetAddress.getByName("localhost");
+		}
+		catch (UnknownHostException e1) {
+			e1.printStackTrace();
+			System.exit(1);
+		}
+		int port = 4321;		
+		Socket socket = null;
+		ObjectInputStream inSocket = null;
+		ObjectOutputStream outSocket = null;
+		try {					
+			socket = new Socket(address, port);
+			outSocket = new ObjectOutputStream(socket.getOutputStream());
+			inSocket = new ObjectInputStream(socket.getInputStream());
+			System.out.println("Terminata inizializzazione!");
+		}
+		catch (IOException e) {			
+			e.printStackTrace();
+			System.exit(2);
+		}
+		
+		//infoSessione = new InformazioniSessione();
+		
+		observer = new Observer(textUser, textPassword, outSocket);
 		ui = new InterfacciaUtente(this.observer);
 		observer.setUI(ui);
-		//infoSessione = new InformazioniSessione();
+		
+		ThreadServer threadServer = new ThreadServer(observer, inSocket);
+		Thread ts = new Thread(threadServer);
+		ts.start();
 		
 		this.stage = stage;
 		this.stage.setTitle("Chat21");

@@ -13,27 +13,29 @@ public class MainServer {
 
 	public static void main(String[] args) {
 		
-		int port = -1;
+		// cosi lo posso runnare da eclipse
+		int port = 4321;
 		
-		try {
-			// controllo argomenti
-			if (args.length == 1) {				
-				port = Integer.parseInt(args[0]);				
-				if (port < 1024 || port > 65535) {
-					System.out.println("Chat21Server: la porta deve essere compresa tra 1024 e 65535! Termino.");
-				    System.exit(1);
-				}
-			}
-			else {
-				System.out.println("Usage: java -jar Chat21Server.jar serverPort");
-				System.exit(2);
-			}
-		}
-		catch (Exception e) {
-			System.out.println("Chat21Server: problema con gli argomenti:");
-			e.printStackTrace();
-			System.exit(3);
-		}
+// 		int port = -1;
+//		try {
+//			// controllo argomenti
+//			if (args.length == 1) {				
+//				port = Integer.parseInt(args[0]);				
+//				if (port < 1024 || port > 65535) {
+//					System.out.println("Chat21Server: la porta deve essere compresa tra 1024 e 65535! Termino.");
+//				    System.exit(1);
+//				}
+//			}
+//			else {
+//				System.out.println("Usage: java -jar Chat21Server.jar serverPort");
+//				System.exit(2);
+//			}
+//		}
+//		catch (Exception e) {
+//			System.out.println("Chat21Server: problema con gli argomenti:");
+//			e.printStackTrace();
+//			System.exit(3);
+//		}
 		
 		ServerSocket serverSocket = null;
 		
@@ -68,8 +70,8 @@ public class MainServer {
 				try {
 						
 					clientSocket = serverSocket.accept(); // bloccante
-					clientSocket.setSoTimeout(30000); //timeout altrimenti server sequenziale si sospende
-					
+					//clientSocket.setSoTimeout(30000); //timeout altrimenti server sequenziale si sospende
+					clientSocket.setSoTimeout(900000000);
 					System.out.println("Nuovo client connesso: " + clientSocket.getInetAddress());
 						
 				}

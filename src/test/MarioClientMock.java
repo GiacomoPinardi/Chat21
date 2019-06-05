@@ -8,7 +8,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 
-import dominioPacchetto.InfoSessione;
+import dominioPacchetto.inizializzazione;
 import dominioPacchetto.MessaggioTestuale;
 import dominioPacchetto.Operazione;
 import dominioPacchetto.Pacchetto;
@@ -52,8 +52,8 @@ public class MarioClientMock {
 			outSocket.flush();
 			
 			Pacchetto p = (Pacchetto) inSocket.readObject();
-			if (p.getTipo().equals(TipoInfo.CONFERMA)) {
-				InfoSessione infoSess = (InfoSessione) p.getInformazione();
+			if (p.getTipo().equals(TipoInfo.INFO_SESSIONE)) {
+				inizializzazione infoSess = (inizializzazione) p.getInformazione();
 				System.out.println(infoSess.isEsitoCredenziali());
 			}
 			

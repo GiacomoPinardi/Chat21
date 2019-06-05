@@ -45,18 +45,19 @@ public class Observer{
 //		this.ui=ui;
 //	}
 	
-	public Observer(TextField textUser, PasswordField textPassword) {
+	public Observer(TextField textUser, PasswordField textPassword, ObjectOutputStream sockOut) {
 		// TODO Auto-generated method stub
 		//solo per test grafica
-		try {
-			sockOut=new ObjectOutputStream(new FileOutputStream(new File("prova.txt")));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			sockOut = new ObjectOutputStream(new FileOutputStream(new File("prova.txt")));
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		this.sockOut = sockOut;
 		informazioniSessione = null;
 		//ui = new InterfacciaUtente(this);
 		ui = null;
@@ -92,22 +93,23 @@ public class Observer{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		//solo per test simulo che threadServer riceva il pacchetto info sessione e chiami setInfoSessione
-		ArrayList<String> gruppi=new ArrayList<String>();
-		gruppi.add("2");
-		gruppi.add("1");
-		gruppi.add("21");
-		List<Contenuto> contenutiBacheca=new ArrayList<Contenuto>();
-		contenutiBacheca.add(new MessaggioTestuale(TipoDestinatario.BACHECA, LocalDateTime.now(), "Amminisratore1", "bacheca", "io spero che vada"));
-		contenutiBacheca.add(new MessaggioTestuale(TipoDestinatario.BACHECA, LocalDateTime.now(), "Amminisratore2", "bacheca", "casomai non al primo colpo"));
-		contenutiBacheca.add(new MessaggioTestuale(TipoDestinatario.BACHECA, LocalDateTime.now(), "Amminisratore1", "bacheca", "ma cazzo deve annà"));
-		this.setInfoSessione(Ruolo.UTENTE, "pincopallo", gruppi, true,contenutiBacheca);
+//		ArrayList<String> gruppi=new ArrayList<String>();
+//		gruppi.add("2");
+//		gruppi.add("1");
+//		gruppi.add("21");
+//		List<Contenuto> contenutiBacheca=new ArrayList<Contenuto>();
+//		contenutiBacheca.add(new MessaggioTestuale(TipoDestinatario.BACHECA, LocalDateTime.now(), "Amminisratore1", "bacheca", "io spero che vada"));
+//		contenutiBacheca.add(new MessaggioTestuale(TipoDestinatario.BACHECA, LocalDateTime.now(), "Amminisratore2", "bacheca", "casomai non al primo colpo"));
+//		contenutiBacheca.add(new MessaggioTestuale(TipoDestinatario.BACHECA, LocalDateTime.now(), "Amminisratore1", "bacheca", "ma cazzo deve annï¿½"));
+//		this.setInfoSessione(Ruolo.AMMINISTRATORE, "pincopallo", gruppi, true,contenutiBacheca);
 	}
 
-	public void setInfoSessione(Ruolo ruolo,String username, List<String> gruppi, Boolean esitoAccesso,List<Contenuto> contenutiBacheca){
-		informazioniSessione = new InformazioniSessione(username, gruppi, ruolo,esitoAccesso,contenutiBacheca);
+	public void setInfoSessione(Ruolo ruolo, String username, List<String> gruppi, Boolean esitoAccesso, List<Contenuto> contenutiBacheca){
+		informazioniSessione = new InformazioniSessione(username, gruppi, ruolo, contenutiBacheca);
 		MyResourceBundle bundleInit = new MyResourceBundle(this, informazioniSessione);
-		if (informazioniSessione.isEsitoAccesso()) {
+		if (esitoAccesso) {
 			// accesso con successo cambia la scena in homeBacheca
 			// ma prima prepara tutte le tab
 			tabs = new TabPane();
@@ -171,6 +173,7 @@ public class Observer{
 	}
 
 	public void  inviaContenuto(Contenuto contenuto){
+		System.out.println("hee\n");
 		try {
 			sockOut.writeObject(new Pacchetto(contenuto, TipoInfo.CONTENUTO));
 		} catch (IOException e) {
@@ -325,4 +328,5 @@ public class Observer{
 	public void setBacheca(TextArea corpoBacheca) {
 		this.corpoBacheca=corpoBacheca;
 	}
+
 }

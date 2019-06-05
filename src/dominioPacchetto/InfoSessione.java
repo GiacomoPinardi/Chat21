@@ -50,4 +50,7 @@ public class InfoSessione implements Info {
 		return username;
 	}
 	
+	public List<Contenuto> getContenutiBacheca(){
+		return contenutiBacheca;
+	}
 }

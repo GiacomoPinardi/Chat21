@@ -256,14 +256,18 @@ public class Observer{
 	
 	public void aggiungiUtente(String username, String password, String ruolo) {
 		try {
-			sockOut.writeObject(new Pacchetto(new Operazione(username, ruolo, password), TipoInfo.AGG_UTENTE));
+			sockOut.writeObject(new Pacchetto(new Operazione(username, password, ruolo), TipoInfo.AGG_UTENTE));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public void eliminaUtente(String username) {
-
+		try {
+			sockOut.writeObject(new Pacchetto(new Operazione(username), TipoInfo.ELIMINA_UTENTE));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void creaGruppo(String nomeGruppo) {

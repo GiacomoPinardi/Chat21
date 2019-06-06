@@ -3,6 +3,7 @@
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+import dominioPacchetto.Conferma;
 import dominioPacchetto.Contenuto;
 import dominioPacchetto.inizializzazione;
 import javafx.application.Platform;
@@ -59,6 +60,11 @@ public class ThreadServer implements Runnable{
 				observer.aggiungiContenuto(contenuto);
 			});
 			break;
+		 case CONFERMA:
+			 Conferma conferma = (Conferma) pacchetto.getInformazione();
+			 Platform.runLater( () -> {
+					observer.alertWindow(conferma.getMessaggioConferma());
+				});
 		default:
 			System.out.println("pacchetto incognito");
 			break;

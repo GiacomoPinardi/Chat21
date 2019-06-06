@@ -81,9 +81,9 @@ public class ImpostazioniAmministratoreController implements Initializable {
 	@FXML
 	public void handlerAggiungiNuovoUtente(ActionEvent event) {
 		if (checkAmministratore.isSelected())
-			observer.aggiungiUtente(usernameNuovoUtente.getText(), passwordNuovoUtente.getText(), "Amministratore");
+			observer.aggiungiUtente(usernameNuovoUtente.getText(), passwordNuovoUtente.getText(), "AMMINISTRATORE");
 		else
-			observer.aggiungiUtente(usernameNuovoUtente.getText(), passwordNuovoUtente.getText(), "Utente");
+			observer.aggiungiUtente(usernameNuovoUtente.getText(), passwordNuovoUtente.getText(), "UTENTE");
 	}
 
 	// Event Listener on Button[#rimuoviUtenteSelezionato].onAction

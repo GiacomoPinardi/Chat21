@@ -67,6 +67,10 @@ public class ThreadServer implements Runnable{
 				 Platform.runLater( () -> {
 						observer.alertWindow(conferma.getMessaggioConferma());
 					});
+			 case DISCONNETTI:
+				 Platform.runLater( () -> {
+						observer.disconnessione();
+					});
 			default:
 				System.out.println("pacchetto incognito");
 				break;

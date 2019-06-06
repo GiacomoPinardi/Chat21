@@ -42,6 +42,7 @@ public class Observer{
 	private Stage stage;
 	private TabPane tabs;
 	private TextArea corpoBacheca;
+	private Scene sceneLogin;
 
 //	public Observer(ObjectOutputStream outStream, client.InformazioniSessione informazioniSess, InterfacciaUtente ui){
 //		this.sockOut=outStream;
@@ -167,8 +168,7 @@ public class Observer{
 	public void disconnessione(){
 		informazioniSessione = null;
 		trasmettiPacchetto(new Pacchetto(null, TipoInfo.DISCONNETTI));
-		
-		// GRAFICA DA GESTIRE!!!!
+		stage.setScene(sceneLogin);
 	}
 
 	public void inviaContenuto(Contenuto contenuto){
@@ -313,6 +313,10 @@ public class Observer{
 
 	public void setBacheca(TextArea corpoBacheca) {
 		this.corpoBacheca=corpoBacheca;
+	}
+
+	public void setScene(Scene sceneLogin) {
+		this.sceneLogin=sceneLogin;
 	}
 
 }

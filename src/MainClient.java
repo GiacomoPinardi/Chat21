@@ -83,6 +83,7 @@ public class MainClient extends Application {
 		login.getChildren().add(accedi);
 		Scene scene = new Scene(login, Color.WHITE);
 		observer.setStage(this.stage);
+		observer.setScene(scene);
 		this.stage.setScene(scene);
 		this.stage.show();
 
@@ -91,6 +92,8 @@ public class MainClient extends Application {
 	private void accediHandle(ActionEvent event) {
 		// parla con il server che andr� a verificare i dati dell'accesso
 		observer.accesso(textUser.getText(), textPassword.getText());
+		textUser.clear();
+		textPassword.clear();
 	}
 
 	public static void main(String[] args) {

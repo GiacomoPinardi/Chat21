@@ -78,7 +78,7 @@ public class Observer{
 		this.ui = ui; 
 	}
 
-	public void trasmettiPacchetto(Pacchetto pacchetto){
+	private void trasmettiPacchetto(Pacchetto pacchetto){
 		try {
 			sockOut.writeObject(pacchetto);
 		}
@@ -147,7 +147,7 @@ public class Observer{
 					tabs.getTabs().add(new Tab(nomeGruppo));// dopo preparo le
 															// tab dei gruppi
 					try {
-						MyResourceBundleGruppo bundleInitGruppo=new MyResourceBundleGruppo(this, informazioniSessione,nomeGruppo);
+						MyResourceBundleGruppo bundleInitGruppo = new MyResourceBundleGruppo(this, informazioniSessione,nomeGruppo);
 						tabs.getTabs().get(tabs.getTabs().size() - 1)
 								.setContent(FXMLLoader.load(getClass().getResource("Gruppo.fxml"), bundleInitGruppo));
 					}
@@ -175,38 +175,49 @@ public class Observer{
 		trasmettiPacchetto(new Pacchetto(contenuto, TipoInfo.CONTENUTO));
 	}
 
-	public synchronized void alertWindow(String alertMess){
-		Alert alert = new Alert(AlertType.WARNING, alertMess, ButtonType.OK);
+	public synchronized void alertWindow(String alertMess) {
+		// Alert alert = new Alert(AlertType.WARNING, alertMess, ButtonType.OK);
 		//Alert alert = new Alert(AlertType.CONFIRMATION, alert, ButtonType.OK, ButtonType.NO, ButtonType.CANCEL);
-		alert.showAndWait();
-	}
-	
-	public synchronized void infoWindow(String infoMess){
-		Alert info = new Alert(AlertType.INFORMATION, infoMess, ButtonType.OK);
+		// alert.showAndWait();
+		
+		Alert info = new Alert(AlertType.INFORMATION, alertMess, ButtonType.OK);
 		info.showAndWait();
 	}
-	
+		
 	public void doNothing() {
 		System.out.println("nothing");
 	}
 
 	public synchronized void aggiungiContenuto(Contenuto contenuto){
 		switch (contenuto.getTipoDestinatario()) {
-		case GRUPPO:
-			
-			break;
-		case BACHECA:
-			MessaggioTestuale m = (MessaggioTestuale) contenuto;
-			if(!m.getMittente().equals(informazioniSessione.getUsername()))
-				corpoBacheca.appendText(m.getMittente()+" : "+m.getMessaggio()+"\n");
-			break;
+			case GRUPPO:
+				
+				String destinatario = contenuto.getDestinario();
+				
+				// ??
+				
+				/*
+				for (Tab t : tabs.getTabs()) {
+					if (t.getText().equals(destinatario)) {
+						
+						
+						
+					}
+				}*/
+				
+				break;
+			case BACHECA:
+				MessaggioTestuale m = (MessaggioTestuale) contenuto;
+				if(!m.getMittente().equals(informazioniSessione.getUsername()))
+					corpoBacheca.appendText(m.getMittente()+" : "+m.getMessaggio()+"\n");
+				break;
 		
-		case UTENTE:
-			
-			break;
+			case UTENTE:
+				
+				break;
 
-		default:
-			break;
+			default:
+				break;
 		}
 	}
 	
@@ -257,6 +268,12 @@ public class Observer{
 	public void eliminaUtenteGruppo(String username, String nomeGruppo) {
 		trasmettiPacchetto(new Pacchetto(new Operazione(nomeGruppo, username), TipoInfo.ELIMINA_UTENTE_GRUPPO));
 	}
+	
+	public void richiediContenutiGruppo (String nomeGruppo) {
+		trasmettiPacchetto(new Pacchetto(new Operazione(nomeGruppo), TipoInfo.RICHIESTA_CONTENUTI));
+	}
+	
+	
 	
 	public void setUIGestioneGruppi(List<String> gruppi) {
 		

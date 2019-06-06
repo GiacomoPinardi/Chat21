@@ -3,7 +3,7 @@ package controllerServer;
 import java.io.ObjectOutputStream;
 
 import dominioPacchetto.Conferma;
-import dominioPacchetto.inizializzazione;
+import dominioPacchetto.Inizializzazione;
 import dominioPacchetto.Pacchetto;
 import dominioPacchetto.TipoInfo;
 import dominioServer.Ruolo;
@@ -36,7 +36,7 @@ public class ControllerAutenticazione {
 		utenti.lockList();
 		Utente u = utenti.getByUsername(username);
 		gruppi.lockList();
-		u.invia(new Pacchetto(new inizializzazione(username, true, u.getRuolo(), gruppi.getGruppiCon(username), dbConnection.getContenutiBacheca()), TipoInfo.INFO_SESSIONE));
+		u.invia(new Pacchetto(new Inizializzazione(username, true, u.getRuolo(), gruppi.getGruppiCon(username), dbConnection.getContenutiBacheca()), TipoInfo.INFO_SESSIONE));
 		gruppi.unlockList();
 		u.setConnesso(true);
 		utenti.unlockList();		
@@ -47,7 +47,7 @@ public class ControllerAutenticazione {
 		Utente tmp = new Utente("tmp", Ruolo.UTENTE);
 		tmp.setObjectOutputStream(oos);
 		tmp.setConnesso(true);
-		tmp.invia(new Pacchetto(new inizializzazione(usernameTentativo, false, null, null, null), TipoInfo.INFO_SESSIONE));
+		tmp.invia(new Pacchetto(new Inizializzazione(usernameTentativo, false, null, null, null), TipoInfo.INFO_SESSIONE));
 		System.out.println("Inviato negato accesso!");
 	}
 	

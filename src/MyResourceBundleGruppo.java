@@ -10,7 +10,7 @@ public class MyResourceBundleGruppo extends ListResourceBundle{
 	            {"informazioniSessione", informazioniSessione},
 	            {"nomeGruppo", nomeGruppo}
 	    };
-		this.contents=contents;
+		this.contents = contents;
 	}
 
 	@Override

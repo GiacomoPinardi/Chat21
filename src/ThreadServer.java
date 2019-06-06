@@ -5,7 +5,7 @@ import java.io.ObjectInputStream;
 
 import dominioPacchetto.Conferma;
 import dominioPacchetto.Contenuto;
-import dominioPacchetto.inizializzazione;
+import dominioPacchetto.Inizializzazione;
 import javafx.application.Platform;
 import dominioPacchetto.ListaString;
 import dominioPacchetto.Pacchetto;
@@ -26,7 +26,9 @@ public class ThreadServer implements Runnable{
 	 	while(true){
 	 		try{
 	 			System.out.println("ready to spacket");
-	 			spacchetta((Pacchetto)inStream.readObject());
+	 			
+	 			Pacchetto p = (Pacchetto) inStream.readObject();	 			
+	 			spacchetta(p);
 	 		}
 	 		catch( IOException e){
 
@@ -40,34 +42,34 @@ public class ThreadServer implements Runnable{
 	 public void spacchetta(Pacchetto pacchetto){
 		 System.out.println("spacketing");
 		 switch (pacchetto.getTipo()) {
-		 case INFO_SESSIONE:
-			inizializzazione initPack = (inizializzazione) pacchetto.getInformazione();
-			Platform.runLater( () -> {
-				observer.setInfoSessione(initPack.getRuolo(), initPack.getUsername(), 
-						initPack.getGruppi(), initPack.isEsitoCredenziali(),initPack.getContenutiBacheca());
-			});
-			
-			break;
-		 case LISTA_GRUPPI:
-			ListaString gruppi=(ListaString) pacchetto.getInformazione();
-			Platform.runLater( () -> {
-				observer.setUIGestioneGruppi(gruppi.getListaContenuti());
-			});
-			break;
-		 case CONTENUTO:
-			Contenuto contenuto=(Contenuto) pacchetto.getInformazione();
-			Platform.runLater( () -> {
-				observer.aggiungiContenuto(contenuto);
-			});
-			break;
-		 case CONFERMA:
-			 Conferma conferma = (Conferma) pacchetto.getInformazione();
-			 Platform.runLater( () -> {
-					observer.alertWindow(conferma.getMessaggioConferma());
+			 case INFO_SESSIONE:
+				Inizializzazione initPack = (Inizializzazione) pacchetto.getInformazione();
+				Platform.runLater( () -> {
+					observer.setInfoSessione(initPack.getRuolo(), initPack.getUsername(), 
+							initPack.getGruppi(), initPack.isEsitoCredenziali(),initPack.getContenutiBacheca());
 				});
-		default:
-			System.out.println("pacchetto incognito");
-			break;
+				
+				break;
+			 case LISTA_GRUPPI:
+				ListaString gruppi=(ListaString) pacchetto.getInformazione();
+				Platform.runLater( () -> {
+					observer.setUIGestioneGruppi(gruppi.getListaContenuti());
+				});
+				break;
+			 case CONTENUTO:
+				Contenuto contenuto=(Contenuto) pacchetto.getInformazione();
+				Platform.runLater( () -> {
+					observer.aggiungiContenuto(contenuto);
+				});
+				break;
+			 case CONFERMA:
+				 Conferma conferma = (Conferma) pacchetto.getInformazione();
+				 Platform.runLater( () -> {
+						observer.alertWindow(conferma.getMessaggioConferma());
+					});
+			default:
+				System.out.println("pacchetto incognito");
+				break;
 		}
 	 }
 }

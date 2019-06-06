@@ -5,7 +5,7 @@ import java.util.List;
 
 import dominioServer.Ruolo;
 
-public class inizializzazione implements Info {
+public class Inizializzazione implements Info {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -15,7 +15,7 @@ public class inizializzazione implements Info {
 	private List<String> gruppi;
 	private List<Contenuto> contenutiBacheca;
 	
-	public inizializzazione(String username, boolean esitoCredenziali, Ruolo ruolo, List<String> gruppi, List<Contenuto> contenutiBacheca) {
+	public Inizializzazione(String username, boolean esitoCredenziali, Ruolo ruolo, List<String> gruppi, List<Contenuto> contenutiBacheca) {
 		this.username = username;
 		this.esitoCredenziali = esitoCredenziali;
 		this.ruolo = ruolo;
@@ -23,7 +23,7 @@ public class inizializzazione implements Info {
 		this.contenutiBacheca = contenutiBacheca;
 	}
 
-	public inizializzazione() {
+	public Inizializzazione() {
 		// TODO Auto-generated constructor stub
 		//solo per test grafica
 		this.ruolo=Ruolo.AMMINISTRATORE;

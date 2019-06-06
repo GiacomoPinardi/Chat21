@@ -44,16 +44,16 @@ public class InterfacciaUtente{
 	
 	public void aggiungiConteunuto(Contenuto contenuto){
 		switch (contenuto.getTipoDestinatario()) {
-		case BACHECA:
-			homeBacheca.aggiungiConteunuto(contenuto);
-			break;
-		case GRUPPO:
-			homeGruppo.aggiungiConteunuto(contenuto);
-			break;
-		case UTENTE:
-			homeComunicazioneUtenteUtente.aggiungiConteunuto(contenuto);
-			break;
-		}
+			case BACHECA:
+				homeBacheca.aggiungiConteunuto(contenuto);
+				break;
+			case GRUPPO:
+				homeGruppo.aggiungiConteunuto(contenuto);
+				break;
+			case UTENTE:
+				homeComunicazioneUtenteUtente.aggiungiConteunuto(contenuto);
+				break;
+			}
 	}
 	
 	public void setUIGestioneGruppi(List<String> gruppi) {

@@ -23,7 +23,7 @@ public class BachecaUtentiController implements Initializable{
 	
 	public void aggiungiMessaggi(List<String> messaggi) {
 		for(String messaggio : messaggi) {
-			corpoBacheca.appendText(messaggio);
+			aggiungiMessaggio(messaggio);
 		}
 	}
 

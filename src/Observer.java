@@ -28,6 +28,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import dominioPacchetto.Conferma;
 import dominioPacchetto.Contenuto;
 import dominioPacchetto.MessaggioTestuale;
 import dominioPacchetto.Operazione;
@@ -60,10 +61,13 @@ public class Observer{
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		this.sockOut = sockOut;
 		informazioniSessione = null;
 		//ui = new InterfacciaUtente(this);
 		ui = null;
+		
+		this.textUser = textUser;
+		this.textPassword = textPassword;
+		this.sockOut = sockOut;
 	}
 	
 	public void setStage(Stage stage) {
@@ -77,26 +81,19 @@ public class Observer{
 	public void trasmettiPacchetto(Pacchetto pacchetto){
 		try {
 			sockOut.writeObject(pacchetto);
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void modificaPassword(String vecchiaPassword, String nuovaPassword){
-		try {
-			sockOut.writeObject(new Pacchetto(new Operazione(vecchiaPassword, nuovaPassword, null), TipoInfo.CAMBIA_PASSWORD));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		trasmettiPacchetto(new Pacchetto(new Operazione(vecchiaPassword, nuovaPassword, null), TipoInfo.CAMBIA_PASSWORD));
 	}
 
 	public void accesso(String username, String password){
-		try {
-			sockOut.writeObject(new Pacchetto(new Operazione(username, password, null), TipoInfo.ACCESSO));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+		trasmettiPacchetto(new Pacchetto(new Operazione(username, password, null), TipoInfo.ACCESSO));
+				
 		//solo per test simulo che threadServer riceva il pacchetto info sessione e chiami setInfoSessione
 //		ArrayList<String> gruppi=new ArrayList<String>();
 //		gruppi.add("2");
@@ -128,18 +125,19 @@ public class Observer{
 							.setContent(FXMLLoader.load(getClass().getResource("GestioneGruppi.fxml"), bundleInit));
 					tBacheca.setContent(
 							FXMLLoader.load(getClass().getResource("BachecaAmministratori.fxml"), bundleInit));
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
+				}
+				catch (IOException e1) {
 					e1.printStackTrace();
 				}
 				tabs.getTabs().add(tGestioneGruppi);
-			} else {
+			}
+			else {
 				try {
 					tImpostazioni
 							.setContent(FXMLLoader.load(getClass().getResource("ImpostazioniUtente.fxml"), bundleInit));
 					tBacheca.setContent(FXMLLoader.load(getClass().getResource("BachecaUtenti.fxml"), bundleInit));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
+				}
+				catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
@@ -152,13 +150,14 @@ public class Observer{
 						MyResourceBundleGruppo bundleInitGruppo=new MyResourceBundleGruppo(this, informazioniSessione,nomeGruppo);
 						tabs.getTabs().get(tabs.getTabs().size() - 1)
 								.setContent(FXMLLoader.load(getClass().getResource("Gruppo.fxml"), bundleInitGruppo));
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
+					}
+					catch (IOException e) {
 						e.printStackTrace();
 					}
 				}
 			stage.setScene((new Scene(tabs, Color.WHITE)));
-		} else {
+		}
+		else {
 			// accesso fallito mostra di nuovo la scena di login
 			textUser.clear();
 			textPassword.clear();
@@ -167,27 +166,24 @@ public class Observer{
 
 	public void disconnessione(){
 		informazioniSessione = null;
-		try {
-			sockOut.writeObject(new Pacchetto(null, TipoInfo.DISCONNETTI));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		// GRAFICA
+		trasmettiPacchetto(new Pacchetto(null, TipoInfo.DISCONNETTI));
+		
+		// GRAFICA DA GESTIRE!!!!
 	}
 
-	public void  inviaContenuto(Contenuto contenuto){
-		System.out.println("hee\n");
-		try {
-			sockOut.writeObject(new Pacchetto(contenuto, TipoInfo.CONTENUTO));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void inviaContenuto(Contenuto contenuto){
+		trasmettiPacchetto(new Pacchetto(contenuto, TipoInfo.CONTENUTO));
 	}
 
 	public synchronized void alertWindow(String alertMess){
 		Alert alert = new Alert(AlertType.WARNING, alertMess, ButtonType.OK);
 		//Alert alert = new Alert(AlertType.CONFIRMATION, alert, ButtonType.OK, ButtonType.NO, ButtonType.CANCEL);
 		alert.showAndWait();
+	}
+	
+	public synchronized void infoWindow(String infoMess){
+		Alert info = new Alert(AlertType.INFORMATION, infoMess, ButtonType.OK);
+		info.showAndWait();
 	}
 	
 	public void doNothing() {
@@ -222,84 +218,44 @@ public class Observer{
 		informazioniSessione.addGroup(nomeGruppo);
 	}
 
-	public void getUtenti(){
-		try {
-			sockOut.writeObject(new Pacchetto(null, TipoInfo.LISTA_UTENTI));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void getUtenti() {
+		trasmettiPacchetto(new Pacchetto(null, TipoInfo.LISTA_UTENTI));
 	}
 	
-	public void getGruppi(){
-		try {
-			sockOut.writeObject(new Pacchetto(null, TipoInfo.LISTA_GRUPPI));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void getGruppi() {
+		trasmettiPacchetto(new Pacchetto(null, TipoInfo.LISTA_GRUPPI));
 	}
 	
-	public void getUtentiGruppo(String nomeGruppo){
-		try {
-			sockOut.writeObject(new Pacchetto(null, TipoInfo.LISTA_UTENTI_GRUPPO));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void getUtentiGruppo(String nomeGruppo) {
+		trasmettiPacchetto(new Pacchetto(new Operazione(nomeGruppo), TipoInfo.LISTA_UTENTI_GRUPPO));
 	}
 	
-	public void getUtentiNonInGruppo(String nomeGruppo){
-		try {
-			sockOut.writeObject(new Pacchetto(null, TipoInfo.LISTA_UTENTI_NON));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void getUtentiNonInGruppo(String nomeGruppo) {
+		trasmettiPacchetto(new Pacchetto(new Operazione(nomeGruppo), TipoInfo.LISTA_UTENTI_NON));
 	}
 	
 	public void aggiungiUtente(String username, String password, String ruolo) {
-		try {
-			sockOut.writeObject(new Pacchetto(new Operazione(username, password, ruolo), TipoInfo.AGG_UTENTE));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		trasmettiPacchetto(new Pacchetto(new Operazione(username, password, ruolo), TipoInfo.AGG_UTENTE));
 	}
 	
 	public void eliminaUtente(String username) {
-		try {
-			sockOut.writeObject(new Pacchetto(new Operazione(username), TipoInfo.ELIMINA_UTENTE));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		trasmettiPacchetto(new Pacchetto(new Operazione(username), TipoInfo.ELIMINA_UTENTE));
 	}
 	
 	public void creaGruppo(String nomeGruppo) {
-		try {
-			sockOut.writeObject(new Pacchetto(new Operazione(nomeGruppo, null, null), TipoInfo.CREA_GRUPPO));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		trasmettiPacchetto(new Pacchetto(new Operazione(nomeGruppo), TipoInfo.CREA_GRUPPO));
 	}
 	
 	public void eliminaGruppo(String nomeGruppo) {
-		try {
-			sockOut.writeObject(new Pacchetto(new Operazione(nomeGruppo, null, null), TipoInfo.ELIMINA_GRUPPO));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		trasmettiPacchetto(new Pacchetto(new Operazione(nomeGruppo), TipoInfo.ELIMINA_GRUPPO));
 	}
 	
 	public void aggiungiUtenteGruppo(String username, String nomeGruppo) {
-		try {
-			sockOut.writeObject(new Pacchetto(new Operazione(username, nomeGruppo, null), TipoInfo.AGG_UTENTE_GRUPPO));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		trasmettiPacchetto(new Pacchetto(new Operazione(nomeGruppo, username), TipoInfo.AGG_UTENTE_GRUPPO));
 	}
 	
 	public void eliminaUtenteGruppo(String username, String nomeGruppo) {
-		try {
-			sockOut.writeObject(new Pacchetto(new Operazione(username, nomeGruppo, null), TipoInfo.ELIMINA_UTENTE_GRUPPO));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		trasmettiPacchetto(new Pacchetto(new Operazione(nomeGruppo, username), TipoInfo.ELIMINA_UTENTE_GRUPPO));
 	}
 	
 	public void setUIGestioneGruppi(List<String> gruppi) {

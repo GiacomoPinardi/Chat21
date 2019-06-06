@@ -223,10 +223,20 @@ public class Observer{
 	
 	public void rimuoviGruppo(String nomeGruppo) {
 		informazioniSessione.deleteGroup(nomeGruppo);
+		tabs.getTabs().remove(new Tab(nomeGruppo));
 	}
 
 	public void aggiungiGruppo(String nomeGruppo) {
 		informazioniSessione.addGroup(nomeGruppo);
+		tabs.getTabs().add(new Tab(nomeGruppo));
+		MyResourceBundleGruppo bundleInitGruppo = new MyResourceBundleGruppo(this, informazioniSessione,nomeGruppo);
+		try {
+			tabs.getTabs().get(tabs.getTabs().size() - 1)
+			.setContent(FXMLLoader.load(getClass().getResource("Gruppo.fxml"), bundleInitGruppo));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void getUtenti() {

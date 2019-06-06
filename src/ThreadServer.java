@@ -8,6 +8,7 @@ import dominioPacchetto.Contenuto;
 import dominioPacchetto.Inizializzazione;
 import javafx.application.Platform;
 import dominioPacchetto.ListaString;
+import dominioPacchetto.MessaggioTestuale;
 import dominioPacchetto.Pacchetto;
 import dominioPacchetto.TipoDestinatario;
 
@@ -70,6 +71,11 @@ public class ThreadServer implements Runnable{
 			 case DISCONNETTI:
 				 Platform.runLater( () -> {
 						observer.disconnessione();
+					});
+			 case CREA_GRUPPO:
+				 //é questa la aggiunta gruppo????
+				 Platform.runLater( () -> {
+						observer.aggiungiGruppo(((MessaggioTestuale)pacchetto.getInformazione()).getDestinario());
 					});
 			default:
 				System.out.println("pacchetto incognito");

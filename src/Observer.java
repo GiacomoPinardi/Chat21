@@ -285,7 +285,6 @@ public class Observer {
 			tabs.getTabs().get(tabs.getTabs().size() - 1)
 					.setContent(FXMLLoader.load(getClass().getResource("Gruppo.fxml"), bundleInitGruppo));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -357,7 +356,7 @@ public class Observer {
 		aggEli = false;
 	}
 
-	public void setUIGestioneUtentiGruppo(List<String> utentiGruppo) {
+	public void setUIGestioneUtentiGruppo(List<String> utentiGruppo) {		
 		this.listaUtentiGruppo.getItems().clear();
 		this.listaUtentiGruppo.getItems().addAll(utentiGruppo);
 	}
@@ -410,20 +409,21 @@ public class Observer {
 	public void setListaGruppi(ListView<String> listaGruppi) {
 		this.listaGruppi = listaGruppi;
 	}
-	
-	
-	public void setListaUtentiGruppo (ListView<String> listaUtentiGruppo) {
-		this.listaUtentiGruppo = listaUtentiGruppo;
+		
+	public void setListaUtentiGruppo (ListView<String> lug) {
+		this.listaUtentiGruppo = lug;
 		this.listaUtentiGruppo.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent click) {
 				if (click.getClickCount() == 2) {
 					String nomeGruppo = listaGruppi.getSelectionModel().getSelectedItem();
 					String username = listaUtentiGruppo.getSelectionModel().getSelectedItem();
-					if (aggEli)
+					if (aggEli) {
 						trasmettiPacchetto(new Pacchetto(new Operazione(nomeGruppo, username), TipoInfo.AGG_UTENTE_GRUPPO));
-					else
+					}
+					else {
 						trasmettiPacchetto(new Pacchetto(new Operazione(nomeGruppo, username), TipoInfo.ELIMINA_UTENTE_GRUPPO));
+					}
 				}
 			}
 		});

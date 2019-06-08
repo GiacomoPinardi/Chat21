@@ -25,7 +25,7 @@ public class PopolaDB {
 		db.aggiungiUtenteGruppo("Gruppo1", "Carlo");
 		
 		db.addContenutoBacheca(new MessaggioTestuale(TipoDestinatario.BACHECA, LocalDateTime.now(), "Mario", "bacheca", "Prova in bacheca!"));
-		
+		db.addContenutoGruppo(new MessaggioTestuale(TipoDestinatario.GRUPPO, LocalDateTime.now(), "Mario", "Gruppo1", "Prova nel gruppo!"));
 	}
 
 }

@@ -30,11 +30,9 @@ public class ThreadServer implements Runnable{
 	 			Pacchetto p = (Pacchetto) inStream.readObject();	 			
 	 			spacchetta(p);
 	 		}
-	 		catch( IOException e){
-
+	 		catch(IOException e){
 	 		}
 	 		catch(ClassNotFoundException e2){
-
 	 		}
 	 	}
 	 }
@@ -75,7 +73,6 @@ public class ThreadServer implements Runnable{
 					});
 				 break;
 			 case CREA_GRUPPO:
-				 //� questa la aggiunta gruppo????
 				 Platform.runLater( () -> {
 						observer.aggiungiGruppo(((MessaggioTestuale)pacchetto.getInformazione()).getDestinario());
 					});
@@ -94,7 +91,13 @@ public class ThreadServer implements Runnable{
 			 case LISTA_UTENTI_NON:
 				 Platform.runLater( () -> {
 					 	ListaString ls =  (ListaString) pacchetto.getInformazione();
-						observer.setUIGestioneUtentiGruppo((ls).getListaContenuti());
+					 	
+					 	/*for (String s : ls.getListaContenuti()) {
+					 		System.out.println(s);
+					 	}
+					 	System.out.println("");*/
+					 	
+						observer.setUIGestioneUtentiGruppo(ls.getListaContenuti());
 					});
 				 break;
 			 case CONTENUTI_GRUPPO:

@@ -2,7 +2,6 @@
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,6 +25,7 @@ public class GestioneGruppiController implements Initializable {
 	private Button rimuoviGruppoSelezionato;
 	@FXML
 	private ListView<String> elencoUtenti;
+	
 	private Observer observer;
 
 	// Event Listener on Button[#aggiungiNuovoGruppo].onAction
@@ -39,12 +39,12 @@ public class GestioneGruppiController implements Initializable {
 	@FXML
 	public void handlerRimuoviUtente(ActionEvent event) {
 		aggiungiUtente.setSelected(false);
-		//observer.eliminaUtenteGruppo(elencoGruppi.getSelectionModel().getSelectedItem(),
-			//	elencoUtenti.getSelectionModel().getSelectedItem());
+		
 		if (rimuoviUtente.isSelected()) {
-			if(elencoGruppi.getSelectionModel().getSelectedIndex() >= 0) {
+			if (elencoGruppi.getSelectionModel().getSelectedIndex() >= 0) {
 				observer.richiediUtentiGruppo(elencoGruppi.getSelectionModel().getSelectedItem());
-			} else {
+			}
+			else {
 				observer.alertWindow("Nessun gruppo selezionato");
 				rimuoviUtente.setSelected(false);
 			}
@@ -54,12 +54,12 @@ public class GestioneGruppiController implements Initializable {
 	@FXML
 	public void handlerAggiungiUtente(ActionEvent event) {
 		rimuoviUtente.setSelected(false);
-		//observer.eliminaUtenteGruppo(elencoGruppi.getSelectionModel().getSelectedItem(),
-			//	elencoUtenti.getSelectionModel().getSelectedItem());
+		
 		if (aggiungiUtente.isSelected()) {
-			if(elencoGruppi.getSelectionModel().getSelectedIndex() >= 0) {
+			if (elencoGruppi.getSelectionModel().getSelectedIndex() >= 0) {
 				observer.richiediUtentiNonInGruppo(elencoGruppi.getSelectionModel().getSelectedItem());
-			} else {
+			}
+			else {
 				observer.alertWindow("Nessun gruppo selezionato");
 				aggiungiUtente.setSelected(false);
 			}

@@ -75,7 +75,7 @@ public class ControllerGestioneGruppi {
 		Pacchetto p;
 		gruppi.lockList();
 		Gruppo g = gruppi.getByNome(nome);
-		
+				
 		if (g != null) {
 			p = new Pacchetto(new ListaString(gruppi.getByNome(nome).getUtenti()), TipoInfo.LISTA_UTENTI_GRUPPO);
 		}

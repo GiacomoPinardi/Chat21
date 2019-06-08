@@ -5,7 +5,6 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import controllerServer.ThreadClient;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;

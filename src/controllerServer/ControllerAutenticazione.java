@@ -4,7 +4,6 @@ import java.io.ObjectOutputStream;
 
 import dominioPacchetto.Conferma;
 import dominioPacchetto.Inizializzazione;
-import dominioPacchetto.ListaContenuti;
 import dominioPacchetto.Pacchetto;
 import dominioPacchetto.TipoInfo;
 import dominioServer.Ruolo;
@@ -36,8 +35,7 @@ public class ControllerAutenticazione {
 	public void confermaAccesso(String username) {		
 		utenti.lockList();
 		Utente u = utenti.getByUsername(username);
-		gruppi.lockList();
-		ListaContenuti lc = new ListaContenuti(dbConnection.getContenutiBacheca()); 
+		gruppi.lockList();				
 		u.invia(new Pacchetto(new Inizializzazione(username, true, u.getRuolo(), gruppi.getGruppiCon(username), dbConnection.getContenutiBacheca()), TipoInfo.INFO_SESSIONE));
 		gruppi.unlockList();
 		u.setConnesso(true);

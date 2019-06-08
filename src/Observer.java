@@ -1,20 +1,16 @@
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import dominioPacchetto.Contenuto;
+import dominioPacchetto.MessaggioTestuale;
+import dominioPacchetto.Operazione;
 import dominioPacchetto.Pacchetto;
-import dominioPacchetto.TipoDestinatario;
 import dominioPacchetto.TipoInfo;
 import dominioServer.Ruolo;
 import javafx.event.Event;
@@ -34,10 +30,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import dominioPacchetto.Conferma;
-import dominioPacchetto.Contenuto;
-import dominioPacchetto.MessaggioTestuale;
-import dominioPacchetto.Operazione;
 
 public class Observer {
 	private ObjectOutputStream sockOut;
@@ -275,7 +267,7 @@ public class Observer {
 				}
 				areeGruppi.get(destinatario).setText(res);
 			} else {
-				System.out.println("NON C'è il gruppo!");
+				System.out.println("NON C'ï¿½ il gruppo!");
 			}
 		}
 	}

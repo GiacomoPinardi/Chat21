@@ -30,12 +30,12 @@ public class BachecaUtentiController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		this.observer=(Observer)((MyResourceBundle) arg1).getObject("observer");
-		this.informazioniSessione=(InformazioniSessione)((MyResourceBundle) arg1).getObject("informazioniSessione");
+		this.informazioniSessione = (InformazioniSessione)((MyResourceBundle) arg1).getObject("informazioniSessione");
 		this.observer.setTextBacheca(corpoBacheca);
 		this.corpoBacheca.setEditable(false);
 		for(Contenuto c : this.informazioniSessione.getContenutiBacheca()) {
-			MessaggioTestuale m= (MessaggioTestuale) c;
-			this.corpoBacheca.appendText(m.getMittente()+" : "+m.getMessaggio()+"\n");
+			MessaggioTestuale m = (MessaggioTestuale) c;
+			this.corpoBacheca.appendText(m.getMittente() + " : " + m.getMessaggio() + "\n");
 		}
 	}
 }

@@ -275,7 +275,7 @@ public class ControllerDB {
 		try {
 			connection = getConnection();
 		
-			PreparedStatement statement = connection.prepareStatement("SELECT * FROM messaggitestuali WHERE gruppo = NULL AND inBacheca = TRUE");
+			PreparedStatement statement = connection.prepareStatement("SELECT * FROM messaggitestuali WHERE inBacheca = 1");
 			statement.clearParameters();
 			statement.setQueryTimeout(30);  // set timeout to 30 sec.
 						

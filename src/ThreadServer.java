@@ -7,11 +7,10 @@ import dominioPacchetto.Conferma;
 import dominioPacchetto.Contenuto;
 import dominioPacchetto.Inizializzazione;
 import dominioPacchetto.ListaContenuti;
-import javafx.application.Platform;
 import dominioPacchetto.ListaString;
 import dominioPacchetto.MessaggioTestuale;
 import dominioPacchetto.Pacchetto;
-import dominioPacchetto.TipoDestinatario;
+import javafx.application.Platform;
 
 
 public class ThreadServer implements Runnable{
@@ -45,9 +44,10 @@ public class ThreadServer implements Runnable{
 		 switch (pacchetto.getTipo()) {
 			 case INFO_SESSIONE:
 				Inizializzazione initPack = (Inizializzazione) pacchetto.getInformazione();
+								
 				Platform.runLater( () -> {
 					observer.setInfoSessione(initPack.getRuolo(), initPack.getUsername(), 
-							initPack.getGruppi(), initPack.isEsitoCredenziali(),initPack.getContenutiBacheca());
+							initPack.getGruppi(), initPack.isEsitoCredenziali(), initPack.getContenutiBacheca());
 				});
 				
 				break;

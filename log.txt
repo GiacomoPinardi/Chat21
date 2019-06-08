@@ -84,3 +84,36 @@
 [2019/06/07-01:47]: Carlo prova ad accedere: successo
 [2019/06/07-01:48]: Mario prova ad accedere: successo
 [2019/06/08-15:19]: Mario prova ad accedere: successo
+[2019/06/08-21:07]: Mario prova ad accedere: successo
+[2019/06/08-21:14]: Mario prova ad accedere: successo
+[2019/06/08-21:18]: Mario ha aggiunto al gruppo Gruppo2 l'utente Nico
+[2019/06/08-21:19]: Mario ha eliminato dal gruppo Gruppo1 l'utente Carlo
+[2019/06/08-21:19]: Mario prova ad accedere: successo
+[2019/06/08-21:20]: Mario prova ad accedere: successo
+[2019/06/08-21:32]: Mario prova ad accedere: successo
+[2019/06/08-21:35]: Mario ha eliminato dal gruppo Gruppo1 l'utente Mario
+[2019/06/08-21:36]: Mario prova ad accedere: successo
+[2019/06/08-21:45]: Mario ha eliminato dal gruppo Gruppo1 l'utente Mario
+[2019/06/08-21:48]: Mario prova ad accedere: successo
+[2019/06/08-21:49]: Mario ha eliminato dal gruppo Gruppo1 l'utente Mario
+[2019/06/08-21:51]: Mario prova ad accedere: successo
+[2019/06/08-21:52]: Mario ha eliminato dal gruppo Gruppo1 l'utente Mario
+[2019/06/08-21:57]: Mario prova ad accedere: successo
+[2019/06/08-21:57]: Mario ha eliminato dal gruppo Gruppo1 l'utente Carlo
+[2019/06/08-22:02]: Mario ha eliminato dal gruppo Gruppo1 l'utente Franco
+[2019/06/08-22:02]: Mario ha eliminato dal gruppo Gruppo1 l'utente Franco
+[2019/06/08-22:11]: Mario prova ad accedere: successo
+[2019/06/08-22:11]: Mario ha aggiunto al gruppo Gruppo1 l'utente Mario
+[2019/06/08-22:11]: Mario ha aggiunto al gruppo Gruppo1 l'utente Carlo
+[2019/06/08-22:11]: Mario ha aggiunto al gruppo Gruppo1 l'utente Mario
+[2019/06/08-22:13]: Mario prova ad accedere: successo
+[2019/06/08-22:14]: Mario ha eliminato dal gruppo Gruppo1 l'utente Mario
+[2019/06/08-22:15]: Mario prova ad accedere: successo
+[2019/06/08-22:16]: Mario ha aggiunto al gruppo Gruppo1 l'utente Mario
+[2019/06/08-22:18]: Mario prova ad accedere: successo
+[2019/06/08-22:18]: Mario ha eliminato dal gruppo Gruppo1 l'utente Mario
+[2019/06/08-22:22]: Mario prova ad accedere: successo
+[2019/06/08-22:23]: UNKNOWN prova ad accedere: fallito
+[2019/06/08-22:24]: UNKNOWN prova ad accedere: fallito
+[2019/06/08-22:24]: Mario prova ad accedere: successo
+[2019/06/08-22:25]: Mario ha eliminato dal gruppo Gruppo1 l'utente Mario

@@ -73,7 +73,6 @@ public class ControllerGestioneGruppi {
 	
 	public void invioListaUtentInGruppo(String nome, String executor) {
 		Pacchetto p;
-		
 		gruppi.lockList();
 		Gruppo g = gruppi.getByNome(nome);
 		
@@ -85,6 +84,7 @@ public class ControllerGestioneGruppi {
 		}
 		gruppi.unlockList();
 		utenti.lockList();
+		//((ListaString) p.getInformazione()).getListaContenuti().add("Franco");
 		utenti.getByUsername(executor).invia(p);
 		utenti.unlockList();
 	}

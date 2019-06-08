@@ -29,6 +29,10 @@ public class Gruppo {
 	}
 	
 	public boolean aggiungiUtente(String username) {
+		boolean res = true;
+		for (String u : utenti)
+			if (u.equals(username))
+				return false;
 		return utenti.add(username);
 	}
 	

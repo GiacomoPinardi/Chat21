@@ -14,7 +14,7 @@ public class MainServer {
 	public static void main(String[] args) {
 		
 		// cosi lo posso runnare da eclipse
-		int port = 4321;
+		int port = 55555;
 		
 // 		int port = -1;
 //		try {

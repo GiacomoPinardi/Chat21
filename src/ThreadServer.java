@@ -92,7 +92,9 @@ public class ThreadServer implements Runnable{
 			 case LISTA_UTENTI_GRUPPO:
 			 case LISTA_UTENTI_NON:
 				 Platform.runLater( () -> {
-						observer.setUIGestioneUtentiGruppo(((ListaString) pacchetto.getInformazione()).getListaContenuti());
+					 	Pacchetto p = pacchetto;
+					 	ListaString ls =  (ListaString) pacchetto.getInformazione();
+						observer.setUIGestioneUtentiGruppo((ls).getListaContenuti());
 					});
 				 break;
 			default:

@@ -33,8 +33,8 @@ public class MainClient extends Application {
 		
 		InetAddress address = null;
 		try {
-			//address = InetAddress.getByName("localhost");
-			address = InetAddress.getByName("192.168.43.144");
+			address = InetAddress.getByName("localhost");
+			//address = InetAddress.getByName("192.168.43.144");
 		}
 		catch (UnknownHostException e1) {
 			e1.printStackTrace();

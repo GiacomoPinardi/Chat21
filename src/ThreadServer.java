@@ -67,17 +67,36 @@ public class ThreadServer implements Runnable{
 				 Platform.runLater( () -> {
 						observer.alertWindow(conferma.getMessaggioConferma());
 					});
+				 break;
 			 case DISCONNETTI:
 				 Platform.runLater( () -> {
 						observer.disconnessione();
 					});
+				 break;
 			 case CREA_GRUPPO:
 				 //� questa la aggiunta gruppo????
 				 Platform.runLater( () -> {
 						observer.aggiungiGruppo(((MessaggioTestuale)pacchetto.getInformazione()).getDestinario());
 					});
+				 break;
+			 case VISUALIZZA_LOG:
+				 Platform.runLater( () -> {
+						observer.setLog(((ListaString) pacchetto.getInformazione()).getListaContenuti());
+					});
+				 break;
+			 case LISTA_UTENTI:
+				 Platform.runLater( () -> {
+						observer.setUIGestioneUtenti(((ListaString) pacchetto.getInformazione()).getListaContenuti());
+					});
+				 break;
+			 case LISTA_UTENTI_GRUPPO:
+			 case LISTA_UTENTI_NON:
+				 Platform.runLater( () -> {
+						observer.setUIGestioneUtentiGruppo(((ListaString) pacchetto.getInformazione()).getListaContenuti());
+					});
+				 break;
 			default:
-				System.out.println("pacchetto incognito");
+				System.out.println("pacchetto incognito: " + pacchetto.getTipo().toString());
 				break;
 		}
 	 }

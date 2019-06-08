@@ -1,5 +1,4 @@
 
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -10,8 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 
-public class GestioneGruppiController implements Initializable{
+public class GestioneGruppiController implements Initializable {
 	@FXML
 	private TextField nomeNuovoGruppo;
 	@FXML
@@ -19,41 +19,64 @@ public class GestioneGruppiController implements Initializable{
 	@FXML
 	private ListView<String> elencoGruppi;
 	@FXML
-	private Button rimuoviUtente;
+	private ToggleButton rimuoviUtente;
 	@FXML
-	private Button aggiungiUtente;
+	private ToggleButton aggiungiUtente;
 	@FXML
 	private Button rimuoviGruppoSelezionato;
 	@FXML
 	private ListView<String> elencoUtenti;
 	private Observer observer;
-	private InformazioniSessione informazioniSessione;
-	private ObservableList<String> tuttiUtenti;
-	
+
 	// Event Listener on Button[#aggiungiNuovoGruppo].onAction
 	@FXML
 	public void handlerAggiungiNuovoGruppo(ActionEvent event) {
 		observer.creaGruppo(nomeNuovoGruppo.getText());
+		observer.richiediGruppi();
 	}
+
 	// Event Listener on Button[#rimuoviUtente].onAction
 	@FXML
 	public void handlerRimuoviUtente(ActionEvent event) {
-		observer.eliminaUtenteGruppo(elencoGruppi.getSelectionModel().getSelectedItem(), elencoUtenti.getSelectionModel().getSelectedItem());
+		aggiungiUtente.setSelected(false);
+		//observer.eliminaUtenteGruppo(elencoGruppi.getSelectionModel().getSelectedItem(),
+			//	elencoUtenti.getSelectionModel().getSelectedItem());
+		if (rimuoviUtente.isSelected()) {
+			if(elencoGruppi.getSelectionModel().getSelectedIndex() >= 0) {
+				observer.richiediUtentiGruppo(elencoGruppi.getSelectionModel().getSelectedItem());
+			} else {
+				observer.alertWindow("Nessun gruppo selezionato");
+				rimuoviUtente.setSelected(false);
+			}
+		}
 	}
-	// Event Listener on Button[#aggiungiUtente].onAction
+	
 	@FXML
 	public void handlerAggiungiUtente(ActionEvent event) {
-		//ricordarsi dal lato server di inviare a quel utente la notifica di aggiunta
-		observer.aggiungiUtenteGruppo(elencoUtenti.getSelectionModel().getSelectedItem(), elencoGruppi.getSelectionModel().getSelectedItem());
+		rimuoviUtente.setSelected(false);
+		//observer.eliminaUtenteGruppo(elencoGruppi.getSelectionModel().getSelectedItem(),
+			//	elencoUtenti.getSelectionModel().getSelectedItem());
+		if (aggiungiUtente.isSelected()) {
+			if(elencoGruppi.getSelectionModel().getSelectedIndex() >= 0) {
+				observer.richiediUtentiNonInGruppo(elencoGruppi.getSelectionModel().getSelectedItem());
+			} else {
+				observer.alertWindow("Nessun gruppo selezionato");
+				aggiungiUtente.setSelected(false);
+			}
+		}
 	}
+
 	// Event Listener on Button[#rimuoviGruppoSelezionato].onAction
 	@FXML
 	public void handlerRimuoviGruppoSelezionato(ActionEvent event) {
 		observer.eliminaGruppo(elencoGruppi.getSelectionModel().getSelectedItem());
+		observer.richiediGruppi();
 	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+		this.observer = (Observer) ((MyResourceBundle) arg1).getObject("observer");
+		observer.setListaGruppi(elencoGruppi);
+		observer.setListaUtentiGruppo(elencoUtenti);
 	}
 }

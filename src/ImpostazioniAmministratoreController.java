@@ -84,12 +84,14 @@ public class ImpostazioniAmministratoreController implements Initializable {
 			observer.aggiungiUtente(usernameNuovoUtente.getText(), passwordNuovoUtente.getText(), "AMMINISTRATORE");
 		else
 			observer.aggiungiUtente(usernameNuovoUtente.getText(), passwordNuovoUtente.getText(), "UTENTE");
+		observer.richiediUtenti();
 	}
 
 	// Event Listener on Button[#rimuoviUtenteSelezionato].onAction
 	@FXML
 	public void handlerRimuoviUtenteSelezionato(ActionEvent event) {
 		observer.eliminaUtente(listaUtenti.getSelectionModel().getSelectedItem());
+		observer.richiediUtenti();
 	}
 
 	// Event Listener on Button[#richiediLog].onAction
@@ -97,15 +99,14 @@ public class ImpostazioniAmministratoreController implements Initializable {
 	public void handlerRichiediLog(ActionEvent event) {
 		observer.getLog(dataLog.getValue());
 	}
-
-	// Event Listener on Button[#richiediAnalisiLog].onAction
 	@FXML
-	public void handlerRichiediAnalisiLog(ActionEvent event) {
-		observer.getAnomalie(dataLog.getValue());
+	public void handlerRichiediAnalisiLog () {
+		
 	}
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		this.observer = (Observer) ((MyResourceBundle) arg1).getObject("observer");
+		observer.setTextLog(textLog);
+		observer.setListaUtenti(listaUtenti);
 	}
 }

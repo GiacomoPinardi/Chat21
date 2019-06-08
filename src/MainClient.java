@@ -24,7 +24,7 @@ public class MainClient extends Application {
 	private PasswordField textPassword;
 	private Observer observer;
 	private Stage stage;
-	private InterfacciaUtente ui;
+	//private InterfacciaUtente ui;
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -34,7 +34,7 @@ public class MainClient extends Application {
 		InetAddress address = null;
 		try {
 			//address = InetAddress.getByName("localhost");
-			address = InetAddress.getByName("172.20.10.5");
+			address = InetAddress.getByName("192.168.43.144");
 		}
 		catch (UnknownHostException e1) {
 			e1.printStackTrace();
@@ -58,8 +58,8 @@ public class MainClient extends Application {
 		//infoSessione = new InformazioniSessione();
 		
 		observer = new Observer(textUser, textPassword, outSocket);
-		ui = new InterfacciaUtente(this.observer);
-		observer.setUI(ui);
+		//ui = new InterfacciaUtente(this.observer);
+		//observer.setUI(ui);
 		
 		ThreadServer threadServer = new ThreadServer(observer, inSocket);
 		Thread ts = new Thread(threadServer);

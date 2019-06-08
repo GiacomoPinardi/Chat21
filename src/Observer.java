@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,17 +17,21 @@ import dominioPacchetto.Pacchetto;
 import dominioPacchetto.TipoDestinatario;
 import dominioPacchetto.TipoInfo;
 import dominioServer.Ruolo;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import dominioPacchetto.Conferma;
@@ -39,12 +44,19 @@ public class Observer {
 	private InformazioniSessione informazioniSessione;
 	private TextField textUser;
 	private PasswordField textPassword;
-	private InterfacciaUtente ui;
+	//private InterfacciaUtente ui;
 	private Stage stage;
 	private TabPane tabs;
 	private TextArea corpoBacheca;
 	private Map<String, TextArea> areeGruppi;
+	private TextArea areaLog;
+	private ListView<String> listaUtenti;
+	private ListView<String> listaGruppi;
+	private ListView<String> listaUtentiGruppo;
+	private boolean aggEli = false;
+	
 	private Scene sceneLogin;
+	private DateTimeFormatter dateTimeFormatter;
 
 	// public Observer(ObjectOutputStream outStream, client.InformazioniSessione
 	// informazioniSess, InterfacciaUtente ui){
@@ -68,20 +80,17 @@ public class Observer {
 		// }
 		informazioniSessione = null;
 		// ui = new InterfacciaUtente(this);
-		ui = null;
+		//ui = null;
 
 		this.textUser = textUser;
 		this.textPassword = textPassword;
 		this.sockOut = sockOut;
 		this.areeGruppi = new HashMap<>();
+		this.dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 	}
 
 	public void setStage(Stage stage) {
 		this.stage = stage;
-	}
-
-	public void setUI(InterfacciaUtente ui) {
-		this.ui = ui;
 	}
 
 	private void trasmettiPacchetto(Pacchetto pacchetto) {
@@ -129,9 +138,21 @@ public class Observer {
 			// ma prima prepara tutte le tab
 			tabs = new TabPane();
 			Tab tImpostazioni = new Tab("Impostazioni");
+			tImpostazioni.setClosable(false);
 			Tab tBacheca = new Tab("Bacheca");
+			tBacheca.setClosable(false);
+			
+			tImpostazioni.setOnSelectionChanged(new EventHandler<Event>() {	
+				@Override
+				public void handle(Event event) {
+					richiediUtenti();
+				}
+			});
+			
+			tabs.getTabs().add(tImpostazioni);
 			if (informazioniSessione.getRuolo() == Ruolo.AMMINISTRATORE) {
 				Tab tGestioneGruppi = new Tab("GestioneGruppi");
+				tGestioneGruppi.setClosable(false);
 				try {
 					Node parent = FXMLLoader.load(getClass().getResource("ImpostazioniAmministratore.fxml"),
 							bundleInit);
@@ -143,6 +164,12 @@ public class Observer {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
+				tGestioneGruppi.setOnSelectionChanged(new EventHandler<Event>() {	
+					@Override
+					public void handle(Event event) {
+						richiediGruppi();
+					}
+				});
 				tabs.getTabs().add(tGestioneGruppi);
 			} else {
 				try {
@@ -153,11 +180,12 @@ public class Observer {
 					e.printStackTrace();
 				}
 			}
-			tabs.getTabs().addAll(tBacheca, tImpostazioni);
+			tabs.getTabs().add(tBacheca);
 			if (informazioniSessione.getGruppi() != null)
 				for (String nomeGruppo : informazioniSessione.getGruppi()) {
-					tabs.getTabs().add(new Tab(nomeGruppo));// dopo preparo le
-															// tab dei gruppi
+					Tab tGruppo = new Tab(nomeGruppo);
+					tGruppo.setClosable(false);
+					tabs.getTabs().add(tGruppo);
 					try {
 						MyResourceBundleGruppo bundleInitGruppo = new MyResourceBundleGruppo(this, informazioniSessione,
 								nomeGruppo);
@@ -287,42 +315,56 @@ public class Observer {
 	public void richiediContenutiGruppo(String nomeGruppo) {
 		trasmettiPacchetto(new Pacchetto(new Operazione(nomeGruppo), TipoInfo.RICHIESTA_CONTENUTI));
 	}
-
-	public void setUIGestioneGruppi(List<String> gruppi) {
-
+	
+	public void richiediGruppi() {
+		trasmettiPacchetto(new Pacchetto(new Operazione(), TipoInfo.LISTA_GRUPPI));
 	}
 
+	public void setUIGestioneGruppi(List<String> gruppi) {
+		this.listaGruppi.getItems().clear();
+		this.listaGruppi.getItems().addAll(gruppi);
+	}
+	
+	public void richiediUtenti() {
+		trasmettiPacchetto(new Pacchetto(new Operazione(), TipoInfo.LISTA_UTENTI));
+	}
+	
 	public void setUIGestioneUtenti(List<String> utenti) {
-
+		this.listaUtenti.getItems().clear();
+		this.listaUtenti.getItems().addAll(utenti);
+	}
+	
+	public void richiediUtentiGruppo(String nomeGruppo) {
+		trasmettiPacchetto(new Pacchetto(new Operazione(nomeGruppo), TipoInfo.LISTA_UTENTI_GRUPPO));
+		aggEli = false;
 	}
 
 	public void setUIGestioneUtentiGruppo(List<String> utentiGruppo) {
-
+		this.listaUtentiGruppo.getItems().clear();
+		this.listaUtentiGruppo.getItems().addAll(utentiGruppo);
+	}
+	
+	public void richiediUtentiNonInGruppo (String nomeGruppo) {
+		trasmettiPacchetto(new Pacchetto(new Operazione(nomeGruppo), TipoInfo.LISTA_UTENTI_NON));
+		aggEli = true;
 	}
 
-	public void setUIGestioneUtentiNonInGruppo(List<String> utentiNonInGruppo) {
-
-	}
-
-	public void setLog(String log) {
-
+	public void setLog(List<String> list) {
+		String res = "";
+		for (String s : list) 
+			res += s + "\n";
+		System.out.println("res: " + res);
+		areaLog.setText(res);;
 	}
 
 	public void getLog(LocalDate localDate) {
+		
 		try {
 			sockOut.writeObject(
-					new Pacchetto(new Operazione(localDate.toString(), null, null), TipoInfo.VISUALIZZA_LOG));
+					new Pacchetto(new Operazione(dateTimeFormatter.format(localDate)), TipoInfo.VISUALIZZA_LOG));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void setAnomalie(String anomalie) {
-
-	}
-
-	public void getAnomalie(LocalDate localDate) {
-
 	}
 
 	public void setTextBacheca(TextArea corpoBacheca) {
@@ -337,5 +379,35 @@ public class Observer {
 		areeGruppi.put(nomeGruppo, corpoGruppo);
 
 	}
+	
+	public void setTextLog(TextArea areaLog) {
+		this.areaLog = areaLog;
+	}
 
+	public void setListaUtenti(ListView<String> listaUtenti) {
+		this.listaUtenti = listaUtenti;
+		
+	}
+	
+	public void setListaGruppi(ListView<String> listaGruppi) {
+		this.listaGruppi = listaGruppi;
+	}
+	
+	
+	public void setListaUtentiGruppo (ListView<String> listaUtentiGruppo) {
+		this.listaUtentiGruppo = listaUtentiGruppo;
+		this.listaUtentiGruppo.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent click) {
+				if (click.getClickCount() == 2) {
+					String nomeGruppo = listaGruppi.getSelectionModel().getSelectedItem();
+					String username = listaUtentiGruppo.getSelectionModel().getSelectedItem();
+					if (aggEli)
+						trasmettiPacchetto(new Pacchetto(new Operazione(nomeGruppo, username), TipoInfo.AGG_UTENTE_GRUPPO));
+					else
+						trasmettiPacchetto(new Pacchetto(new Operazione(nomeGruppo, username), TipoInfo.ELIMINA_UTENTE_GRUPPO));
+				}
+			}
+		});
+	}
 }

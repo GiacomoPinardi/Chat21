@@ -32,8 +32,8 @@
                         <ListView fx:id="elencoGruppi" prefHeight="280.0" prefWidth="180.0" />
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                            <children>
-                              <Button fx:id="rimuoviUtente" mnemonicParsing="false" onAction="#handlerRimuoviUtente" prefHeight="100.0" prefWidth="100.0" text="Rimuovi utente dal gruppo selezionato" />
-                              <Button fx:id="aggiungiUtente" mnemonicParsing="false" onAction="#handlerAggiungiUtente" prefHeight="100.0" prefWidth="100.0" text="Aggiungi utente nel gruppo selezionato" />
+                              <ToggleButton fx:id="rimuoviUtente" mnemonicParsing="false" onAction="#handlerRimuoviUtente" prefHeight="100.0" prefWidth="100.0" text="Rimuovi utente dal gruppo selezionato" />
+                              <ToggleButton fx:id="aggiungiUtente" mnemonicParsing="false" onAction="#handlerAggiungiUtente" prefHeight="100.0" prefWidth="100.0" text="Aggiungi utente nel gruppo selezionato" />
                            </children>
                         </VBox>
                      </children>

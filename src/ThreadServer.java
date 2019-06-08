@@ -6,6 +6,7 @@ import java.io.ObjectInputStream;
 import dominioPacchetto.Conferma;
 import dominioPacchetto.Contenuto;
 import dominioPacchetto.Inizializzazione;
+import dominioPacchetto.ListaContenuti;
 import javafx.application.Platform;
 import dominioPacchetto.ListaString;
 import dominioPacchetto.MessaggioTestuale;
@@ -92,9 +93,14 @@ public class ThreadServer implements Runnable{
 			 case LISTA_UTENTI_GRUPPO:
 			 case LISTA_UTENTI_NON:
 				 Platform.runLater( () -> {
-					 	Pacchetto p = pacchetto;
 					 	ListaString ls =  (ListaString) pacchetto.getInformazione();
 						observer.setUIGestioneUtentiGruppo((ls).getListaContenuti());
+					});
+				 break;
+			 case CONTENUTI_GRUPPO:
+				 Platform.runLater( () -> {
+					 	ListaContenuti lc =  (ListaContenuti) pacchetto.getInformazione();
+						observer.aggiornaGruppo(lc.getListaContenuti());
 					});
 				 break;
 			default:

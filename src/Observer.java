@@ -180,6 +180,14 @@ public class Observer {
 					e.printStackTrace();
 				}
 			}
+			String res = "";
+			for(Contenuto c : contenutiBacheca) {
+				MessaggioTestuale m = (MessaggioTestuale) c;
+				res += m.getMittente() + " : " + m.getMessaggio() + "\n";
+				//areeGruppi.get(destinatario).appendText(m.getMittente() + " : " + m.getMessaggio() + "\n");
+			}
+			corpoBacheca.setText(res);
+			
 			tabs.getTabs().add(tBacheca);
 			if (informazioniSessione.getGruppi() != null)
 				for (String nomeGruppo : informazioniSessione.getGruppi()) {
@@ -251,6 +259,24 @@ public class Observer {
 
 		default:
 			break;
+		}
+	}
+	
+	public void aggiornaGruppo(List<Contenuto> listaContenuti) {
+	String res = "";
+	if (!listaContenuti.isEmpty()) {
+			String destinatario = listaContenuti.get(0).getDestinario();
+			if (areeGruppi.containsKey(destinatario)) {
+				for (Contenuto c : listaContenuti) {
+					MessaggioTestuale m = (MessaggioTestuale) c;
+					areeGruppi.get(destinatario).clear();
+					res += m.getMittente() + " : " + m.getMessaggio() + "\n";
+					//areeGruppi.get(destinatario).appendText(m.getMittente() + " : " + m.getMessaggio() + "\n");
+				}
+				areeGruppi.get(destinatario).setText(res);
+			} else {
+				System.out.println("NON C'è il gruppo!");
+			}
 		}
 	}
 

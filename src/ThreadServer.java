@@ -26,8 +26,7 @@ public class ThreadServer implements Runnable{
 	 public void run() {
 	 	while(true){
 	 		try{
-	 			System.out.println("ready to spacket");
-	 			
+	 			//System.out.println("ready to spacket");
 	 			Pacchetto p = (Pacchetto) inStream.readObject();	 			
 	 			spacchetta(p);
 	 		}
@@ -41,7 +40,7 @@ public class ThreadServer implements Runnable{
 	 }
 
 	 public void spacchetta(Pacchetto pacchetto){
-		 System.out.println("spacketing");
+		// System.out.println("spacketing");
 		 switch (pacchetto.getTipo()) {
 			 case INFO_SESSIONE:
 				Inizializzazione initPack = (Inizializzazione) pacchetto.getInformazione();
@@ -73,7 +72,7 @@ public class ThreadServer implements Runnable{
 						observer.disconnessione();
 					});
 			 case CREA_GRUPPO:
-				 //é questa la aggiunta gruppo????
+				 //ï¿½ questa la aggiunta gruppo????
 				 Platform.runLater( () -> {
 						observer.aggiungiGruppo(((MessaggioTestuale)pacchetto.getInformazione()).getDestinario());
 					});

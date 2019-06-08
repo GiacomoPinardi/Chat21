@@ -28,19 +28,19 @@ public class MainClient extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		// uso costruttori vuoti solo per test
 		textPassword = new PasswordField();
 		textUser = new TextField();		
 		
 		InetAddress address = null;
 		try {
-			address = InetAddress.getByName("localhost");
+			//address = InetAddress.getByName("localhost");
+			address = InetAddress.getByName("172.20.10.5");
 		}
 		catch (UnknownHostException e1) {
 			e1.printStackTrace();
 			System.exit(1);
 		}
-		int port = 4321;		
+		int port = 55555;		
 		Socket socket = null;
 		ObjectInputStream inSocket = null;
 		ObjectOutputStream outSocket = null;

@@ -52,7 +52,7 @@ public class GruppoController implements Initializable{
 		this.nomeGruppo = (String) ((MyResourceBundleGruppo) arg1).getObject("nomeGruppo");
 		
 		// non bisogna impostare il gruppo????
-		//this.observer.setBacheca(corpoBacheca);
+		this.observer.setTextGruppo(nomeGruppo, corpoGruppo);
 		
 		this.corpoGruppo.setEditable(false);			
 	}

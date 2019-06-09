@@ -377,13 +377,7 @@ public class Observer {
 	}
 
 	public void getLog(LocalDate localDate) {
-		
-		try {
-			sockOut.writeObject(
-					new Pacchetto(new Operazione(dateTimeFormatter.format(localDate)), TipoInfo.VISUALIZZA_LOG));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		trasmettiPacchetto(new Pacchetto(new Operazione(dateTimeFormatter.format(localDate)), TipoInfo.VISUALIZZA_LOG));
 	}
 
 	public void setTextBacheca(TextArea corpoBacheca) {

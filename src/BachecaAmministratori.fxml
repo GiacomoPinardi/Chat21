@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BachecaAmministratoriController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: LIGHTSTEELBLUE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BachecaAmministratoriController">
    <children>
-      <TextArea fx:id="corpoBacheca" prefHeight="252.0" prefWidth="600.0" />
-      <HBox prefHeight="134.0" prefWidth="600.0">
+      <TextArea fx:id="corpoBacheca" prefHeight="288.0" prefWidth="586.0" wrapText="true">
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
+         <font>
+            <Font size="16.0" />
+         </font></TextArea>
+      <HBox prefHeight="88.0" prefWidth="596.0">
          <children>
-            <TextArea fx:id="inserisciBacheca" prefHeight="8.0" prefWidth="436.0" promptText="scrivi qui" />
+            <TextArea fx:id="inserisciBacheca" prefHeight="78.0" prefWidth="609.0" promptText="scrivi qui" wrapText="true">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font></TextArea>
             <VBox alignment="CENTER" prefHeight="116.0" prefWidth="164.0" spacing="20.0">
                <children>
-                  <Button fx:id="invia" mnemonicParsing="false" onAction="#handlerPubblicaInBacheca" text="Invia" />
+                  <Button fx:id="invia" mnemonicParsing="false" onAction="#handlerPubblicaInBacheca" style="-fx-background-color: CORNFLOWERBLUE;" text="Invia">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
                </children>
                <HBox.margin>
                   <Insets />

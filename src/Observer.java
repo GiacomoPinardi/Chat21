@@ -196,6 +196,8 @@ public class Observer {
 						e.printStackTrace();
 					}
 				}
+			tabs.getStylesheets().add(this.getClass().getResource("myTabStyle.css").toExternalForm());
+			tabs.getSelectionModel().select(tBacheca);
 			stage.setScene((new Scene(tabs, Color.WHITE)));
 		} else {
 			alertWindow("le credenziali non sono corrette");

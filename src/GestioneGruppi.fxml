@@ -1,49 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestioneGruppiController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LIGHTSTEELBLUE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestioneGruppiController">
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="600.0" spacing="10.0">
          <children>
             <Label text="Nome nuovo gruppo:">
                <padding>
-                  <Insets left="10.0" />
+                  <Insets left="7.0" />
                </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Label>
-            <TextField fx:id="nomeNuovoGruppo" />
-            <Button fx:id="aggiungiNuovoGruppo" mnemonicParsing="false" onAction="#handlerAggiungiNuovoGruppo" text="Aggiungi nuovo gruppo">
+            <TextField fx:id="nomeNuovoGruppo">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <Button fx:id="aggiungiNuovoGruppo" mnemonicParsing="false" onAction="#handlerAggiungiNuovoGruppo" style="-fx-background-color: CORNFLOWERBLUE;" text="Aggiungi nuovo gruppo">
                <HBox.margin>
-                  <Insets left="60.0" />
+                  <Insets />
                </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Button>
          </children>
       </HBox>
-      <HBox prefHeight="373.0" prefWidth="600.0">
+      <HBox prefHeight="373.0" prefWidth="600.0" spacing="10.0">
          <children>
-            <VBox prefHeight="337.0" prefWidth="350.0">
+            <VBox prefHeight="360.0" prefWidth="326.0" spacing="10.0">
                <children>
-                  <Label text="Elenco Gruppi" />
-                  <HBox prefHeight="280.0" prefWidth="381.0" spacing="10.0">
+                  <Label text="Elenco Gruppi">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="7.0" />
+                     </VBox.margin></Label>
+                  <HBox prefHeight="280.0" prefWidth="316.0" spacing="10.0">
                      <children>
-                        <ListView fx:id="elencoGruppi" prefHeight="280.0" prefWidth="180.0" />
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+                        <ListView fx:id="elencoGruppi" prefHeight="280.0" prefWidth="200.0">
+                           <HBox.margin>
+                              <Insets left="7.0" />
+                           </HBox.margin></ListView>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" style="-fx-background-color: LIGHTSTEELBLUE;">
                            <children>
-                              <ToggleButton fx:id="rimuoviUtente" mnemonicParsing="false" onAction="#handlerRimuoviUtente" prefHeight="100.0" prefWidth="100.0" text="Rimuovi utente dal gruppo selezionato" />
-                              <ToggleButton fx:id="aggiungiUtente" mnemonicParsing="false" onAction="#handlerAggiungiUtente" prefHeight="100.0" prefWidth="100.0" text="Aggiungi utente nel gruppo selezionato" />
+                              <ToggleButton fx:id="rimuoviUtente" mnemonicParsing="false" onAction="#handlerRimuoviUtente" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: CORNFLOWERBLUE;" text="Rimuovi utente dal gruppo selezionato" wrapText="true">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font></ToggleButton>
+                              <ToggleButton fx:id="aggiungiUtente" mnemonicParsing="false" onAction="#handlerAggiungiUtente" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: CORNFLOWERBLUE;" text="Aggiungi utente nel gruppo selezionato" wrapText="true">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font></ToggleButton>
                            </children>
                         </VBox>
                      </children>
                   </HBox>
-                  <Button fx:id="rimuoviGruppoSelezionato" mnemonicParsing="false" onAction="#handlerRimuoviGruppoSelezionato" text="Rimuovi gruppo selezionato" />
+                  <Button fx:id="rimuoviGruppoSelezionato" mnemonicParsing="false" onAction="#handlerRimuoviGruppoSelezionato" style="-fx-background-color: CORNFLOWERBLUE;" text="Rimuovi gruppo selezionato">
+                     <VBox.margin>
+                        <Insets left="7.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
                </children></VBox>
-            <VBox prefHeight="337.0" prefWidth="250.0">
+            <VBox prefHeight="360.0" prefWidth="282.0" spacing="10.0">
                <children>
-                  <Label text="Elenco degli utenti non presenti nel gruppo" />
-                  <ListView fx:id="elencoUtenti" prefHeight="302.0" prefWidth="249.0" />
+                  <Label fx:id="nomeLista">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <ListView fx:id="elencoUtenti" maxWidth="250.0" prefHeight="280.0" prefWidth="200.0" />
                </children>
             </VBox>
          </children>

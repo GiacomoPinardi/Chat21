@@ -1,32 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GruppoController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: LIGHTSTEELBLUE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GruppoController">
    <children>
-      <TextArea fx:id="corpoGruppo" prefHeight="284.0" prefWidth="596.0" />
-      <Button fx:id="richiediContenuti" mnemonicParsing="false" onAction="#handlerRichiediContenuti" text="Richiedi contenuti">
+      <TextArea fx:id="corpoGruppo" prefHeight="292.0" prefWidth="582.0">
          <VBox.margin>
-            <Insets bottom="-8.0" left="480.0" top="-8.0" />
+            <Insets left="7.0" right="7.0" top="7.0" />
          </VBox.margin>
-      </Button>
+         <font>
+            <Font size="16.0" />
+         </font></TextArea>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <TextArea fx:id="textInvia" prefHeight="98.0" prefWidth="450.0" promptText="scrivi qui">
+            <TextArea fx:id="textInvia" prefHeight="88.0" prefWidth="450.0" promptText="scrivi qui">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <HBox.margin>
-                  <Insets bottom="2.0" />
+                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </HBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
             </TextArea>
-            <VBox alignment="CENTER" prefHeight="98.0" prefWidth="150.0" spacing="15.0">
+            <VBox alignment="CENTER" prefHeight="98.0" prefWidth="150.0" spacing="10.0">
                <children>
-                  <Button fx:id="invia" mnemonicParsing="false" onAction="#handlerInvia" text="Invia" />
+                  <Button fx:id="invia" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#handlerInvia" style="-fx-background-color: CORNFLOWERBLUE;" text="Invia">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="richiediContenuti" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#handlerRichiediContenuti" style="-fx-background-color: CORNFLOWERBLUE;" text="Richiedi contenuti">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </VBox>
          </children>

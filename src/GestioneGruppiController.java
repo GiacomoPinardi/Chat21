@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -25,6 +26,8 @@ public class GestioneGruppiController implements Initializable {
 	private Button rimuoviGruppoSelezionato;
 	@FXML
 	private ListView<String> elencoUtenti;
+	@FXML
+	private Label nomeLista;
 	
 	private Observer observer;
 
@@ -42,6 +45,7 @@ public class GestioneGruppiController implements Initializable {
 		
 		if (rimuoviUtente.isSelected()) {
 			if (elencoGruppi.getSelectionModel().getSelectedIndex() >= 0) {
+				nomeLista.setText("Utenti assenti dal gruppo "+ elencoGruppi.getSelectionModel().getSelectedItem());
 				observer.richiediUtentiGruppo(elencoGruppi.getSelectionModel().getSelectedItem());
 			}
 			else {
@@ -57,6 +61,7 @@ public class GestioneGruppiController implements Initializable {
 		
 		if (aggiungiUtente.isSelected()) {
 			if (elencoGruppi.getSelectionModel().getSelectedIndex() >= 0) {
+				nomeLista.setText("Utenti assenti dal gruppo "+ elencoGruppi.getSelectionModel().getSelectedItem());
 				observer.richiediUtentiNonInGruppo(elencoGruppi.getSelectionModel().getSelectedItem());
 			}
 			else {

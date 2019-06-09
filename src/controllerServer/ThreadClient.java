@@ -152,7 +152,7 @@ public class ThreadClient implements Runnable {
 						break;
 					case DISCONNETTI:
 						ca.disconnetti(executor);
-						cl.addEntry(executor + " si è disconnesso");
+						cl.addEntry(executor + " si e' disconnesso");
 						executor = "UNKNOWN";
 						break;
 					case VISUALIZZA_LOG:
@@ -169,7 +169,7 @@ public class ThreadClient implements Runnable {
 			if (!executor.equals("UNKNOWN")) {
 				System.out.println("Client " + executor + " disconnesso in modo inaspettato!");
 				ca.disconnetti(executor);
-				cl.addEntry(executor + " si è disconnesso in modo inaspettato");
+				cl.addEntry(executor + " si e' disconnesso in modo inaspettato");
 				executor = "UNKNOWN";
 			}
 		}

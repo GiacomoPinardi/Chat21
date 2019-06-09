@@ -76,6 +76,8 @@ public class ImpostazioniAmministratoreController implements Initializable {
 			observer.aggiungiUtente(usernameNuovoUtente.getText(), passwordNuovoUtente.getText(), "AMMINISTRATORE");
 		else
 			observer.aggiungiUtente(usernameNuovoUtente.getText(), passwordNuovoUtente.getText(), "UTENTE");
+		usernameNuovoUtente.clear();
+		passwordNuovoUtente.clear();
 		observer.richiediUtenti();
 	}
 

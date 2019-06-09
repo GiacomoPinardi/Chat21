@@ -57,10 +57,10 @@ public class ControllerGestioneUtenti {
 	private void invioConferma(String operazione, boolean esito, String executor) {
 		String res;
 		if (esito) {
-			res = "l'operazione " + operazione + " è andata a buon fine";
+			res = "l'operazione " + operazione + " e' andata a buon fine";
 		}
 		else {
-			res = "l'operazione " + operazione + " non è andata a buon fine";
+			res = "l'operazione " + operazione + " non e' andata a buon fine";
 		}
 		utenti.lockList();
 		utenti.getByUsername(executor).invia(new Pacchetto(new Conferma(res) , TipoInfo.CONFERMA));

@@ -7,14 +7,21 @@ import java.net.UnknownHostException;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class MainClient extends Application {
@@ -29,6 +36,8 @@ public class MainClient extends Application {
 	public void start(Stage stage) throws Exception {
 		textPassword = new PasswordField();
 		textUser = new TextField();		
+		textUser.setFont(new Font(14));
+		textPassword.setFont(new Font(14));
 		
 		InetAddress address = null;
 		try {
@@ -67,17 +76,32 @@ public class MainClient extends Application {
 		this.stage = stage;
 		this.stage.setTitle("Chat21");
 		VBox login = new VBox();
+		login.setBackground(new Background(new BackgroundFill(Color.LIGHTSTEELBLUE, null, null)));
+		login.setMinHeight(400);
+		login.setMinWidth(600);
+		login.setAlignment(Pos.CENTER);
+		login.setSpacing(10);
 		Label chat21 = new Label("Chat21");
+		chat21.setFont(new Font(50));
+		chat21.setPadding(new Insets(-30, 0, 0, 0));
 		login.getChildren().add(chat21);
 		HBox user = new HBox();
+		user.setAlignment(Pos.CENTER);
+		user.setSpacing(10);
 		Label userName = new Label("Username:");
+		userName.setFont(new Font(14));
 		user.getChildren().addAll(userName, textUser);
 		login.getChildren().add(user);
 		HBox psw = new HBox();
+		psw.setAlignment(Pos.CENTER);
+		psw.setSpacing(12);
 		Label password = new Label("Password:");
+		password.setFont(new Font(14));
 		psw.getChildren().addAll(password, textPassword);
 		login.getChildren().add(psw);
 		Button accedi = new Button("Accedi");
+		accedi.setFont(new Font(14));
+		accedi.setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, null, null)));
 		accedi.setOnAction(this::accediHandle);
 		login.getChildren().add(accedi);
 		Scene scene = new Scene(login, Color.WHITE);

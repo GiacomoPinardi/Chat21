@@ -111,9 +111,9 @@ public class ControllerGestioneGruppi {
 	private void invioConferma(String operazione, boolean esito, String executor) {
 		String res;
 		if (esito)
-			res = "l'operazione " + operazione + " è andata buonfine";
+			res = "l'operazione " + operazione + " e' andata buonfine";
 		else
-			res = "l'operazione " + operazione + " non è andata buonfine";
+			res = "l'operazione " + operazione + " non e' andata buonfine";
 		utenti.lockList();
 		utenti.getByUsername(executor).invia(new Pacchetto(new Conferma(res) , TipoInfo.CONFERMA));
 		utenti.unlockList();

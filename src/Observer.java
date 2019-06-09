@@ -134,15 +134,9 @@ public class Observer {
 			Tab tBacheca = new Tab("Bacheca");
 			tBacheca.setClosable(false);
 			
-			tImpostazioni.setOnSelectionChanged(new EventHandler<Event>() {	
-				@Override
-				public void handle(Event event) {
-					richiediUtenti();
-				}
-			});
-			
 			tabs.getTabs().add(tImpostazioni);
 			if (informazioniSessione.getRuolo() == Ruolo.AMMINISTRATORE) {
+				
 				Tab tGestioneGruppi = new Tab("GestioneGruppi");
 				tGestioneGruppi.setClosable(false);
 				try {
@@ -162,6 +156,13 @@ public class Observer {
 						richiediGruppi();
 					}
 				});
+				tImpostazioni.setOnSelectionChanged(new EventHandler<Event>() {	
+					@Override
+					public void handle(Event event) {
+						richiediUtenti();
+					}
+				});
+				richiediUtenti();
 				tabs.getTabs().add(tGestioneGruppi);
 			} else {
 				try {
@@ -197,7 +198,8 @@ public class Observer {
 				}
 			stage.setScene((new Scene(tabs, Color.WHITE)));
 		} else {
-			// accesso fallito mostra di nuovo la scena di login
+			alertWindow("le credenziali non sono corrette");
+			
 			textUser.clear();
 			textPassword.clear();
 		}
@@ -420,9 +422,11 @@ public class Observer {
 					String username = listaUtentiGruppo.getSelectionModel().getSelectedItem();
 					if (aggEli) {
 						trasmettiPacchetto(new Pacchetto(new Operazione(nomeGruppo, username), TipoInfo.AGG_UTENTE_GRUPPO));
+						richiediUtentiNonInGruppo(nomeGruppo);
 					}
 					else {
 						trasmettiPacchetto(new Pacchetto(new Operazione(nomeGruppo, username), TipoInfo.ELIMINA_UTENTE_GRUPPO));
+						richiediContenutiGruppo(nomeGruppo);
 					}
 				}
 			}

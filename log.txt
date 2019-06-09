@@ -131,3 +131,31 @@
 [2019/06/08-23:06]: Mario prova ad accedere: successo
 [2019/06/08-23:10]: Mario prova ad accedere: successo
 [2019/06/08-23:12]: Mario prova ad accedere: successo
+[2019/06/09-09:41]: Carlo prova ad accedere: successo
+[2019/06/09-09:44]: Carlo si è disconnesso in modo inaspettato
+[2019/06/09-09:44]: Carlo prova ad accedere: successo
+[2019/06/09-09:49]: Carlo si è disconnesso in modo inaspettato
+[2019/06/09-09:52]: Carlo prova ad accedere: successo
+[2019/06/09-09:52]: Carlo si è disconnesso
+[2019/06/09-09:52]: Mario prova ad accedere: successo
+[2019/06/09-09:53]: Mario ha eliminato il gruppo Gruppo2
+[2019/06/09-09:53]: Mario si è disconnesso
+[2019/06/09-09:53]: Mario prova ad accedere: successo
+[2019/06/09-09:53]: Mario si è disconnesso
+[2019/06/09-09:53]: Mario prova ad accedere: successo
+[2019/06/09-09:54]: Mario si è disconnesso
+[2019/06/09-09:57]: UNKNOWN prova ad accedere: fallito
+[2019/06/09-09:59]: UNKNOWN prova ad accedere: fallito
+[2019/06/09-09:59]: Mario prova ad accedere: successo
+[2019/06/09-09:59]: Mario ha eliminato dal gruppo Gruppo1 l'utente Carlo
+[2019/06/09-10:00]: Mario si è disconnesso in modo inaspettato
+[2019/06/09-10:00]: Mario prova ad accedere: successo
+[2019/06/09-10:01]: Mario ha eliminato l'utente Carlo
+[2019/06/09-10:01]: Mario ha eliminato dal gruppo Gruppo1 l'utente Mario
+[2019/06/09-10:04]: Mario si è disconnesso in modo inaspettato
+[2019/06/09-10:04]: Mario prova ad accedere: successo
+[2019/06/09-10:05]: Mario ha aggiunto al gruppo Gruppo2 l'utente Carlo
+[2019/06/09-10:05]: Mario ha eliminato dal gruppo Gruppo2 l'utente Carlo
+[2019/06/09-10:06]: Mario si è disconnesso in modo inaspettato
+[2019/06/09-10:06]: Mario prova ad accedere: successo
+[2019/06/09-10:06]: Mario ha eliminato l'utente Carlo

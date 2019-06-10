@@ -302,3 +302,19 @@
 [2019/06/10-09:58]: Mario si e' disconnesso
 [2019/06/10-10:01]: Mario prova ad accedere: successo
 >>>>>>> branch 'master' of https://github.com/GiacomoPinardi/Chat21.git
+[2019/06/10-14:43]: UNKNOWN prova ad accedere: fallito
+[2019/06/10-14:43]: UNKNOWN prova ad accedere: fallito
+[2019/06/10-14:43]: UNKNOWN prova ad accedere: fallito
+[2019/06/10-14:43]: UNKNOWN prova ad accedere: fallito
+[2019/06/10-14:43]: UNKNOWN prova ad accedere: fallito
+[2019/06/10-14:43]: UNKNOWN prova ad accedere: fallito
+[2019/06/10-14:46]: UNKNOWN prova ad accedere: fallito
+[2019/06/10-15:17]: Carlo prova ad accedere: successo
+[2019/06/10-15:17]: Carlo si e' disconnesso
+[2019/06/10-15:17]: Mario prova ad accedere: successo
+[2019/06/10-15:18]: Mario ha aggiunto l'utente bho
+[2019/06/10-15:18]: Mario ha aggiunto al gruppo Gruppo2 l'utente bho
+[2019/06/10-15:18]: Mario si e' disconnesso
+[2019/06/10-15:19]: Mario prova ad accedere: successo
+[2019/06/10-15:19]: Mario ha eliminato dal gruppo Gruppo2 l'utente bho
+[2019/06/10-15:19]: Mario si e' disconnesso

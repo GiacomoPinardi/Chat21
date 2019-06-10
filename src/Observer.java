@@ -422,6 +422,7 @@ public class Observer {
 					}
 					else {
 						trasmettiPacchetto(new Pacchetto(new Operazione(nomeGruppo, username), TipoInfo.ELIMINA_UTENTE_GRUPPO));
+						listaUtentiGruppo.getItems().remove(username);
 						richiediContenutiGruppo(nomeGruppo);
 					}
 				}

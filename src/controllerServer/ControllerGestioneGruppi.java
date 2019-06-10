@@ -57,8 +57,9 @@ public class ControllerGestioneGruppi {
 		boolean esito = gruppi.getByNome(nomeGruppo).eliminaUtente(username);
 		invioConferma("elimina utente da gruppo", esito, executor);
 		gruppi.unlockList();
-		if (esito)
+		if (esito) {
 			dbConnection.eliminaUtenteGruppo(nomeGruppo, username);
+		}
 		return esito;
 	}
 	

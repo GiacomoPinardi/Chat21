@@ -73,7 +73,7 @@
                </children></VBox>
             <VBox prefHeight="360.0" prefWidth="282.0" spacing="10.0">
                <children>
-                  <Label fx:id="nomeLista">
+                  <Label fx:id="nomeLista" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font></Label>

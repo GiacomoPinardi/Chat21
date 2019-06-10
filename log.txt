@@ -236,3 +236,47 @@
 [2019/06/10-11:20]: Mario ha aggiunto al gruppo test l'utente bho
 [2019/06/10-11:21]: Mario ha eliminato dal gruppo test l'utente bho
 [2019/06/10-11:21]: Mario ha aggiunto al gruppo test l'utente bho
+[2019/06/10-11:32]: Mario prova ad accedere: successo
+[2019/06/10-11:34]: Mario si e' disconnesso
+[2019/06/10-11:34]: bho prova ad accedere: successo
+[2019/06/10-11:34]: bho si e' disconnesso
+[2019/06/10-11:34]: Mario prova ad accedere: successo
+[2019/06/10-11:35]: Mario si e' disconnesso
+[2019/06/10-11:44]: Mario prova ad accedere: successo
+[2019/06/10-12:05]: Mario prova ad accedere: successo
+[2019/06/10-12:08]: UNKNOWN prova ad accedere: fallito
+[2019/06/10-12:08]: Mario prova ad accedere: successo
+[2019/06/10-12:11]: Mario si e' disconnesso
+[2019/06/10-12:15]: Mario prova ad accedere: successo
+[2019/06/10-12:18]: Mario prova ad accedere: successo
+[2019/06/10-12:18]: Mario ha eliminato dal gruppo Gruppo1 l'utente bho
+[2019/06/10-12:20]: Mario prova ad accedere: successo
+[2019/06/10-12:20]: Mario ha aggiunto al gruppo Gruppo1 l'utente bho
+[2019/06/10-12:20]: Mario si e' disconnesso
+[2019/06/10-12:22]: Mario prova ad accedere: successo
+[2019/06/10-12:22]: Mario ha eliminato dal gruppo Gruppo1 l'utente bho
+[2019/06/10-12:24]: Mario prova ad accedere: successo
+[2019/06/10-12:38]: Mario prova ad accedere: successo
+[2019/06/10-12:39]: Mario prova ad accedere: successo
+[2019/06/10-12:41]: Mario prova ad accedere: successo
+[2019/06/10-12:57]: Mario ha eliminato dal gruppo test l'utente bho
+[2019/06/10-13:53]: Mario prova ad accedere: successo
+[2019/06/10-13:53]: Mario ha eliminato dal gruppo Gruppo2 l'utente bho
+[2019/06/10-13:53]: Mario ha aggiunto al gruppo Gruppo2 l'utente bho
+[2019/06/10-13:53]: Mario ha eliminato dal gruppo Gruppo2 l'utente bho
+[2019/06/10-13:56]: Mario prova ad accedere: successo
+[2019/06/10-13:56]: Mario ha aggiunto al gruppo Gruppo2 l'utente bho
+[2019/06/10-13:57]: Mario prova ad accedere: successo
+[2019/06/10-13:59]: Mario ha eliminato dal gruppo Gruppo1 l'utente admin
+[2019/06/10-14:04]: Mario ha aggiunto al gruppo Gruppo1 l'utente admin
+[2019/06/10-14:09]: Mario ha eliminato dal gruppo Gruppo1 l'utente admin
+[2019/06/10-14:09]: Mario prova ad accedere: successo
+[2019/06/10-14:10]: Mario ha aggiunto al gruppo test l'utente bho
+[2019/06/10-14:16]: Mario ha aggiunto al gruppo test l'utente admin
+[2019/06/10-14:23]: Mario prova ad accedere: successo
+[2019/06/10-14:23]: Mario ha eliminato dal gruppo test l'utente bho
+[2019/06/10-14:23]: Mario prova ad accedere: successo
+[2019/06/10-14:24]: Mario ha aggiunto al gruppo test l'utente bho
+[2019/06/10-14:24]: Mario si e' disconnesso
+[2019/06/10-14:24]: Mario prova ad accedere: successo
+[2019/06/10-14:24]: Mario ha eliminato dal gruppo test l'utente admin

@@ -45,8 +45,9 @@ public class GestioneGruppiController implements Initializable {
 		aggiungiUtente.setSelected(false);
 		
 		if (rimuoviUtente.isSelected()) {
+			rimuoviUtente.setSelected(false);
 			if (elencoGruppi.getSelectionModel().getSelectedIndex() >= 0) {
-				nomeLista.setText("Utenti assenti dal gruppo "+ elencoGruppi.getSelectionModel().getSelectedItem());
+				nomeLista.setText("Doppio click per rimuovere dal gruppo "+ elencoGruppi.getSelectionModel().getSelectedItem());
 				observer.richiediUtentiGruppo(elencoGruppi.getSelectionModel().getSelectedItem());
 			}
 			else {
@@ -61,8 +62,9 @@ public class GestioneGruppiController implements Initializable {
 		rimuoviUtente.setSelected(false);
 		
 		if (aggiungiUtente.isSelected()) {
+			aggiungiUtente.setSelected(false);
 			if (elencoGruppi.getSelectionModel().getSelectedIndex() >= 0) {
-				nomeLista.setText("Utenti assenti dal gruppo "+ elencoGruppi.getSelectionModel().getSelectedItem());
+				nomeLista.setText("Doppio click per aggiungere al gruppo "+ elencoGruppi.getSelectionModel().getSelectedItem());
 				observer.richiediUtentiNonInGruppo(elencoGruppi.getSelectionModel().getSelectedItem());
 			}
 			else {

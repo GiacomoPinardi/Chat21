@@ -31,11 +31,11 @@
             </TextArea>
             <VBox alignment="CENTER" prefHeight="98.0" prefWidth="150.0" spacing="10.0">
                <children>
-                  <Button fx:id="invia" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#handlerInvia" style="-fx-background-color: CORNFLOWERBLUE;" text="Invia">
+                  <Button fx:id="invia" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#handlerInvia" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Invia">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button fx:id="richiediContenuti" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#handlerRichiediContenuti" style="-fx-background-color: CORNFLOWERBLUE;" text="Richiedi contenuti">
+                  <Button fx:id="richiediContenuti" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#handlerRichiediContenuti" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Richiedi contenuti">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>

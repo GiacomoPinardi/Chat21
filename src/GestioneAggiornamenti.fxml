@@ -1,8 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
-
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: LIGHTSTEELBLUE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestioneAggiornamentiController">
+   <children>
+      <Label text="Gestione Aggiornamenti">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="versioneInstallata" text="Versione installata: 1.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="versioneDisponibile" text="Versione disponibile: 1.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="aggiorna" mnemonicParsing="false" onAction="#aggiornaHandler" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: Black;" text="Aggiorna">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="verificaAggiornamenti" mnemonicParsing="false" onAction="#verificaAggiornamentiHandler" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Verifica aggiornamenti">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+</VBox>

@@ -22,7 +22,7 @@
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <Button fx:id="aggiungiNuovoGruppo" mnemonicParsing="false" onAction="#handlerAggiungiNuovoGruppo" style="-fx-background-color: CORNFLOWERBLUE;" text="Aggiungi nuovo gruppo">
+            <Button fx:id="aggiungiNuovoGruppo" mnemonicParsing="false" onAction="#handlerAggiungiNuovoGruppo" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Aggiungi nuovo gruppo">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -51,11 +51,11 @@
                            </HBox.margin></ListView>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" style="-fx-background-color: LIGHTSTEELBLUE;">
                            <children>
-                              <ToggleButton fx:id="rimuoviUtente" mnemonicParsing="false" onAction="#handlerRimuoviUtente" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: CORNFLOWERBLUE;" text="Rimuovi utente dal gruppo selezionato" wrapText="true">
+                              <ToggleButton fx:id="rimuoviUtente" mnemonicParsing="false" onAction="#handlerRimuoviUtente" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Rimuovi utente dal gruppo selezionato" wrapText="true">
                                  <font>
                                     <Font size="13.0" />
                                  </font></ToggleButton>
-                              <ToggleButton fx:id="aggiungiUtente" mnemonicParsing="false" onAction="#handlerAggiungiUtente" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: CORNFLOWERBLUE;" text="Aggiungi utente nel gruppo selezionato" wrapText="true">
+                              <ToggleButton fx:id="aggiungiUtente" mnemonicParsing="false" onAction="#handlerAggiungiUtente" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Aggiungi utente nel gruppo selezionato" wrapText="true">
                                  <font>
                                     <Font size="13.0" />
                                  </font></ToggleButton>
@@ -63,7 +63,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <Button fx:id="rimuoviGruppoSelezionato" mnemonicParsing="false" onAction="#handlerRimuoviGruppoSelezionato" style="-fx-background-color: CORNFLOWERBLUE;" text="Rimuovi gruppo selezionato">
+                  <Button fx:id="rimuoviGruppoSelezionato" mnemonicParsing="false" onAction="#handlerRimuoviGruppoSelezionato" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Rimuovi gruppo selezionato">
                      <VBox.margin>
                         <Insets left="7.0" />
                      </VBox.margin>

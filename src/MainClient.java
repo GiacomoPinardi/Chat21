@@ -18,6 +18,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -102,6 +104,7 @@ public class MainClient extends Application {
 		Button accedi = new Button("Accedi");
 		accedi.setFont(new Font(14));
 		accedi.setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, null, null)));
+		accedi.setStyle("-fx-border-color: black;");
 		accedi.setOnAction(this::accediHandle);
 		login.getChildren().add(accedi);
 		Scene scene = new Scene(login, Color.WHITE);

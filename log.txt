@@ -159,3 +159,57 @@
 [2019/06/09-10:06]: Mario si è disconnesso in modo inaspettato
 [2019/06/09-10:06]: Mario prova ad accedere: successo
 [2019/06/09-10:06]: Mario ha eliminato l'utente Carlo
+[2019/06/09-22:01]: Mario prova ad accedere: successo
+[2019/06/09-22:01]: Mario ha aggiunto l'utente Carlo
+[2019/06/09-22:04]: Carlo prova ad accedere: successo
+[2019/06/09-22:04]: Carlo si è disconnesso
+[2019/06/09-22:04]: UNKNOWN prova ad accedere: fallito
+[2019/06/09-22:05]: UNKNOWN prova ad accedere: fallito
+[2019/06/09-22:07]: Carlo prova ad accedere: successo
+[2019/06/09-22:08]: UNKNOWN prova ad accedere: fallito
+[2019/06/09-22:08]: Mario prova ad accedere: successo
+[2019/06/09-22:08]: Mario ha aggiunto l'utente admin
+[2019/06/09-22:08]: Mario ha eliminato l'utente Carlo
+[2019/06/09-22:12]: UNKNOWN prova ad accedere: fallito
+[2019/06/09-22:12]: admin prova ad accedere: successo
+[2019/06/09-22:12]: admin ha aggiunto l'utente bho
+[2019/06/09-22:14]: admin ha aggiunto al gruppo Gruppo1 l'utente admin
+[2019/06/09-22:20]: Mario prova ad accedere: successo
+[2019/06/09-22:27]: Mario prova ad accedere: successo
+[2019/06/09-22:55]: UNKNOWN prova ad accedere: fallito
+[2019/06/09-22:55]: Mario prova ad accedere: successo
+[2019/06/09-23:23]: admin prova ad accedere: successo
+[2019/06/09-23:56]: UNKNOWN prova ad accedere: fallito
+[2019/06/10-00:12]: UNKNOWN prova ad accedere: fallito
+[2019/06/10-00:12]: Mario prova ad accedere: successo
+[2019/06/10-00:14]: Mario prova ad accedere: successo
+[2019/06/10-00:14]: bho prova ad accedere: successo
+[2019/06/10-00:15]: bho prova ad accedere: successo
+[2019/06/10-00:16]: bho si è disconnesso
+[2019/06/10-00:43]: Mario prova ad accedere: successo
+[2019/06/10-00:44]: Mario ha modificato la password: fallito
+[2019/06/10-00:45]: Mario ha aggiunto al gruppo Gruppo2 l'utente bho
+[2019/06/10-00:46]: bho prova ad accedere: successo
+[2019/06/10-00:47]: bho si è disconnesso
+[2019/06/10-00:47]: bho prova ad accedere: successo
+[2019/06/10-00:49]: admin prova ad accedere: successo
+[2019/06/10-00:55]: admin prova ad accedere: successo
+[2019/06/10-00:57]: admin ha aggiunto al gruppo Gruppo1 l'utente bho
+[2019/06/10-01:01]: admin prova ad accedere: successo
+[2019/06/10-01:03]: admin ha eliminato dal gruppo Gruppo1 l'utente bho
+[2019/06/10-01:04]: admin si è disconnesso
+[2019/06/10-01:05]: admin prova ad accedere: successo
+[2019/06/10-01:09]: admin si è disconnesso
+[2019/06/10-01:09]: admin prova ad accedere: successo
+[2019/06/10-01:09]: admin ha aggiunto al gruppo Gruppo1 l'utente bho
+[2019/06/10-01:10]: admin ha eliminato dal gruppo Gruppo1 l'utente bho
+[2019/06/10-01:11]: admin ha aggiunto al gruppo Gruppo1 l'utente bho
+[2019/06/10-01:11]: admin ha eliminato dal gruppo Gruppo1 l'utente bho
+[2019/06/10-01:12]: admin ha aggiunto al gruppo Gruppo1 l'utente bho
+[2019/06/10-01:18]: UNKNOWN prova ad accedere: fallito
+[2019/06/10-01:18]: admin prova ad accedere: successo
+[2019/06/10-01:40]: admin si è disconnesso
+[2019/06/10-01:52]: bho prova ad accedere: successo
+[2019/06/10-01:57]: UNKNOWN prova ad accedere: fallito
+[2019/06/10-02:01]: bho prova ad accedere: successo
+[2019/06/10-02:02]: bho prova ad accedere: successo

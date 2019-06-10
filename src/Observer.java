@@ -133,7 +133,13 @@ public class Observer {
 			tImpostazioni.setClosable(false);
 			Tab tBacheca = new Tab("Bacheca");
 			tBacheca.setClosable(false);
-			
+			Tab tGestioneAggiornamenti=new Tab("GestioneAggiornamenti");
+			try {
+				tGestioneAggiornamenti.setContent(FXMLLoader.load(getClass().getResource("GestioneAggiornamenti.fxml"), bundleInit));
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
+			tGestioneAggiornamenti.setClosable(false);
 			tabs.getTabs().add(tImpostazioni);
 			if (informazioniSessione.getRuolo() == Ruolo.AMMINISTRATORE) {
 				
@@ -180,7 +186,7 @@ public class Observer {
 				//areeGruppi.get(destinatario).appendText(m.getMittente() + " : " + m.getMessaggio() + "\n");
 			}
 			corpoBacheca.setText(res);
-			
+			tabs.getTabs().add(tGestioneAggiornamenti);
 			tabs.getTabs().add(tBacheca);
 			if (informazioniSessione.getGruppi() != null)
 				for (String nomeGruppo : informazioniSessione.getGruppi()) {

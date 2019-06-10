@@ -235,7 +235,6 @@ public class Observer {
 	public synchronized void aggiungiContenuto(Contenuto contenuto) {
 		switch (contenuto.getTipoDestinatario()) {
 		case GRUPPO:
-
 			String destinatario = contenuto.getDestinario();
 			if (areeGruppi.containsKey(destinatario)) {
 				MessaggioTestuale m = (MessaggioTestuale) contenuto;

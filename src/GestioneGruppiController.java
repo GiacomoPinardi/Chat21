@@ -35,6 +35,7 @@ public class GestioneGruppiController implements Initializable {
 	@FXML
 	public void handlerAggiungiNuovoGruppo(ActionEvent event) {
 		observer.creaGruppo(nomeNuovoGruppo.getText());
+		nomeNuovoGruppo.clear();
 		observer.richiediGruppi();
 	}
 

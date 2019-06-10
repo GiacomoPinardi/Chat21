@@ -44,6 +44,8 @@ public class ImpostazioniAmministratoreController implements Initializable {
 	private Button richiediAnalisiLog;
 	@FXML
 	private TextArea textLog;
+	@FXML
+	private Button gestisciAggiornamenti;
 
 	private Observer observer;
 
@@ -94,8 +96,8 @@ public class ImpostazioniAmministratoreController implements Initializable {
 		observer.getLog(dataLog.getValue());
 	}
 	@FXML
-	public void handlerRichiediAnalisiLog () {
-		
+	public void handlerGestisciAggiornamenti (ActionEvent event) {
+		observer.gestioneAggiornamenti();
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

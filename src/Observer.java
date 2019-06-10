@@ -28,7 +28,10 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class Observer {
@@ -133,13 +136,6 @@ public class Observer {
 			tImpostazioni.setClosable(false);
 			Tab tBacheca = new Tab("Bacheca");
 			tBacheca.setClosable(false);
-			Tab tGestioneAggiornamenti=new Tab("GestioneAggiornamenti");
-			try {
-				tGestioneAggiornamenti.setContent(FXMLLoader.load(getClass().getResource("GestioneAggiornamenti.fxml"), bundleInit));
-			} catch (IOException e2) {
-				e2.printStackTrace();
-			}
-			tGestioneAggiornamenti.setClosable(false);
 			tabs.getTabs().add(tImpostazioni);
 			if (informazioniSessione.getRuolo() == Ruolo.AMMINISTRATORE) {
 				
@@ -186,7 +182,6 @@ public class Observer {
 				//areeGruppi.get(destinatario).appendText(m.getMittente() + " : " + m.getMessaggio() + "\n");
 			}
 			corpoBacheca.setText(res);
-			tabs.getTabs().add(tGestioneAggiornamenti);
 			tabs.getTabs().add(tBacheca);
 			if (informazioniSessione.getGruppi() != null)
 				for (String nomeGruppo : informazioniSessione.getGruppi()) {
@@ -433,5 +428,21 @@ public class Observer {
 				}
 			}
 		});
+	}
+
+	public void gestioneAggiornamenti() {
+		final Stage gestioneAggiornamenti = new Stage();
+        gestioneAggiornamenti.initModality(Modality.APPLICATION_MODAL);
+        gestioneAggiornamenti.initOwner(stage);
+        MyResourceBundle bundleInit = new MyResourceBundle(this, informazioniSessione);
+        Scene dialogScene=null;
+		try {
+			dialogScene = new Scene(FXMLLoader.load(getClass().getResource("GestioneAggiornamenti.fxml"), bundleInit));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        gestioneAggiornamenti.setScene(dialogScene);
+        gestioneAggiornamenti.show();
 	}
 }

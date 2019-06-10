@@ -213,3 +213,26 @@
 [2019/06/10-01:57]: UNKNOWN prova ad accedere: fallito
 [2019/06/10-02:01]: bho prova ad accedere: successo
 [2019/06/10-02:02]: bho prova ad accedere: successo
+[2019/06/10-10:46]: bho prova ad accedere: successo
+[2019/06/10-10:46]: bho si e' disconnesso
+[2019/06/10-10:46]: UNKNOWN prova ad accedere: fallito
+[2019/06/10-10:48]: bho prova ad accedere: successo
+[2019/06/10-10:48]: bho si e' disconnesso
+[2019/06/10-10:48]: UNKNOWN prova ad accedere: fallito
+[2019/06/10-10:52]: bho prova ad accedere: successo
+[2019/06/10-10:52]: bho si e' disconnesso
+[2019/06/10-10:52]: UNKNOWN prova ad accedere: fallito
+[2019/06/10-10:53]: Mario prova ad accedere: successo
+[2019/06/10-11:12]: bho prova ad accedere: successo
+[2019/06/10-11:13]: UNKNOWN prova ad accedere: fallito
+[2019/06/10-11:14]: bho prova ad accedere: successo
+[2019/06/10-11:19]: bho prova ad accedere: successo
+[2019/06/10-11:19]: bho si e' disconnesso
+[2019/06/10-11:19]: UNKNOWN prova ad accedere: fallito
+[2019/06/10-11:19]: Mario prova ad accedere: successo
+[2019/06/10-11:20]: Mario ha creato il gruppo test
+[2019/06/10-11:20]: Mario ha aggiunto al gruppo test l'utente bho
+[2019/06/10-11:20]: Mario ha eliminato dal gruppo test l'utente bho
+[2019/06/10-11:20]: Mario ha aggiunto al gruppo test l'utente bho
+[2019/06/10-11:21]: Mario ha eliminato dal gruppo test l'utente bho
+[2019/06/10-11:21]: Mario ha aggiunto al gruppo test l'utente bho

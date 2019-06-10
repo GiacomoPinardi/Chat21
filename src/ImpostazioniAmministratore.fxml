@@ -9,11 +9,20 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: LIGHTSTEELBLUE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ImpostazioniAmministratoreController">
    <children>
-      <Button fx:id="effettuaDisconnesione" mnemonicParsing="false" onAction="#handlerEffettuaDisconnesione" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Effettua Disconnesione">
-         <VBox.margin>
-            <Insets left="7.0" top="10.0" />
-         </VBox.margin>
-      </Button>
+      <HBox prefHeight="43.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="effettuaDisconnesione" mnemonicParsing="false" onAction="#handlerEffettuaDisconnesione" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Effettua Disconnesione">
+               <HBox.margin>
+                  <Insets left="7.0" top="7.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="gestisciAggiornamenti" mnemonicParsing="false" onAction="#handlerGestisciAggiornamenti" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Gestisci Aggiornamenti">
+               <HBox.margin>
+                  <Insets left="20.0" top="7.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
       <Line endX="500.0" startX="-100.0">
          <VBox.margin>
             <Insets top="-5.0" />

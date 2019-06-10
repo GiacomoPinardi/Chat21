@@ -22,6 +22,8 @@ public class ImpostazioniUtenteController implements Initializable{
 	private PasswordField ripetiNuovaPassword;
 	@FXML
 	private Button modificaPassword;
+	@FXML
+	private Button gestisciAggiornamenti;
 	
 	private Observer observer;
 
@@ -44,6 +46,10 @@ public class ImpostazioniUtenteController implements Initializable{
 			nuovaPassword.clear();
 			ripetiNuovaPassword.clear();
 		}
+	}
+	@FXML
+	public void handlerGestisciAggiornamenti(ActionEvent event) {
+		observer.gestioneAggiornamenti();
 	}
 
 	@Override

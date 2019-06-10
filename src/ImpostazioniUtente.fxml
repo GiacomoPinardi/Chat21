@@ -8,14 +8,29 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: LIGHTSTEELBLUE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ImpostazioniUtenteController">
    <children>
-      <Button fx:id="effettuaDisconnesione" mnemonicParsing="false" onAction="#handlerEffettuaDisconnesione" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Effettua Disconnesione">
+      <HBox prefHeight="34.0" prefWidth="593.0" spacing="20.0">
+         <children>
+            <Button fx:id="effettuaDisconnesione" mnemonicParsing="false" onAction="#handlerEffettuaDisconnesione" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Effettua Disconnesione">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="5.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="gestisciAggiornamenti" mnemonicParsing="false" onAction="#handlerGestisciAggiornamenti" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Gestisci Aggiornamenti">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
          <VBox.margin>
-            <Insets left="10.0" top="20.0" />
+            <Insets left="7.0" top="7.0" />
          </VBox.margin>
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
+      </HBox>
       <HBox alignment="CENTER" prefHeight="55.0" prefWidth="600.0" spacing="15.0">
          <children>
             <VBox alignment="CENTER" prefHeight="82.0" prefWidth="150.0">

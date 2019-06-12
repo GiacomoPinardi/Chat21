@@ -80,6 +80,7 @@ public class ThreadClient implements Runnable {
 							ca.confermaAccesso(executor);
 						}
 						else {
+							executor = o.getParametro1();
 							ca.negaAccesso(o.getParametro1(), outSock);
 						}
 						cl.addEntry(executor + " prova ad accedere:", esito);

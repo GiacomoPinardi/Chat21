@@ -1,11 +1,14 @@
 package controllerServer;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import dominioPacchetto.Conferma;
 import dominioPacchetto.ListaString;
+import dominioPacchetto.MessaggioTestuale;
 import dominioPacchetto.Pacchetto;
+import dominioPacchetto.TipoDestinatario;
 import dominioPacchetto.TipoInfo;
 import dominioServer.Gruppo;
 
@@ -46,6 +49,7 @@ public class ControllerGestioneGruppi {
 		gruppi.lockList();
 		boolean esito = gruppi.getByNome(nomeGruppo).aggiungiUtente(username);
 		invioConferma("aggiungi utente a gruppo", esito, executor);
+		utenti.getByUsername(username).invia(new Pacchetto(new MessaggioTestuale(TipoDestinatario.GRUPPO, LocalDateTime.now(), executor, nomeGruppo, "L'amministratore "+executor+"ha aggiunto l'utente "+username+" al gruppo "+nomeGruppo), TipoInfo.CREA_GRUPPO));
 		gruppi.unlockList();
 		if (esito)
 			dbConnection.aggiungiUtenteGruppo(nomeGruppo, username);

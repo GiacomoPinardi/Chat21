@@ -110,8 +110,9 @@ public class ThreadClient implements Runnable {
 					case AGG_UTENTE_GRUPPO:
 						o = (Operazione) pacchetto.getInformazione();
 						// nomeGruppo, username
-						if(cgg.aggiungiUtenteGruppo(o.getParametro1(), o.getParametro2(), executor))
+						if(cgg.aggiungiUtenteGruppo(o.getParametro1(), o.getParametro2(), executor)) {
 							cl.addEntry(executor + " ha aggiunto al gruppo " + o.getParametro1() + " l'utente " + o.getParametro2());
+						}
 						break;
 					case ELIMINA_UTENTE_GRUPPO:
 						o = (Operazione) pacchetto.getInformazione();

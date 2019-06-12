@@ -28,7 +28,7 @@
             <Insets top="-5.0" />
          </VBox.margin>
       </Line>
-      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="600.0" spacing="20.0">
+      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="600.0" spacing="10.0">
          <children>
             <VBox alignment="CENTER" prefHeight="130.0" prefWidth="150.0">
                <children>
@@ -48,7 +48,7 @@
                   <PasswordField fx:id="ripetiNuovaPassword" />
                </children>
             </VBox>
-            <Button fx:id="modificaPassword" mnemonicParsing="false" onAction="#handlerModificaPassword" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Modifica Password">
+            <Button fx:id="modificaPassword" mnemonicParsing="false" onAction="#handlerModificaPassword" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Modifica Password">
                <HBox.margin>
                   <Insets top="16.0" />
                </HBox.margin>
@@ -60,7 +60,7 @@
             <Insets top="-5.0" />
          </VBox.margin>
       </Line>
-      <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="600.0" spacing="15.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="600.0" spacing="10.0">
          <children>
             <VBox alignment="CENTER" prefHeight="130.0" prefWidth="150.0">
                <children>
@@ -82,7 +82,7 @@
                <HBox.margin>
                   <Insets top="14.0" />
                </HBox.margin></CheckBox>
-            <Button fx:id="aggiungiNuovoUtente" mnemonicParsing="false" onAction="#handlerAggiungiNuovoUtente" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Aggiungi nuovo utente">
+            <Button fx:id="aggiungiNuovoUtente" mnemonicParsing="false" onAction="#handlerAggiungiNuovoUtente" prefHeight="27.0" prefWidth="154.0" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Aggiungi nuovo utente">
                <HBox.margin>
                   <Insets top="14.0" />
                </HBox.margin></Button>
@@ -96,9 +96,9 @@
                   <Insets left="7.0" />
                </HBox.margin>
             </ListView>
-            <Button fx:id="rimuoviUtenteSelezionato" mnemonicParsing="false" onAction="#handlerRimuoviUtenteSelezionato" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Rimuovi utente selezionato">
+            <Button fx:id="rimuoviUtenteSelezionato" mnemonicParsing="false" onAction="#handlerRimuoviUtenteSelezionato" prefHeight="27.0" prefWidth="218.0" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Rimuovi utente selezionato">
                <HBox.margin>
-                  <Insets left="90.0" />
+                  <Insets left="55.0" />
                </HBox.margin>
             </Button>
          </children>
@@ -122,9 +122,9 @@
                         <Insets left="7.0" top="-5.0" />
                      </VBox.margin>
                   </DatePicker>
-                  <Button fx:id="richiediLog" mnemonicParsing="false" onAction="#handlerRichiediLog" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Richiedi log">
+                  <Button fx:id="richiediLog" mnemonicParsing="false" onAction="#handlerRichiediLog" prefHeight="27.0" prefWidth="174.0" style="-fx-background-color: CORNFLOWERBLUE; -fx-border-color: black;" text="Richiedi log">
                      <VBox.margin>
-                        <Insets left="7.0" />
+                        <Insets left="7.0" top="5.0" />
                      </VBox.margin>
                   </Button>
                </children>

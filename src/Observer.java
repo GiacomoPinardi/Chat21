@@ -28,9 +28,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -199,7 +196,7 @@ public class Observer {
 				}
 			tabs.getStylesheets().add(this.getClass().getResource("myTabStyle.css").toExternalForm());
 			tabs.getSelectionModel().select(tBacheca);
-			stage.setScene((new Scene(tabs, Color.WHITE)));
+			stage.setScene(new Scene(tabs));
 		} else {
 			alertWindow("le credenziali non sono corrette");
 			
@@ -240,7 +237,7 @@ public class Observer {
 				MessaggioTestuale m = (MessaggioTestuale) contenuto;
 				areeGruppi.get(destinatario).appendText(m.getMittente() + " : " + m.getMessaggio() + "\n");
 			} else {
-				System.out.println("NON C'è il gruppo!");
+				System.out.println("NON C'E' il gruppo!");
 			}
 			break;
 		case BACHECA:
@@ -291,6 +288,7 @@ public class Observer {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		stage.setScene(new Scene(tabs));
 	}
 
 	public void getUtenti() {
@@ -435,14 +433,14 @@ public class Observer {
         gestioneAggiornamenti.initModality(Modality.APPLICATION_MODAL);
         gestioneAggiornamenti.initOwner(stage);
         MyResourceBundle bundleInit = new MyResourceBundle(this, informazioniSessione);
-        Scene dialogScene=null;
+        Scene aggiornamenti=null;
 		try {
-			dialogScene = new Scene(FXMLLoader.load(getClass().getResource("GestioneAggiornamenti.fxml"), bundleInit));
+			aggiornamenti = new Scene(FXMLLoader.load(getClass().getResource("GestioneAggiornamenti.fxml"), bundleInit));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        gestioneAggiornamenti.setScene(dialogScene);
+        gestioneAggiornamenti.setScene(aggiornamenti);
         gestioneAggiornamenti.show();
 	}
 }

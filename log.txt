@@ -318,3 +318,49 @@
 [2019/06/10-15:19]: Mario prova ad accedere: successo
 [2019/06/10-15:19]: Mario ha eliminato dal gruppo Gruppo2 l'utente bho
 [2019/06/10-15:19]: Mario si e' disconnesso
+[2019/06/12-16:24]: Mario prova ad accedere: successo
+[2019/06/12-16:24]: Mario si e' disconnesso
+[2019/06/12-16:26]: Mario prova ad accedere: successo
+[2019/06/12-16:26]: Mario ha eliminato l'utente bho
+[2019/06/12-16:27]: Mario si e' disconnesso
+[2019/06/12-16:33]: Mario prova ad accedere: successo
+[2019/06/12-16:33]: Carlo prova ad accedere: successo
+[2019/06/12-16:34]: Mario ha aggiunto al gruppo Gruppo2 l'utente Carlo
+[2019/06/12-16:41]: Mario si e' disconnesso
+[2019/06/12-16:41]: Carlo si e' disconnesso
+[2019/06/12-16:41]: Mario prova ad accedere: successo
+[2019/06/12-16:41]: Carlo prova ad accedere: successo
+[2019/06/12-16:42]: Mario ha eliminato dal gruppo Gruppo2 l'utente Carlo
+[2019/06/12-16:43]: Mario ha creato il gruppo Gruppo21
+[2019/06/12-16:43]: Mario ha aggiunto al gruppo Gruppo21 l'utente Carlo
+[2019/06/12-16:44]: Carlo si e' disconnesso
+[2019/06/12-16:44]: Mario si e' disconnesso
+[2019/06/12-16:45]: Mario prova ad accedere: successo
+[2019/06/12-16:45]: Carlo prova ad accedere: successo
+[2019/06/12-16:45]: Mario ha aggiunto al gruppo Gruppo21 l'utente Mario
+[2019/06/12-16:51]: Mario prova ad accedere: successo
+[2019/06/12-16:51]: Carlo prova ad accedere: successo
+[2019/06/12-16:51]: Mario ha creato il gruppo Gruppo22
+[2019/06/12-16:52]: Mario ha aggiunto al gruppo Gruppo22 l'utente Carlo
+[2019/06/12-16:52]: Mario ha eliminato il gruppo Gruppo22
+[2019/06/12-16:55]: Mario prova ad accedere: successo
+[2019/06/12-16:56]: Carlo prova ad accedere: successo
+[2019/06/12-16:56]: Mario ha creato il gruppo Gruppo22
+[2019/06/12-16:56]: Mario ha aggiunto al gruppo Gruppo22 l'utente Carlo
+[2019/06/12-17:01]: Mario prova ad accedere: successo
+[2019/06/12-17:01]: Carlo prova ad accedere: successo
+[2019/06/12-17:01]: Mario ha eliminato dal gruppo Gruppo22 l'utente Carlo
+[2019/06/12-17:10]: Mario prova ad accedere: successo
+[2019/06/12-17:12]: Mario ha aggiunto al gruppo Gruppo22 l'utente Carlo
+[2019/06/12-17:13]: Mario prova ad accedere: successo
+[2019/06/12-17:16]: Mario ha aggiunto al gruppo Gruppo22 l'utente Mario
+[2019/06/12-17:18]: Mario ha eliminato dal gruppo Gruppo22 l'utente Mario
+[2019/06/12-17:20]: Mario si e' disconnesso
+[2019/06/12-17:20]: Carlo prova ad accedere: successo
+[2019/06/12-17:20]: Mario prova ad accedere: successo
+[2019/06/12-17:21]: Mario ha aggiunto al gruppo Gruppo22 l'utente Mario
+[2019/06/12-17:21]: Mario si e' disconnesso
+[2019/06/12-17:22]: Mario prova ad accedere: successo
+[2019/06/12-17:22]: Mario prova ad accedere: successo
+[2019/06/12-17:22]: Mario ha creato il gruppo Gruppo23
+[2019/06/12-17:23]: Mario ha aggiunto al gruppo Gruppo23 l'utente Carlo

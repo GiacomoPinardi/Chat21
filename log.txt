@@ -302,13 +302,6 @@
 [2019/06/10-09:58]: Mario si e' disconnesso
 [2019/06/10-10:01]: Mario prova ad accedere: successo
 >>>>>>> branch 'master' of https://github.com/GiacomoPinardi/Chat21.git
-[2019/06/10-14:43]: UNKNOWN prova ad accedere: fallito
-[2019/06/10-14:43]: UNKNOWN prova ad accedere: fallito
-[2019/06/10-14:43]: UNKNOWN prova ad accedere: fallito
-[2019/06/10-14:43]: UNKNOWN prova ad accedere: fallito
-[2019/06/10-14:43]: UNKNOWN prova ad accedere: fallito
-[2019/06/10-14:43]: UNKNOWN prova ad accedere: fallito
-[2019/06/10-14:46]: UNKNOWN prova ad accedere: fallito
 [2019/06/10-15:17]: Carlo prova ad accedere: successo
 [2019/06/10-15:17]: Carlo si e' disconnesso
 [2019/06/10-15:17]: Mario prova ad accedere: successo
@@ -384,49 +377,14 @@
 [2019/06/13-01:37]: Mario ha creato il gruppo progetto lunare
 [2019/06/13-01:38]: Mario ha aggiunto al gruppo progetto lunare l'utente Carlo
 [2019/06/13-01:39]: Carlo si e' disconnesso
-[2019/06/13-01:39]: UNKNOWN si e' disconnesso
-[2019/06/13-01:39]: UNKNOWN si e' disconnesso
-[2019/06/13-01:39]: UNKNOWN si e' disconnesso
-[2019/06/13-01:39]: UNKNOWN si e' disconnesso
-[2019/06/13-01:39]: UNKNOWN si e' disconnesso
-[2019/06/13-01:39]: UNKNOWN si e' disconnesso
-[2019/06/13-01:39]: UNKNOWN si e' disconnesso
-[2019/06/13-01:39]: UNKNOWN si e' disconnesso
-[2019/06/13-01:39]: UNKNOWN si e' disconnesso
-[2019/06/13-01:39]: UNKNOWN si e' disconnesso
-[2019/06/13-01:39]: UNKNOWN si e' disconnesso
-[2019/06/13-01:39]: UNKNOWN si e' disconnesso
-[2019/06/13-01:39]: UNKNOWN si e' disconnesso
-[2019/06/13-01:39]: UNKNOWN si e' disconnesso
-[2019/06/13-01:39]: UNKNOWN si e' disconnesso
-[2019/06/13-01:39]: UNKNOWN si e' disconnesso
-[2019/06/13-01:39]: UNKNOWN si e' disconnesso
-[2019/06/13-01:39]: UNKNOWN si e' disconnesso
-[2019/06/13-01:40]: UNKNOWN si e' disconnesso
 [2019/06/13-01:41]: Mario prova ad accedere: successo
 [2019/06/13-01:42]: Carlo prova ad accedere: successo
 [2019/06/13-01:42]: Carlo si e' disconnesso
-[2019/06/13-01:42]: UNKNOWN si e' disconnesso
-[2019/06/13-01:42]: UNKNOWN si e' disconnesso
-[2019/06/13-01:42]: UNKNOWN si e' disconnesso
-[2019/06/13-01:42]: UNKNOWN si e' disconnesso
-[2019/06/13-01:42]: UNKNOWN si e' disconnesso
-[2019/06/13-01:42]: UNKNOWN si e' disconnesso
 [2019/06/13-01:42]: Mario si e' disconnesso
-[2019/06/13-01:42]: UNKNOWN si e' disconnesso
-[2019/06/13-01:42]: UNKNOWN si e' disconnesso
-[2019/06/13-01:42]: UNKNOWN si e' disconnesso
-[2019/06/13-01:42]: UNKNOWN si e' disconnesso
-[2019/06/13-01:42]: UNKNOWN si e' disconnesso
 [2019/06/13-01:46]: Mario prova ad accedere: successo
 [2019/06/13-01:46]: Mario si e' disconnesso
 [2019/06/13-01:48]: Mario prova ad accedere: successo
 [2019/06/13-01:49]: Mario si e' disconnesso
-[2019/06/13-01:49]: UNKNOWN si e' disconnesso
-[2019/06/13-01:49]: UNKNOWN si e' disconnesso
-[2019/06/13-01:49]: UNKNOWN si e' disconnesso
-[2019/06/13-01:49]: UNKNOWN si e' disconnesso
-[2019/06/13-01:49]: UNKNOWN si e' disconnesso
 [2019/06/13-01:52]: Carlo prova ad accedere: successo
 [2019/06/13-01:52]: Carlo si e' disconnesso
 [2019/06/13-01:52]: Mario prova ad accedere: successo
@@ -448,3 +406,10 @@
 [2019/06/13-01:56]: Carlo prova ad accedere: successo
 [2019/06/13-01:57]: Carlo si e' disconnesso
 [2019/06/13-01:57]: Mario si e' disconnesso
+[2019/06/13-08:31]: Carlo prova ad accedere: successo
+[2019/06/13-08:31]: Mario prova ad accedere: successo
+[2019/06/13-08:32]: Mario si e' disconnesso
+[2019/06/13-08:32]: Mario prova ad accedere: successo
+[2019/06/13-08:32]: Mario ha aggiunto al gruppo team html5 l'utente Mario
+[2019/06/13-08:36]: Mario si e' disconnesso
+[2019/06/13-08:36]: Carlo si e' disconnesso

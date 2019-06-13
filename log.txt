@@ -364,3 +364,87 @@
 [2019/06/12-17:22]: Mario prova ad accedere: successo
 [2019/06/12-17:22]: Mario ha creato il gruppo Gruppo23
 [2019/06/12-17:23]: Mario ha aggiunto al gruppo Gruppo23 l'utente Carlo
+[2019/06/13-01:07]: Carlo prova ad accedere: successo
+[2019/06/13-01:09]: Mario prova ad accedere: successo
+[2019/06/13-01:11]: Mario ha aggiunto l'utente Rosa
+[2019/06/13-01:11]: Rosa prova ad accedere: successo
+[2019/06/13-01:11]: Mario ha aggiunto al gruppo Gruppo2 l'utente Rosa
+[2019/06/13-01:13]: Mario ha aggiunto al gruppo Gruppo2 l'utente Carlo
+[2019/06/13-01:15]: Mario ha eliminato il gruppo Gruppo2
+[2019/06/13-01:18]: Mario prova ad accedere: successo
+[2019/06/13-01:22]: Rosa prova ad accedere: successo
+[2019/06/13-01:23]: Mario ha aggiunto al gruppo Gruppo23 l'utente Rosa
+[2019/06/13-01:23]: Rosa si e' disconnesso
+[2019/06/13-01:23]: Mario si e' disconnesso
+[2019/06/13-01:28]: Mario prova ad accedere: successo
+[2019/06/13-01:29]: Rosa prova ad accedere: successo
+[2019/06/13-01:29]: Mario ha aggiunto al gruppo Gruppo22 l'utente Rosa
+[2019/06/13-01:34]: Carlo prova ad accedere: successo
+[2019/06/13-01:37]: Mario prova ad accedere: successo
+[2019/06/13-01:37]: Mario ha creato il gruppo progetto lunare
+[2019/06/13-01:38]: Mario ha aggiunto al gruppo progetto lunare l'utente Carlo
+[2019/06/13-01:39]: Carlo si e' disconnesso
+[2019/06/13-01:39]: UNKNOWN si e' disconnesso
+[2019/06/13-01:39]: UNKNOWN si e' disconnesso
+[2019/06/13-01:39]: UNKNOWN si e' disconnesso
+[2019/06/13-01:39]: UNKNOWN si e' disconnesso
+[2019/06/13-01:39]: UNKNOWN si e' disconnesso
+[2019/06/13-01:39]: UNKNOWN si e' disconnesso
+[2019/06/13-01:39]: UNKNOWN si e' disconnesso
+[2019/06/13-01:39]: UNKNOWN si e' disconnesso
+[2019/06/13-01:39]: UNKNOWN si e' disconnesso
+[2019/06/13-01:39]: UNKNOWN si e' disconnesso
+[2019/06/13-01:39]: UNKNOWN si e' disconnesso
+[2019/06/13-01:39]: UNKNOWN si e' disconnesso
+[2019/06/13-01:39]: UNKNOWN si e' disconnesso
+[2019/06/13-01:39]: UNKNOWN si e' disconnesso
+[2019/06/13-01:39]: UNKNOWN si e' disconnesso
+[2019/06/13-01:39]: UNKNOWN si e' disconnesso
+[2019/06/13-01:39]: UNKNOWN si e' disconnesso
+[2019/06/13-01:39]: UNKNOWN si e' disconnesso
+[2019/06/13-01:40]: UNKNOWN si e' disconnesso
+[2019/06/13-01:41]: Mario prova ad accedere: successo
+[2019/06/13-01:42]: Carlo prova ad accedere: successo
+[2019/06/13-01:42]: Carlo si e' disconnesso
+[2019/06/13-01:42]: UNKNOWN si e' disconnesso
+[2019/06/13-01:42]: UNKNOWN si e' disconnesso
+[2019/06/13-01:42]: UNKNOWN si e' disconnesso
+[2019/06/13-01:42]: UNKNOWN si e' disconnesso
+[2019/06/13-01:42]: UNKNOWN si e' disconnesso
+[2019/06/13-01:42]: UNKNOWN si e' disconnesso
+[2019/06/13-01:42]: Mario si e' disconnesso
+[2019/06/13-01:42]: UNKNOWN si e' disconnesso
+[2019/06/13-01:42]: UNKNOWN si e' disconnesso
+[2019/06/13-01:42]: UNKNOWN si e' disconnesso
+[2019/06/13-01:42]: UNKNOWN si e' disconnesso
+[2019/06/13-01:42]: UNKNOWN si e' disconnesso
+[2019/06/13-01:46]: Mario prova ad accedere: successo
+[2019/06/13-01:46]: Mario si e' disconnesso
+[2019/06/13-01:48]: Mario prova ad accedere: successo
+[2019/06/13-01:49]: Mario si e' disconnesso
+[2019/06/13-01:49]: UNKNOWN si e' disconnesso
+[2019/06/13-01:49]: UNKNOWN si e' disconnesso
+[2019/06/13-01:49]: UNKNOWN si e' disconnesso
+[2019/06/13-01:49]: UNKNOWN si e' disconnesso
+[2019/06/13-01:49]: UNKNOWN si e' disconnesso
+[2019/06/13-01:52]: Carlo prova ad accedere: successo
+[2019/06/13-01:52]: Carlo si e' disconnesso
+[2019/06/13-01:52]: Mario prova ad accedere: successo
+[2019/06/13-01:52]: Mario ha eliminato il gruppo Gruppo23
+[2019/06/13-01:52]: Mario ha eliminato il gruppo Gruppo22
+[2019/06/13-01:52]: Mario ha eliminato il gruppo Gruppo21
+[2019/06/13-01:52]: Mario ha eliminato il gruppo Gruppo2
+[2019/06/13-01:53]: Mario ha eliminato il gruppo Gruppo1
+[2019/06/13-01:53]: Mario ha creato il gruppo team c++
+[2019/06/13-01:53]: Mario ha creato il gruppo team html5
+[2019/06/13-01:53]: Mario ha aggiunto l'utente Rosa
+[2019/06/13-01:54]: Mario ha aggiunto l'utente Sandra
+[2019/06/13-01:54]: Mario ha aggiunto al gruppo team c++ l'utente Mario
+[2019/06/13-01:54]: Mario ha aggiunto al gruppo team c++ l'utente Rosa
+[2019/06/13-01:54]: Mario ha aggiunto al gruppo team html5 l'utente Carlo
+[2019/06/13-01:54]: Mario ha aggiunto al gruppo team html5 l'utente Sandra
+[2019/06/13-01:55]: Rosa prova ad accedere: successo
+[2019/06/13-01:56]: Rosa si e' disconnesso
+[2019/06/13-01:56]: Carlo prova ad accedere: successo
+[2019/06/13-01:57]: Carlo si e' disconnesso
+[2019/06/13-01:57]: Mario si e' disconnesso
